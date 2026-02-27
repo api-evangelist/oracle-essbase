@@ -1,0 +1,90 @@
+name: Oracle Essbase
+description: Oracle Essbase is a multi-dimensional database management system that provides a multidimensional analytical platform for business intelligence applications, financial consolidation, planning, budgeting, and forecasting.
+image: https://www.oracle.com/a/ocom/img/oracle-essbase.jpg
+url: https://www.oracle.com/essbase/
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+tags:
+- Multi-dimensional Database
+- OLAP
+- Analytics
+- Business Intelligence
+- Planning
+- Budgeting
+- Financial Consolidation
+apis:
+- name: Oracle Essbase REST API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations.
+  image: https://www.oracle.com/a/ocom/img/oracle-essbase.jpg
+  humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/erest/
+  baseURL: https://{host}:{port}/essbase/rest/v1
+  tags:
+  - REST API
+  - OLAP
+  - Analytics
+  - Calculations
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/erest/
+  - type: OpenAPI
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/erest/rest-api-essbase.html
+  - type: Authentication
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/erest/op-rest-v1-sessions-post.html
+  contact:
+  - FN: Oracle Support
+    url: https://support.oracle.com
+- name: Essbase Java API
+  description: Java API for developing applications that interact with Oracle Essbase for data loading, calculations, and retrievals.
+  humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/
+  tags:
+  - Java
+  - SDK
+  - Programming Interface
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/
+- name: Essbase C API
+  description: C API for building high-performance applications that interact with Essbase databases.
+  humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/
+  tags:
+  - C API
+  - SDK
+  - Native Interface
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/
+- name: Essbase CLI (Command Line Interface)
+  description: Command-line interface for administering and managing Essbase applications and databases.
+  humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essug/
+  tags:
+  - CLI
+  - Command Line
+  - Administration
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/other-databases/essbase/21/essug/
+maintainers:
+- FN: Oracle Corporation
+  email: essbase_ww@oracle.com
+  url: https://www.oracle.com
+common:
+- type: Getting Started
+  url: https://docs.oracle.com/en/database/other-databases/essbase/21/
+- type: Documentation
+  url: https://docs.oracle.com/en/database/other-databases/essbase/
+- type: Downloads
+  url: https://www.oracle.com/database/technologies/essbase-downloads.html
+- type: Product Page
+  url: https://www.oracle.com/performance-management/essbase/
+- type: Support
+  url: https://support.oracle.com
+- type: Community
+  url: https://community.oracle.com/customerconnect/categories/enterprise-performance-management-essbase
+- type: Tutorials
+  url: https://docs.oracle.com/en/database/other-databases/essbase/21/essug/essbase-tutorials.html
+- type: Licensing
+  url: https://www.oracle.com/corporate/pricing/specialty-topics.html
+- type: Release Notes
+  url: https://docs.oracle.com/en/database/other-databases/essbase/21/essrn/
+include: []
