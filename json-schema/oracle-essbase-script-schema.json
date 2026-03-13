@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-script-schema.json",
+  "title": "Oracle Essbase Script",
+  "description": "A calculation or MDX script associated with an Oracle Essbase database. Calculation scripts (.csc) contain Essbase calculation language statements for aggregating and computing data values. MDX scripts contain MDX queries for data retrieval and manipulation.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Script name, typically including the file extension (.csc for calculation scripts)."
+    },
+    "content": {
+      "type": "string",
+      "description": "Full text content of the script including calculation or MDX statements."
+    },
+    "modifiedBy": {
+      "type": "string",
+      "description": "User ID of the person who last modified the script."
+    },
+    "modifiedTime": {
+      "type": "integer",
+      "description": "Last modification timestamp in milliseconds since Unix epoch."
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["name", "content"],
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,4419 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST API
+  description: >-
+    RESTful API for managing and interacting with Oracle Essbase applications,
+    databases, and performing analytical operations. Enables automation of
+    Essbase resource management with endpoints for applications, databases,
+    calculations, data loads, user management, sessions, jobs, files, scripts,
+    filters, partitions, connections, datasources, dimensions, outline viewer,
+    locks, scenarios, server properties, and more. All communication occurs
+    over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+  - url: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API server
+    variables:
+      host:
+        default: localhost
+        description: Essbase server hostname
+      port:
+        default: '9001'
+        description: Essbase server port
+security:
+  - basicAuth: []
+  - bearerAuth: []
+tags:
+  - name: Applications
+    description: Manage Essbase applications and their lifecycle
+  - name: Databases
+    description: Manage databases (cubes) within applications
+  - name: Jobs
+    description: Execute and monitor asynchronous jobs such as data loads, calculations, and exports
+  - name: Sessions
+    description: Manage active user sessions
+  - name: User Session
+    description: User login, logout, and password management
+  - name: Users
+    description: Create, search, update, and delete users
+  - name: Groups
+    description: Manage user groups and memberships
+  - name: Scripts
+    description: Manage calculation and MDX scripts
+  - name: Files
+    description: Upload, download, copy, move, and delete files in the Essbase file catalog
+  - name: Filters
+    description: Manage database security filters
+  - name: Connections
+    description: Manage global and application-level connections
+  - name: Datasources
+    description: Manage global and application-level datasources
+  - name: Partitions
+    description: Manage database partitions
+  - name: Dimensions
+    description: View dimension information, generations, and levels
+  - name: Outline
+    description: View and export database outlines
+  - name: Locks
+    description: Manage locks on database objects and blocks
+  - name: Scenarios
+    description: Manage scenario lifecycle, approvals, and comments
+  - name: Variables
+    description: Manage server-level and application-level substitution variables
+  - name: Server
+    description: Server properties, configuration, and about information
+  - name: Application Configuration
+    description: Manage application-level configuration settings
+  - name: Roles
+    description: Service and application role provisioning
+  - name: Grid
+    description: Grid operations for data retrieval and manipulation
+  - name: Reports
+    description: MDX reports and drill-through reports
+paths:
+  /about:
+    get:
+      operationId: getAboutEssbase
+      summary: Get About Essbase
+      description: Returns general information about the Essbase instance, including version and build details.
+      tags:
+        - Server
+      responses:
+        '200':
+          description: Essbase instance information returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboutInfo'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /about/instance:
+    get:
+      operationId: getAboutEssbaseInstance
+      summary: Get About Essbase Instance
+      description: Returns detailed information about the Essbase instance deployment and configuration.
+      tags:
+        - Server
+      responses:
+        '200':
+          description: Instance details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboutInfo'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications:
+    get:
+      operationId: listApplications
+      summary: List Applications
+      description: >-
+        Returns a list of Essbase applications the authenticated user has access
+        to. Supports filtering, pagination, sorting, and field selection. If
+        application status is required in the response, limit must be 100 or
+        less.
+      tags:
+        - Applications
+      parameters:
+        - name: applicationNameForConnection
+          in: query
+          description: Application name for connection filtering.
+          schema:
+            type: string
+        - name: connectionName
+          in: query
+          description: Filter applications by connection name.
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: Comma-separated list of fields to return. If omitted, all fields are returned.
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: Wildcard filter for application names.
+          schema:
+            type: string
+            default: '*'
+        - name: limit
+          in: query
+          description: Maximum number of applications to return. Must be 100 or less if status is included.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - name: offset
+          in: query
+          description: Number of applications to skip from the start of the result set.
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: orderBy
+          in: query
+          description: 'Sort order in format column:direction (e.g., name:asc).'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of applications returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+        '400':
+          description: Failed to get applications.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createApplication
+      summary: Create Application and Database
+      description: >-
+        Creates a new Essbase application and optionally a database within it.
+        Application names are limited to 30 characters, must not contain spaces,
+        and are case-insensitive. Specify BSO (block storage) or ASO (aggregate
+        storage) for the database type.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplication'
+      responses:
+        '200':
+          description: Application created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to create application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}:
+    get:
+      operationId: getApplication
+      summary: Get Application
+      description: Returns details of the specified Essbase application, including status, type, owner, and configuration.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to get application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: startStopApplication
+      summary: Start or Stop Application
+      description: Starts or stops an Essbase application by updating its status.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Desired application status.
+                  enum:
+                    - started
+                    - stopped
+      responses:
+        '200':
+          description: Application status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to update application status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteApplication
+      summary: Delete Application
+      description: Deletes the specified Essbase application and all of its databases and associated resources.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application deleted successfully.
+        '400':
+          description: Failed to delete application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/copy:
+    post:
+      operationId: copyApplication
+      summary: Copy Application
+      description: Creates a copy of an existing Essbase application with a new name.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Source application name.
+                to:
+                  type: string
+                  description: Destination application name.
+      responses:
+        '200':
+          description: Application copied successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to copy application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/rename:
+    post:
+      operationId: renameApplication
+      summary: Rename Application
+      description: Renames an existing Essbase application.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Current application name.
+                to:
+                  type: string
+                  description: New application name.
+      responses:
+        '200':
+          description: Application renamed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to rename application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/tree:
+    get:
+      operationId: getApplicationTreeView
+      summary: Get Application Tree View
+      description: Returns a hierarchical tree view of applications and their databases.
+      tags:
+        - Applications
+      responses:
+        '200':
+          description: Application tree view returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/name/{appVisibility}:
+    get:
+      operationId: listApplicationNames
+      summary: List Application Names
+      description: Returns a list of application names filtered by visibility.
+      tags:
+        - Applications
+      parameters:
+        - name: appVisibility
+          in: path
+          required: true
+          description: Application visibility filter.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Application names returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/encrypt:
+    post:
+      operationId: encryptApplication
+      summary: Encrypt Application
+      description: Encrypts the specified Essbase application for data security.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application encrypted successfully.
+        '400':
+          description: Failed to encrypt application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/decrypt:
+    post:
+      operationId: decryptApplication
+      summary: Decrypt Application
+      description: Decrypts the specified Essbase application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application decrypted successfully.
+        '400':
+          description: Failed to decrypt application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/encryptionconfig:
+    get:
+      operationId: getEncryptionInfo
+      summary: Get Encryption Info
+      description: Returns encryption configuration information for the specified application.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Encryption info returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encrypted:
+                    type: boolean
+                    description: Whether the application is encrypted.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/provisionReport:
+    get:
+      operationId: getApplicationProvisioningReport
+      summary: Get Application Provisioning Report
+      description: Returns the provisioning report for the specified application, detailing user roles and permissions.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Provisioning report returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowCopy:
+    post:
+      operationId: createShadowApplication
+      summary: Create Shadow Application
+      description: Creates a shadow copy of an existing application for safe editing without affecting the production application.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - applicationName
+              properties:
+                applicationName:
+                  type: string
+                  description: Name of the source application to shadow.
+      responses:
+        '200':
+          description: Shadow application created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to create shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowPromote:
+    post:
+      operationId: promoteShadowApplication
+      summary: Promote Shadow Application
+      description: Promotes a shadow application to replace the original production application.
+      tags:
+        - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - shadowAppName
+              properties:
+                shadowAppName:
+                  type: string
+                  description: Name of the shadow application to promote.
+      responses:
+        '200':
+          description: Shadow application promoted successfully.
+        '400':
+          description: Failed to promote shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowDelete/{shadowAppName}:
+    delete:
+      operationId: deleteShadowApplication
+      summary: Delete Shadow Application
+      description: Deletes the specified shadow application.
+      tags:
+        - Applications
+      parameters:
+        - name: shadowAppName
+          in: path
+          required: true
+          description: Name of the shadow application to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Shadow application deleted successfully.
+        '400':
+          description: Failed to delete shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases:
+    get:
+      operationId: listDatabases
+      summary: List Databases
+      description: Returns a list of databases (cubes) within the specified application.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Database list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseList'
+        '400':
+          description: Failed to list databases.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}:
+    get:
+      operationId: getDatabase
+      summary: Get Database
+      description: Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Database details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to get database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: startStopDatabase
+      summary: Start or Stop Database
+      description: Starts or stops the specified database by updating its status.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Desired database status.
+                  enum:
+                    - started
+                    - stopped
+      responses:
+        '200':
+          description: Database status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to update database status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDatabase
+      summary: Delete Database
+      description: Deletes the specified database (cube) from the application.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Database deleted successfully.
+        '400':
+          description: Failed to delete database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/actions/copy:
+    post:
+      operationId: copyDatabase
+      summary: Copy Database
+      description: Creates a copy of an existing database within the same application or to a different application.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Source database name.
+                to:
+                  type: string
+                  description: Destination database name.
+      responses:
+        '200':
+          description: Database copied successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to copy database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/actions/rename:
+    post:
+      operationId: renameDatabase
+      summary: Rename Database
+      description: Renames an existing database within the application.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Current database name.
+                to:
+                  type: string
+                  description: New database name.
+      responses:
+        '200':
+          description: Database renamed successfully.
+        '400':
+          description: Failed to rename database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases:
+    get:
+      operationId: listAliases
+      summary: List Aliases
+      description: Returns a list of alias tables defined for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Alias list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias:
+    get:
+      operationId: getActiveAlias
+      summary: Get Active Alias
+      description: Returns the currently active alias table for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Active alias returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activeAlias:
+                    type: string
+                    description: Name of the active alias table.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias:
+    put:
+      operationId: setActiveAlias
+      summary: Set Active Alias
+      description: Sets the active alias table for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                activeAlias:
+                  type: string
+                  description: Name of the alias table to activate.
+      responses:
+        '200':
+          description: Active alias updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/currencySettings:
+    get:
+      operationId: getCurrencySettings
+      summary: Get Currency Settings
+      description: Returns the currency conversion settings for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Currency settings returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: setCurrencySettings
+      summary: Set Currency Settings
+      description: Updates the currency conversion settings for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Currency settings updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/calculationFunctions:
+    get:
+      operationId: getCalculationFunctions
+      summary: Get Calculation Functions
+      description: Returns a list of available calculation functions for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Calculation functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/formulaFunctions:
+    get:
+      operationId: getFormulaFunctions
+      summary: Get Formula Functions
+      description: Returns a list of available formula functions for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Formula functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/mdxFunctions:
+    get:
+      operationId: getMdxFunctions
+      summary: Get MDX Functions
+      description: Returns a list of available MDX functions for the specified database.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: MDX functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/executeReport:
+    get:
+      operationId: executeReportScript
+      summary: Execute Report Script
+      description: Executes a report script on the specified database and returns the report output.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Report output returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /jobs:
+    get:
+      operationId: listJobs
+      summary: List Jobs
+      description: >-
+        Returns a list of executed jobs. Supports filtering by job type,
+        application, database, and status. Returns job history with execution
+        details.
+      tags:
+        - Jobs
+      parameters:
+        - name: applicationName
+          in: query
+          description: Filter by application name.
+          schema:
+            type: string
+        - name: databaseName
+          in: query
+          description: Filter by database name.
+          schema:
+            type: string
+        - name: jobtype
+          in: query
+          description: Filter by job type.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of jobs to return.
+          schema:
+            type: integer
+            format: int32
+            default: 50
+        - name: offset
+          in: query
+          description: Number of records to skip.
+          schema:
+            type: integer
+            format: int32
+            default: 0
+      responses:
+        '200':
+          description: Job list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: executeJob
+      summary: Execute Job
+      description: >-
+        Executes an asynchronous job on an Essbase database. Supported job types
+        include dataload, dimbuild, calc, clear, importExcel, exportExcel,
+        lcmExport, lcmImport, clearAggregation, buildAggregation,
+        asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns
+        a job record with a job_ID for monitoring progress.
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '200':
+          description: Job started successfully. Returns job record with job_ID for tracking.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request. Invalid application, database, or null argument.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable. Naming or server exception.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /jobs/{jobId}:
+    get:
+      operationId: getJob
+      summary: Get Job
+      description: Returns details and current status of the specified job by its identifier.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Unique job identifier.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Job details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteJob
+      summary: Delete Job Record
+      description: Deletes the job record for the specified job identifier.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Unique job identifier.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Job record deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /jobs/{jobId}/actions/rerun:
+    post:
+      operationId: rerunJob
+      summary: Rerun Job
+      description: Reruns a previously executed job with the same parameters.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Unique job identifier of the job to rerun.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Job rerun started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /sessions:
+    get:
+      operationId: listSessions
+      summary: List Sessions
+      description: >-
+        Returns a list of currently active sessions. Optionally filter by
+        application, database, or user ID. If userId is not provided, all
+        sessions are retrieved.
+      tags:
+        - Sessions
+      parameters:
+        - name: application
+          in: query
+          description: Filter by application name.
+          schema:
+            type: string
+        - name: database
+          in: query
+          description: Filter by database name.
+          schema:
+            type: string
+        - name: userId
+          in: query
+          description: Filter by user ID. If not provided, returns all sessions.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+        '400':
+          description: Essbase or platform security exception.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /sessions/{sessionId}:
+    delete:
+      operationId: deleteSession
+      summary: Delete Session
+      description: Terminates the specified active session by session identifier.
+      tags:
+        - Sessions
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: Session identifier to terminate.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session terminated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /session/login:
+    post:
+      operationId: login
+      summary: Login
+      description: Authenticates a user and creates a new session. Returns session information upon successful login.
+      tags:
+        - User Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  description: User login name.
+                password:
+                  type: string
+                  format: password
+                  description: User password.
+      responses:
+        '200':
+          description: Login successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: Session token for subsequent requests.
+        '400':
+          description: Invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /session/logout:
+    post:
+      operationId: logout
+      summary: Logout
+      description: Terminates the current user session and invalidates the session token.
+      tags:
+        - User Session
+      responses:
+        '200':
+          description: Logout successful.
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /session/password:
+    put:
+      operationId: changePassword
+      summary: Change Password
+      description: Changes the password for the currently authenticated user.
+      tags:
+        - User Session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - oldPassword
+                - newPassword
+              properties:
+                oldPassword:
+                  type: string
+                  format: password
+                  description: Current password.
+                newPassword:
+                  type: string
+                  format: password
+                  description: New password.
+      responses:
+        '200':
+          description: Password changed successfully.
+        '400':
+          description: Bad request or invalid current password.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: >-
+        Returns a list of Essbase users. Supports filtering by name pattern and
+        limiting results. Use expand=all to include service roles and group
+        memberships. Supports CSV export via Accept: application/octet-stream
+        header. Not available in EPM Shared Services security mode.
+      tags:
+        - Users
+      parameters:
+        - name: expand
+          in: query
+          description: Include service role and groups. Values are all or none.
+          schema:
+            type: string
+            enum:
+              - all
+              - none
+            default: all
+        - name: filter
+          in: query
+          description: User ID wildcard pattern for filtering.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of users to return. -1 for no limit.
+          schema:
+            type: integer
+            format: int32
+            default: -1
+      responses:
+        '200':
+          description: User list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                description: CSV export of users.
+        '400':
+          description: User may not have appropriate service role.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Creates a new Essbase user with the specified details and role assignment.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: User created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Failed to create user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Returns details of the specified user including roles and group memberships.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateUser
+      summary: Update User
+      description: Updates details of the specified user such as email, role, or password.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User identifier.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+      responses:
+        '200':
+          description: User updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Failed to update user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Deletes the specified user from Essbase.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully.
+        '400':
+          description: Failed to delete user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /groups:
+    get:
+      operationId: listGroups
+      summary: List Groups
+      description: Returns a list of user groups defined in Essbase.
+      tags:
+        - Groups
+      parameters:
+        - name: filter
+          in: query
+          description: Group name wildcard pattern for filtering.
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of groups to return.
+          schema:
+            type: integer
+            format: int32
+            default: -1
+      responses:
+        '200':
+          description: Group list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createGroup
+      summary: Create Group
+      description: Creates a new user group in Essbase.
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Group created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Failed to create group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /groups/{groupId}:
+    get:
+      operationId: getGroup
+      summary: Get Group
+      description: Returns details of the specified group including its members.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: Group identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Group details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateGroup
+      summary: Update Group
+      description: Updates the specified group details and membership.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: Group identifier.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Group updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Failed to update group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteGroup
+      summary: Delete Group
+      description: Deletes the specified group from Essbase.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: Group identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Group deleted successfully.
+        '400':
+          description: Failed to delete group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /groups/{groupId}/members:
+    get:
+      operationId: listGroupMembers
+      summary: List Group Members
+      description: Returns a list of members (users and sub-groups) in the specified group.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: Group identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Group members returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/scripts:
+    get:
+      operationId: listScripts
+      summary: List Scripts
+      description: Returns a list of calculation and MDX scripts for the specified database.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Script list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createScript
+      summary: Create Script
+      description: Creates a new calculation or MDX script for the specified database.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptInput'
+      responses:
+        '200':
+          description: Script created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Failed to create script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}:
+    get:
+      operationId: getScript
+      summary: Get Script
+      description: Returns the content and details of the specified calculation or MDX script.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: scriptName
+          in: path
+          required: true
+          description: Script name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Script details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateScript
+      summary: Update Script
+      description: Updates the content of an existing calculation or MDX script.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: scriptName
+          in: path
+          required: true
+          description: Script name.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptInput'
+      responses:
+        '200':
+          description: Script updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Failed to update script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteScript
+      summary: Delete Script
+      description: Deletes the specified calculation or MDX script from the database.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: scriptName
+          in: path
+          required: true
+          description: Script name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Script deleted successfully.
+        '400':
+          description: Failed to delete script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files:
+    get:
+      operationId: listRootFolders
+      summary: List Root Folders
+      description: >-
+        Returns a list of root-level folders in the Essbase file catalog.
+        Typical root folders include applications, gallery, shared, and users.
+      tags:
+        - Files
+      parameters:
+        - name: filter
+          in: query
+          description: Filter the list of files.
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: Return search results recursively.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Root folder list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileList'
+        '400':
+          description: Invalid path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{path}:
+    get:
+      operationId: listFilesOrDownload
+      summary: List Files or Download File
+      description: >-
+        Lists the contents of a folder or downloads a specific file from the
+        Essbase file catalog. Use Accept header to control response type.
+      tags:
+        - Files
+      parameters:
+        - name: path
+          in: path
+          required: true
+          description: File or folder path in the file catalog.
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: Filter the list of files.
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: Return search results recursively.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: File listing or file content returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileList'
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: uploadFile
+      summary: Upload File
+      description: Uploads a file to the specified path in the Essbase file catalog.
+      tags:
+        - Files
+      parameters:
+        - name: path
+          in: path
+          required: true
+          description: Destination file path in the file catalog.
+          schema:
+            type: string
+        - name: overwrite
+          in: query
+          description: Whether to overwrite an existing file.
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: File uploaded successfully.
+        '400':
+          description: Failed to upload file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteFile
+      summary: Delete File or Folder
+      description: Deletes the specified file or folder from the Essbase file catalog.
+      tags:
+        - Files
+      parameters:
+        - name: path
+          in: path
+          required: true
+          description: File or folder path to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File or folder deleted successfully.
+        '400':
+          description: Failed to delete file or folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/actions/copy:
+    post:
+      operationId: copyFile
+      summary: Copy File
+      description: Copies a file or folder from one location to another in the file catalog.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Source file path.
+                to:
+                  type: string
+                  description: Destination file path.
+      responses:
+        '200':
+          description: File copied successfully.
+        '400':
+          description: Failed to copy file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/actions/move:
+    post:
+      operationId: moveFile
+      summary: Move File
+      description: Moves a file or folder from one location to another in the file catalog.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - from
+                - to
+              properties:
+                from:
+                  type: string
+                  description: Source file path.
+                to:
+                  type: string
+                  description: Destination file path.
+      responses:
+        '200':
+          description: File moved successfully.
+        '400':
+          description: Failed to move file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/filters:
+    get:
+      operationId: listFilters
+      summary: List Filters
+      description: Returns a list of security filters defined for the specified database.
+      tags:
+        - Filters
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Filter list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createFilter
+      summary: Create Filter
+      description: Creates a new security filter for the specified database to control member-level access.
+      tags:
+        - Filters
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterInput'
+      responses:
+        '200':
+          description: Filter created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'
+        '400':
+          description: Failed to create filter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/filters/{filterName}:
+    get:
+      operationId: getFilter
+      summary: Get Filter
+      description: Returns details of the specified security filter.
+      tags:
+        - Filters
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: filterName
+          in: path
+          required: true
+          description: Filter name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Filter details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateFilter
+      summary: Update Filter
+      description: Updates the specified security filter.
+      tags:
+        - Filters
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: filterName
+          in: path
+          required: true
+          description: Filter name.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterInput'
+      responses:
+        '200':
+          description: Filter updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter'
+        '400':
+          description: Failed to update filter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteFilter
+      summary: Delete Filter
+      description: Deletes the specified security filter from the database.
+      tags:
+        - Filters
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: filterName
+          in: path
+          required: true
+          description: Filter name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Filter deleted successfully.
+        '400':
+          description: Failed to delete filter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/partitions:
+    get:
+      operationId: listPartitions
+      summary: List Partitions
+      description: Returns a list of partitions defined for the specified database.
+      tags:
+        - Partitions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Partition list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createPartition
+      summary: Create Partition
+      description: Creates a new partition between databases for data federation.
+      tags:
+        - Partitions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Partition created successfully.
+        '400':
+          description: Failed to create partition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections:
+    get:
+      operationId: listApplicationConnections
+      summary: List Application Connections
+      description: Returns all connections defined for the specified application.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Connection list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createApplicationConnection
+      summary: Create Application Connection
+      description: Creates a new connection for the specified application for use with data loads and dimension builds.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection created successfully.
+        '400':
+          description: Failed to create connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/{connectionName}:
+    get:
+      operationId: getApplicationConnection
+      summary: Get Application Connection
+      description: Returns details of the specified application connection.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Connection details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateApplicationConnection
+      summary: Update Application Connection
+      description: Updates the specified application connection.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection updated successfully.
+        '400':
+          description: Failed to update connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteApplicationConnection
+      summary: Delete Application Connection
+      description: Deletes the specified application connection.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/{connectionName}/actions/test:
+    post:
+      operationId: testSavedApplicationConnection
+      summary: Test Saved Application Connection
+      description: Tests an existing saved application connection to verify connectivity.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Connection test completed successfully.
+        '400':
+          description: Connection test failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/actions/test:
+    post:
+      operationId: testNewApplicationConnection
+      summary: Test New Application Connection
+      description: Tests a new application connection configuration before saving it.
+      tags:
+        - Connections
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection test completed successfully.
+        '400':
+          description: Connection test failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /connections:
+    get:
+      operationId: listGlobalConnections
+      summary: List Global Connections
+      description: Returns a list of global connections available across all applications.
+      tags:
+        - Connections
+      responses:
+        '200':
+          description: Global connection list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createGlobalConnection
+      summary: Create Global Connection
+      description: Creates a new global connection available across all applications.
+      tags:
+        - Connections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Global connection created successfully.
+        '400':
+          description: Failed to create connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /connections/{connectionName}:
+    get:
+      operationId: getGlobalConnection
+      summary: Get Global Connection
+      description: Returns details of the specified global connection.
+      tags:
+        - Connections
+      parameters:
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Connection details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateGlobalConnection
+      summary: Update Global Connection
+      description: Updates the specified global connection.
+      tags:
+        - Connections
+      parameters:
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection updated successfully.
+        '400':
+          description: Failed to update connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteGlobalConnection
+      summary: Delete Global Connection
+      description: Deletes the specified global connection.
+      tags:
+        - Connections
+      parameters:
+        - name: connectionName
+          in: path
+          required: true
+          description: Connection name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions:
+    get:
+      operationId: listDimensions
+      summary: List Dimensions
+      description: Returns a list of dimensions defined in the specified database outline.
+      tags:
+        - Dimensions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Dimension list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dimension'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}:
+    get:
+      operationId: getDimension
+      summary: Get Dimension
+      description: Returns details of the specified dimension including its name, type, and storage properties.
+      tags:
+        - Dimensions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: dimensionName
+          in: path
+          required: true
+          description: Dimension name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dimension details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dimension'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/generations:
+    get:
+      operationId: listDimensionGenerations
+      summary: List Dimension Generations
+      description: Returns the generation hierarchy for the specified dimension.
+      tags:
+        - Dimensions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: dimensionName
+          in: path
+          required: true
+          description: Dimension name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Generations returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: integer
+                      format: int32
+                      description: Generation number.
+                    name:
+                      type: string
+                      description: Generation name.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/levels:
+    get:
+      operationId: listDimensionLevels
+      summary: List Dimension Levels
+      description: Returns the level hierarchy for the specified dimension.
+      tags:
+        - Dimensions
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: dimensionName
+          in: path
+          required: true
+          description: Dimension name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Levels returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: integer
+                      format: int32
+                      description: Level number.
+                    name:
+                      type: string
+                      description: Level name.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/locks:
+    get:
+      operationId: listLocks
+      summary: List Locks
+      description: Returns a list of locks on the specified database.
+      tags:
+        - Locks
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Lock list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lock'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/locks/{lockId}:
+    delete:
+      operationId: unlockObject
+      summary: Unlock Object
+      description: Releases the specified lock on a database object.
+      tags:
+        - Locks
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+        - $ref: '#/components/parameters/databaseName'
+        - name: lockId
+          in: path
+          required: true
+          description: Lock identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lock released successfully.
+        '400':
+          description: Failed to release lock.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/configurations:
+    get:
+      operationId: listApplicationConfigurations
+      summary: List Application Configurations
+      description: Returns application-level configuration properties for the specified application.
+      tags:
+        - Application Configuration
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Configuration list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateApplicationConfigurations
+      summary: Update Application Configurations
+      description: Updates application-level configuration properties.
+      tags:
+        - Application Configuration
+      parameters:
+        - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Configuration updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /properties:
+    get:
+      operationId: listServerProperties
+      summary: List Server Properties
+      description: Returns server-level configuration properties for the Essbase instance.
+      tags:
+        - Server
+      responses:
+        '200':
+          description: Server properties returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateServerProperties
+      summary: Update Server Properties
+      description: Updates server-level configuration properties.
+      tags:
+        - Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Server properties updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /variables:
+    get:
+      operationId: listServerVariables
+      summary: List Server Variables
+      description: Returns server-level substitution variables.
+      tags:
+        - Variables
+      responses:
+        '200':
+          description: Variable list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variable'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createServerVariable
+      summary: Create Server Variable
+      description: Creates a new server-level substitution variable.
+      tags:
+        - Variables
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Variable'
+      responses:
+        '200':
+          description: Variable created successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /variables/{variableName}:
+    put:
+      operationId: updateServerVariable
+      summary: Update Server Variable
+      description: Updates the specified server-level substitution variable.
+      tags:
+        - Variables
+      parameters:
+        - name: variableName
+          in: path
+          required: true
+          description: Variable name.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Variable'
+      responses:
+        '200':
+          description: Variable updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteServerVariable
+      summary: Delete Server Variable
+      description: Deletes the specified server-level substitution variable.
+      tags:
+        - Variables
+      parameters:
+        - name: variableName
+          in: path
+          required: true
+          description: Variable name.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Variable deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/partitions/supportedfederatedtypes:
+    get:
+      operationId: getSupportedPartitionTypes
+      summary: Get Supported Partition Types
+      description: Returns the list of supported partition types for federated operations.
+      tags:
+        - Partitions
+      responses:
+        '200':
+          description: Supported partition types returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+  schemas:
+    AboutInfo:
+      type: object
+      description: Information about the Essbase instance.
+      properties:
+        version:
+          type: string
+          description: Essbase version number.
+        build:
+          type: string
+          description: Build identifier.
+        catalog:
+          type: string
+          description: Catalog information.
+    Application:
+      type: object
+      description: An Essbase application containing one or more databases (cubes).
+      properties:
+        name:
+          type: string
+          description: Application name.
+        owner:
+          type: string
+          description: Application owner user ID.
+        creationTime:
+          type: integer
+          format: int64
+          description: Creation timestamp in milliseconds since epoch.
+        modifiedBy:
+          type: string
+          description: User who last modified the application.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        status:
+          type: string
+          description: Current application status.
+          enum:
+            - started
+            - stopped
+        description:
+          type: string
+          description: Application description.
+        type:
+          type: string
+          description: Application storage type.
+          enum:
+            - ASO
+            - BSO
+            - CURRENCY
+        startTime:
+          type: integer
+          format: int64
+          description: Application start timestamp in milliseconds since epoch.
+        connectedUsersCount:
+          type: integer
+          format: int32
+          description: Number of users currently connected.
+        role:
+          type: string
+          description: Authenticated user role for this application.
+        easManagedApp:
+          type: boolean
+          description: Whether the application is managed in EAS Lite.
+        startStopAppAllowed:
+          type: boolean
+          description: Whether users with read permission can start the application.
+        inspectAppAllowed:
+          type: boolean
+          description: Whether application inspection is allowed.
+        encrypted:
+          type: boolean
+          description: Whether the application data is encrypted.
+        aiConnection:
+          type: string
+          description: AI connection configuration name.
+        appVariablesSetting:
+          $ref: '#/components/schemas/VariablesSetting'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ApplicationList:
+      type: object
+      description: Paginated list of Essbase applications.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
+          format: int64
+          description: Total number of matching results.
+        limit:
+          type: integer
+          format: int64
+          description: Maximum number of results per page.
+        offset:
+          type: integer
+          format: int64
+          description: Number of results skipped.
+        hasMore:
+          type: boolean
+          description: Whether more results are available.
+        count:
+          type: integer
+          format: int64
+          description: Number of results in this page.
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+    CreateApplication:
+      type: object
+      description: Request body for creating a new Essbase application and database.
+      required:
+        - applicationName
+        - databaseName
+      properties:
+        applicationName:
+          type: string
+          description: Application name (max 30 characters, no spaces, case-insensitive).
+          maxLength: 30
+        databaseName:
+          type: string
+          description: Database (cube) name (no spaces).
+        allowDuplicates:
+          type: boolean
+          description: Allow duplicate member names in outline.
+        enableScenario:
+          type: boolean
+          description: Enable scenario management (BSO only; must be false for ASO).
+        databaseType:
+          type: string
+          description: Database storage type.
+          enum:
+            - BSO
+            - ASO
+        appType:
+          type: string
+          description: Application encoding type.
+          enum:
+            - NATIVE
+            - UTF8
+        dbType:
+          type: string
+          description: Database type classification.
+          enum:
+            - NORMAL
+            - CURRENCY
+            - ASO
+        memberCount:
+          type: integer
+          format: int32
+          description: Initial member count.
+        memberPrefix:
+          type: string
+          description: Prefix for generated members.
+    Database:
+      type: object
+      description: An Essbase database (cube) within an application.
+      properties:
+        name:
+          type: string
+          description: Database name.
+        application:
+          type: string
+          description: Parent application name.
+        owner:
+          type: string
+          description: Database owner user ID.
+        creationTime:
+          type: integer
+          format: int64
+          description: Creation timestamp in milliseconds since epoch.
+        modifiedBy:
+          type: string
+          description: User who last modified the database.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        status:
+          type: string
+          description: Current database status.
+          enum:
+            - started
+            - stopped
+        startTime:
+          type: integer
+          format: int64
+          description: Database start timestamp in milliseconds since epoch.
+        description:
+          type: string
+          description: Database description.
+        type:
+          type: string
+          description: Database storage type.
+          enum:
+            - ASO
+            - BSO
+            - CURRENCY
+        applicationRole:
+          type: string
+          description: User application role for this database.
+        easManagedApp:
+          type: boolean
+          description: Whether the parent application is managed in EAS Lite.
+        startStopDBAllowed:
+          type: boolean
+          description: Permission to start or stop the database.
+        inspectDBAllowed:
+          type: boolean
+          description: Permission to inspect the database.
+        dbVariablesSetting:
+          $ref: '#/components/schemas/VariablesSetting'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DatabaseList:
+      type: object
+      description: Paginated list of databases.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Database'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    JobInput:
+      type: object
+      description: Input for executing an asynchronous job.
+      required:
+        - jobtype
+      properties:
+        application:
+          type: string
+          description: Application name.
+        db:
+          type: string
+          description: Database name.
+        jobtype:
+          type: string
+          description: Type of job to execute.
+          enum:
+            - dataload
+            - dimbuild
+            - calc
+            - clear
+            - importExcel
+            - exportExcel
+            - lcmExport
+            - lcmImport
+            - clearAggregation
+            - buildAggregation
+            - asoBufferDataLoad
+            - asoBufferCommit
+            - exportData
+            - mdxScript
+        parameters:
+          $ref: '#/components/schemas/JobParameters'
+    JobParameters:
+      type: object
+      description: >-
+        Job-specific parameters. Required fields depend on the job type. For
+        dataload: file and optionally rule, abortOnError. For dimbuild: file
+        and rule. For calc: script. For clear: option. For lcmExport/lcmImport:
+        zipFileName.
+      properties:
+        file:
+          type: string
+          description: Source file name for dataload, dimbuild, or mdxScript jobs.
+        rule:
+          type: string
+          description: Rules file name for dataload or dimbuild jobs.
+        abortOnError:
+          type: string
+          description: Stop on first error (true/false) for dataload jobs.
+        script:
+          type: string
+          description: Calculation script name (.csc file) for calc jobs.
+        option:
+          type: string
+          description: Clear option for clear jobs.
+          enum:
+            - allData
+            - upperLevel
+            - nonInput
+            - partialData
+            - PARTIAL_DATA
+        partialDataExpression:
+          type: string
+          description: MDX expression for partial data clear.
+        importExcelFileName:
+          type: string
+          description: Excel workbook file name for importExcel jobs.
+        catalogExcelPath:
+          type: string
+          description: Path to the workbook in the file catalog.
+        loaddata:
+          type: string
+          description: Whether to load data (true/false) for importExcel jobs.
+        recreateApplication:
+          type: string
+          description: Whether to recreate application if it exists (true/false).
+        createFiles:
+          type: string
+          description: Whether to create cube artifacts (true/false).
+        executeScript:
+          type: string
+          description: Whether to execute calc scripts (true/false).
+        buildOption:
+          type: string
+          description: Build option for importExcel jobs.
+          enum:
+            - NONE
+            - RETAIN_ALL_DATA
+            - REMOVE_ALL_DATA
+        dataLevel:
+          type: string
+          description: Data level for export operations.
+          enum:
+            - ALL_DATA
+            - UPPER_LEVEL_BLOCKS
+            - NON_INPUT_BLOCKS
+            - LEVEL_ZERO_BLOCKS
+            - INPUT_LEVEL_DATA_BLOCKS
+        columnFormat:
+          type: string
+          description: Whether to use tabular format (true/false).
+        compress:
+          type: string
+          description: Whether to compress data (true/false).
+        zipFileName:
+          type: string
+          description: Backup zip file name for lcmExport/lcmImport jobs.
+        skipdata:
+          type: string
+          description: Whether to exclude data from LCM export (true/false).
+        generateArtifactList:
+          type: string
+          description: Whether to generate artifact list (true/false).
+        overwrite:
+          type: string
+          description: Whether to overwrite existing resources (true/false).
+        targetApplicationName:
+          type: string
+          description: Target application name for lcmImport if different from source.
+        includeServerLevel:
+          type: string
+          description: Include global connections and datasources (true/false).
+        basedOnQueryData:
+          type: string
+          description: Select based on query patterns (true/false) for buildAggregation.
+        ratioToStop:
+          type: string
+          description: Size ratio stopping value for buildAggregation.
+        enableAlternateRollups:
+          type: string
+          description: Consider secondary hierarchies (true/false).
+        bufferId:
+          type: integer
+          description: Single buffer ID for asoBufferCommit (1-4294967296).
+        commitOption:
+          type: string
+          description: Commit option for asoBufferCommit.
+          enum:
+            - STORE_DATA
+            - ADD_DATA
+            - SUBTRACT_DATA
+            - OVERRIDE_ALL_DATA
+            - OVERRIDE_INCREMENTAL_DATA
+        actionType:
+          type: string
+          description: Action type for asoBufferCommit.
+          enum:
+            - COMMIT
+            - ABORT
+        restructureOption:
+          type: string
+          description: Data preservation option for dimbuild.
+          enum:
+            - PRESERVE_ALL_DATA
+            - PRESERVE_NO_DATA
+            - PRESERVE_LEAFLEVEL_DATA
+            - PRESERVE_INPUT_DATA
+        forceDimBuild:
+          type: string
+          description: Force build despite user activity (true/false).
+        rtsv:
+          type: array
+          description: Runtime substitution variables for calc jobs.
+          items:
+            $ref: '#/components/schemas/RuntimeSubstitutionVariable'
+        useConnection:
+          type: string
+          description: Whether to use a saved connection (true/false).
+        connection:
+          type: string
+          description: Connection name for dataload or dimbuild.
+    JobRecord:
+      type: object
+      description: Record of an executed or running job.
+      properties:
+        job_ID:
+          type: integer
+          format: int64
+          description: Unique job identifier.
+        appName:
+          type: string
+          description: Application name.
+        dbName:
+          type: string
+          description: Database name.
+        jobType:
+          type: string
+          description: Job type that was executed.
+        jobfileName:
+          type: string
+          description: Associated script or file name.
+        userName:
+          type: string
+          description: User who submitted the job.
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time in milliseconds since epoch.
+        endTime:
+          type: integer
+          format: int64
+          description: Job end time in milliseconds since epoch.
+        statusCode:
+          type: integer
+          format: int32
+          description: 'Status code: 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed.'
+        statusMessage:
+          type: string
+          description: Human-readable status message.
+        jobInputInfo:
+          type: object
+          description: Input parameters used for the job.
+          additionalProperties: true
+        jobOutputInfo:
+          type: object
+          description: Output and results of the job.
+          additionalProperties: true
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JobList:
+      type: object
+      description: Paginated list of job records.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRecord'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    RuntimeSubstitutionVariable:
+      type: object
+      description: A runtime substitution variable for calculation scripts.
+      properties:
+        name:
+          type: string
+          description: Variable name.
+        type:
+          type: string
+          description: Variable data type.
+          enum:
+            - STRING
+            - NUMBER
+            - DATE
+            - MEMBER
+        value:
+          description: Default value.
+        dimension:
+          type: string
+          description: Dimension name (for MEMBER type).
+        singleChoice:
+          type: boolean
+          description: Whether only a single member can be selected.
+        allowMissing:
+          type: boolean
+          description: Whether missing data is allowed.
+    Session:
+      type: object
+      description: An active user session on the Essbase server.
+      properties:
+        userId:
+          type: string
+          description: Logged-in user name.
+        sessionId:
+          type: string
+          description: Numeric session identifier.
+        loginTimeInSeconds:
+          type: string
+          description: Number of seconds ago the session began.
+        application:
+          type: string
+          description: Name of active application.
+        database:
+          type: string
+          description: Name of active database.
+        dbConnectTimeInSeconds:
+          type: string
+          description: Number of seconds ago the database was set active.
+        request:
+          type: string
+          description: Type of active request (e.g., calculation, data load, restructure).
+        requestTimeInSeconds:
+          type: string
+          description: Number of seconds the active request has been running.
+        connectionSource:
+          type: string
+          description: Host name of the connected service.
+        requestState:
+          type: string
+          description: Status of the active request.
+    User:
+      type: object
+      description: An Essbase user account.
+      properties:
+        id:
+          type: string
+          description: User identifier.
+        name:
+          type: string
+          description: User display name (max 256 characters).
+          maxLength: 256
+        email:
+          type: string
+          format: email
+          description: User email address.
+        password:
+          type: string
+          format: password
+          description: User password (write-only, not returned in responses).
+        role:
+          type: string
+          description: User service role.
+          enum:
+            - User
+            - Power User
+            - Service Administrator
+        token:
+          type: string
+          description: User authentication token.
+        groups:
+          type: array
+          description: List of group names the user belongs to.
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    UserInput:
+      type: object
+      description: Input for creating or updating a user.
+      required:
+        - id
+      properties:
+        id:
+          type: string
+          description: User identifier.
+        name:
+          type: string
+          description: User display name.
+          maxLength: 256
+        email:
+          type: string
+          format: email
+          description: User email address.
+        password:
+          type: string
+          format: password
+          description: User password.
+        role:
+          type: string
+          description: User service role.
+          enum:
+            - User
+            - Power User
+            - Service Administrator
+        groups:
+          type: array
+          description: Group names to assign the user to.
+          items:
+            type: string
+    UserList:
+      type: object
+      description: Paginated list of users.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Group:
+      type: object
+      description: An Essbase user group.
+      properties:
+        id:
+          type: string
+          description: Group identifier.
+        name:
+          type: string
+          description: Group name.
+        description:
+          type: string
+          description: Group description.
+        role:
+          type: string
+          description: Service role assigned to the group.
+        members:
+          type: array
+          description: List of member user IDs or sub-group names.
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GroupInput:
+      type: object
+      description: Input for creating or updating a group.
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Group name.
+        description:
+          type: string
+          description: Group description.
+        role:
+          type: string
+          description: Service role to assign to the group.
+        members:
+          type: array
+          description: Member user IDs or sub-group names.
+          items:
+            type: string
+    GroupList:
+      type: object
+      description: Paginated list of groups.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Script:
+      type: object
+      description: A calculation or MDX script associated with a database.
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+        modifiedBy:
+          type: string
+          description: User who last modified the script.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ScriptInput:
+      type: object
+      description: Input for creating or updating a script.
+      required:
+        - name
+        - content
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+    ScriptList:
+      type: object
+      description: List of scripts.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+    Filter:
+      type: object
+      description: A security filter that controls member-level access to a database.
+      properties:
+        name:
+          type: string
+          description: Filter name.
+        description:
+          type: string
+          description: Filter description.
+        rows:
+          type: array
+          description: Filter row definitions specifying access levels per member combination.
+          items:
+            $ref: '#/components/schemas/FilterRow'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    FilterInput:
+      type: object
+      description: Input for creating or updating a security filter.
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Filter name.
+        description:
+          type: string
+          description: Filter description.
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRow'
+    FilterRow:
+      type: object
+      description: A single row in a security filter defining access for a member combination.
+      properties:
+        access:
+          type: string
+          description: Access level.
+          enum:
+            - READ
+            - WRITE
+            - NONE
+            - METAREAD
+        member:
+          type: string
+          description: Member specification or combination.
+    FilterList:
+      type: object
+      description: List of filters.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Filter'
+    FileItem:
+      type: object
+      description: A file or folder entry in the Essbase file catalog.
+      properties:
+        name:
+          type: string
+          description: File or folder name.
+        fullPath:
+          type: string
+          description: Full path in the file catalog.
+        type:
+          type: string
+          description: Item type.
+          enum:
+            - file
+            - folder
+        permissions:
+          type: object
+          description: Permissions on this item.
+          properties:
+            addFolder:
+              type: boolean
+              description: Permission to add sub-folders.
+            addFile:
+              type: boolean
+              description: Permission to add files.
+    FileList:
+      type: object
+      description: File catalog listing response.
+      properties:
+        currentFolder:
+          $ref: '#/components/schemas/FileItem'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileItem'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Connection:
+      type: object
+      description: A data source connection for data loading and dimension building.
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type (e.g., Oracle, SQL Server, file-based).
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        walletPath:
+          type: string
+          description: Path to the wallet file for secure connections.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ConnectionInput:
+      type: object
+      description: Input for creating or updating a connection.
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type.
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        password:
+          type: string
+          format: password
+          description: Database password.
+    Dimension:
+      type: object
+      description: A dimension in an Essbase database outline.
+      properties:
+        name:
+          type: string
+          description: Dimension name.
+        type:
+          type: string
+          description: Dimension type (e.g., accounts, time, attribute).
+        storageType:
+          type: string
+          description: Dimension storage type.
+        tag:
+          type: string
+          description: Dimension tag.
+        memberCount:
+          type: integer
+          format: int32
+          description: Number of members in the dimension.
+    Lock:
+      type: object
+      description: A lock on a database object or block.
+      properties:
+        lockId:
+          type: string
+          description: Lock identifier.
+        userId:
+          type: string
+          description: User who holds the lock.
+        objectName:
+          type: string
+          description: Name of the locked object.
+        lockType:
+          type: string
+          description: Type of lock.
+        lockTime:
+          type: integer
+          format: int64
+          description: Time the lock was acquired in milliseconds since epoch.
+    Variable:
+      type: object
+      description: A substitution variable used in calculations and scripts.
+      properties:
+        name:
+          type: string
+          description: Variable name.
+        value:
+          type: string
+          description: Variable value.
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.

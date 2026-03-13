@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-user-schema.json",
+  "title": "Oracle Essbase User",
+  "description": "An Oracle Essbase user account with role-based access control. Users are assigned service roles (User, Power User, or Service Administrator) and can belong to groups for simplified permission management.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique user identifier used for login and API references."
+    },
+    "name": {
+      "type": "string",
+      "description": "User display name. Maximum 256 characters. Special characters not permitted: ; , = + * ? [ ] | < > \\ \" ' / space tab.",
+      "maxLength": 256
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User email address for notifications and account recovery."
+    },
+    "password": {
+      "type": "string",
+      "description": "User password. Write-only; not returned in API responses."
+    },
+    "role": {
+      "type": "string",
+      "description": "Service-level role determining the user's base permissions. User has read access. Power User can create and manage applications. Service Administrator has full administrative control.",
+      "enum": ["User", "Power User", "Service Administrator"]
+    },
+    "token": {
+      "type": "string",
+      "description": "Authentication token for the user session."
+    },
+    "groups": {
+      "type": "array",
+      "description": "List of group names the user belongs to.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["id"],
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

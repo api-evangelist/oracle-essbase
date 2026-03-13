@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-application-schema.json",
+  "title": "Oracle Essbase Application",
+  "description": "An Oracle Essbase application containing one or more databases (cubes) for multi-dimensional analysis. Applications serve as the top-level container for databases, scripts, connections, and security configuration.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Application name. Limited to 30 characters, must not contain spaces, and is case-insensitive.",
+      "maxLength": 30
+    },
+    "owner": {
+      "type": "string",
+      "description": "User ID of the application owner who created the application."
+    },
+    "creationTime": {
+      "type": "integer",
+      "description": "Application creation timestamp in milliseconds since Unix epoch."
+    },
+    "modifiedBy": {
+      "type": "string",
+      "description": "User ID of the person who last modified the application."
+    },
+    "modifiedTime": {
+      "type": "integer",
+      "description": "Last modification timestamp in milliseconds since Unix epoch."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current runtime status of the application.",
+      "enum": ["started", "stopped"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the application purpose."
+    },
+    "type": {
+      "type": "string",
+      "description": "Storage type of the application. ASO is aggregate storage optimized for read-heavy workloads. BSO is block storage optimized for write-heavy workloads. CURRENCY is for currency conversion applications.",
+      "enum": ["ASO", "BSO", "CURRENCY"]
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Timestamp when the application was last started, in milliseconds since Unix epoch."
+    },
+    "connectedUsersCount": {
+      "type": "integer",
+      "description": "Number of users currently connected to the application."
+    },
+    "role": {
+      "type": "string",
+      "description": "The authenticated user's role for this application (e.g., app_manager)."
+    },
+    "easManagedApp": {
+      "type": "boolean",
+      "description": "If true, the application is managed in EAS Lite instead of the Essbase web interface."
+    },
+    "startStopAppAllowed": {
+      "type": "boolean",
+      "description": "Whether users with read permission can start the application."
+    },
+    "inspectAppAllowed": {
+      "type": "boolean",
+      "description": "Whether application inspection is allowed."
+    },
+    "encrypted": {
+      "type": "boolean",
+      "description": "Whether the application data is encrypted at rest."
+    },
+    "aiConnection": {
+      "type": "string",
+      "description": "Name of the AI connection configuration associated with this application."
+    },
+    "appVariablesSetting": {
+      "$ref": "#/$defs/VariablesSetting"
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links for related resources.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["name"],
+  "$defs": {
+    "VariablesSetting": {
+      "type": "object",
+      "description": "Settings controlling substitution variable visibility and update permissions.",
+      "properties": {
+        "showVariables": {
+          "type": "boolean",
+          "description": "Whether substitution variables are visible to users."
+        },
+        "updateVariables": {
+          "type": "boolean",
+          "description": "Whether substitution variables can be updated by users."
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

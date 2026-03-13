@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-database-schema.json",
+  "title": "Oracle Essbase Database",
+  "description": "An Oracle Essbase database (cube) within an application. Databases contain the multi-dimensional data model with dimensions, members, and data values. Each database has its own outline, scripts, filters, and security configuration.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Database name. Must not contain spaces."
+    },
+    "application": {
+      "type": "string",
+      "description": "Name of the parent application that contains this database."
+    },
+    "owner": {
+      "type": "string",
+      "description": "User ID of the database owner."
+    },
+    "creationTime": {
+      "type": "integer",
+      "description": "Database creation timestamp in milliseconds since Unix epoch."
+    },
+    "modifiedBy": {
+      "type": "string",
+      "description": "User ID of the person who last modified the database."
+    },
+    "modifiedTime": {
+      "type": "integer",
+      "description": "Last modification timestamp in milliseconds since Unix epoch."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current runtime status of the database.",
+      "enum": ["started", "stopped"]
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Timestamp when the database was last started, in milliseconds since Unix epoch."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the database purpose."
+    },
+    "type": {
+      "type": "string",
+      "description": "Storage type of the database. ASO (Aggregate Storage Option) is optimized for read-heavy analytical queries. BSO (Block Storage Option) is optimized for write-heavy planning and forecasting. CURRENCY is for currency conversion databases.",
+      "enum": ["ASO", "BSO", "CURRENCY"]
+    },
+    "applicationRole": {
+      "type": "string",
+      "description": "The authenticated user's application role for this database."
+    },
+    "easManagedApp": {
+      "type": "boolean",
+      "description": "Whether the parent application is managed in EAS Lite (Essbase 21c independent deployment only)."
+    },
+    "startStopDBAllowed": {
+      "type": "boolean",
+      "description": "Whether the user has permission to start or stop this database."
+    },
+    "inspectDBAllowed": {
+      "type": "boolean",
+      "description": "Whether the user has permission to inspect this database."
+    },
+    "dbVariablesSetting": {
+      "$ref": "#/$defs/VariablesSetting"
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links for related resources.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["name"],
+  "$defs": {
+    "VariablesSetting": {
+      "type": "object",
+      "description": "Settings controlling substitution variable visibility and update permissions.",
+      "properties": {
+        "showVariables": {
+          "type": "boolean",
+          "description": "Whether substitution variables are visible to users."
+        },
+        "updateVariables": {
+          "type": "boolean",
+          "description": "Whether substitution variables can be updated by users."
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-connection-schema.json",
+  "title": "Oracle Essbase Connection",
+  "description": "A data source connection in Oracle Essbase used for data loading and dimension building operations. Connections can be defined at the application level or globally. They store the configuration required to connect to external databases and data sources such as Oracle, SQL Server, and file-based sources.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Connection name used to reference this connection in jobs and scripts."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the connection purpose and target."
+    },
+    "type": {
+      "type": "string",
+      "description": "Connection type identifying the target data source technology (e.g., Oracle, SQL Server, file-based)."
+    },
+    "host": {
+      "type": "string",
+      "description": "Database host address or server name."
+    },
+    "port": {
+      "type": "integer",
+      "description": "Database port number for the connection."
+    },
+    "serviceName": {
+      "type": "string",
+      "description": "Database service name or SID for Oracle connections."
+    },
+    "user": {
+      "type": "string",
+      "description": "Database username for authentication."
+    },
+    "password": {
+      "type": "string",
+      "description": "Database password for authentication. Write-only; not returned in API responses."
+    },
+    "walletPath": {
+      "type": "string",
+      "description": "Path to the Oracle wallet file for secure SSL/TLS connections."
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["name", "type"],
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

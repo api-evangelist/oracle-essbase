@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-filter-schema.json",
+  "title": "Oracle Essbase Filter",
+  "description": "A security filter in Oracle Essbase that controls member-level data access for a database. Filters define read, write, none, or metadata-read access for specific member combinations, enabling fine-grained security beyond application and database-level roles.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Filter name used to reference this filter when assigning it to users or groups."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what the filter controls."
+    },
+    "rows": {
+      "type": "array",
+      "description": "Filter row definitions specifying the access level for each member combination.",
+      "items": {
+        "$ref": "#/$defs/FilterRow"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "required": ["name"],
+  "$defs": {
+    "FilterRow": {
+      "type": "object",
+      "description": "A single row in a security filter defining the access level for a specific member or member combination.",
+      "properties": {
+        "access": {
+          "type": "string",
+          "description": "Access level granted for the specified member combination. READ allows data retrieval. WRITE allows data updates. NONE denies all access. METAREAD allows viewing member names but not data values.",
+          "enum": ["READ", "WRITE", "NONE", "METAREAD"]
+        },
+        "member": {
+          "type": "string",
+          "description": "Member specification or cross-dimensional member combination that this filter row applies to."
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-job-schema.json",
+  "title": "Oracle Essbase Job",
+  "description": "An asynchronous job executed on an Essbase database. Jobs support operations such as data loading, dimension building, calculations, data clearing, Excel import/export, LCM backup/restore, aggregation management, ASO buffer operations, data export, and MDX script execution.",
+  "type": "object",
+  "properties": {
+    "job_ID": {
+      "type": "integer",
+      "description": "Unique job identifier assigned by the server."
+    },
+    "appName": {
+      "type": "string",
+      "description": "Name of the application the job was executed against."
+    },
+    "dbName": {
+      "type": "string",
+      "description": "Name of the database the job was executed against."
+    },
+    "jobType": {
+      "type": "string",
+      "description": "Type of job that was executed."
+    },
+    "jobfileName": {
+      "type": "string",
+      "description": "Name of the script or file associated with the job."
+    },
+    "userName": {
+      "type": "string",
+      "description": "User ID of the person who submitted the job."
+    },
+    "startTime": {
+      "type": "integer",
+      "description": "Job start time in milliseconds since Unix epoch."
+    },
+    "endTime": {
+      "type": "integer",
+      "description": "Job end time in milliseconds since Unix epoch. Null if the job is still running."
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "Numeric status code indicating job state. 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed.",
+      "enum": [100, 200, 300, 400]
+    },
+    "statusMessage": {
+      "type": "string",
+      "description": "Human-readable status message describing the current job state."
+    },
+    "jobInputInfo": {
+      "type": "object",
+      "description": "Input parameters that were used to execute the job. Structure varies by job type.",
+      "additionalProperties": true
+    },
+    "jobOutputInfo": {
+      "type": "object",
+      "description": "Output and results of the job execution. Structure varies by job type.",
+      "additionalProperties": true,
+      "properties": {
+        "recordsProcessed": {
+          "type": "integer",
+          "description": "Number of records successfully processed (for data load jobs)."
+        },
+        "recordsRejected": {
+          "type": "integer",
+          "description": "Number of records rejected during processing (for data load jobs)."
+        },
+        "errorMessage": {
+          "type": "string",
+          "description": "Error message if the job failed or had warnings."
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "HATEOAS navigation links.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  },
+  "$defs": {
+    "JobInput": {
+      "type": "object",
+      "description": "Input for executing an asynchronous job.",
+      "required": ["jobtype"],
+      "properties": {
+        "application": {
+          "type": "string",
+          "description": "Application name."
+        },
+        "db": {
+          "type": "string",
+          "description": "Database name."
+        },
+        "jobtype": {
+          "type": "string",
+          "description": "Type of job to execute.",
+          "enum": [
+            "dataload",
+            "dimbuild",
+            "calc",
+            "clear",
+            "importExcel",
+            "exportExcel",
+            "lcmExport",
+            "lcmImport",
+            "clearAggregation",
+            "buildAggregation",
+            "asoBufferDataLoad",
+            "asoBufferCommit",
+            "exportData",
+            "mdxScript"
+          ]
+        },
+        "parameters": {
+          "$ref": "#/$defs/JobParameters"
+        }
+      }
+    },
+    "JobParameters": {
+      "type": "object",
+      "description": "Job-specific parameters. Required fields depend on the job type.",
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Source file name for dataload, dimbuild, or mdxScript jobs."
+        },
+        "rule": {
+          "type": "string",
+          "description": "Rules file name for dataload or dimbuild jobs."
+        },
+        "abortOnError": {
+          "type": "string",
+          "description": "Stop on first error (true/false) for dataload jobs."
+        },
+        "script": {
+          "type": "string",
+          "description": "Calculation script name (.csc file) for calc jobs."
+        },
+        "option": {
+          "type": "string",
+          "description": "Clear option for clear jobs.",
+          "enum": ["allData", "upperLevel", "nonInput", "partialData", "PARTIAL_DATA"]
+        },
+        "partialDataExpression": {
+          "type": "string",
+          "description": "MDX expression for partial data clear."
+        },
+        "zipFileName": {
+          "type": "string",
+          "description": "Backup zip file name for lcmExport/lcmImport jobs."
+        },
+        "dataLevel": {
+          "type": "string",
+          "description": "Data level for export operations.",
+          "enum": ["ALL_DATA", "UPPER_LEVEL_BLOCKS", "NON_INPUT_BLOCKS", "LEVEL_ZERO_BLOCKS", "INPUT_LEVEL_DATA_BLOCKS"]
+        },
+        "restructureOption": {
+          "type": "string",
+          "description": "Data preservation option for dimension build jobs.",
+          "enum": ["PRESERVE_ALL_DATA", "PRESERVE_NO_DATA", "PRESERVE_LEAFLEVEL_DATA", "PRESERVE_INPUT_DATA"]
+        },
+        "commitOption": {
+          "type": "string",
+          "description": "Commit option for ASO buffer commit jobs.",
+          "enum": ["STORE_DATA", "ADD_DATA", "SUBTRACT_DATA", "OVERRIDE_ALL_DATA", "OVERRIDE_INCREMENTAL_DATA"]
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "HATEOAS navigation link.",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type."
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link URL."
+        },
+        "method": {
+          "type": "string",
+          "description": "HTTP method for this link."
+        },
+        "type": {
+          "type": "string",
+          "description": "Media type of the linked resource."
+        }
+      }
+    }
+  }
+}

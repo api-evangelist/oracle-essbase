@@ -1,0 +1,194 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "essbase": "https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/ns#",
+    "olap": "http://purl.org/linked-data/cube#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+
+    "Application": {
+      "@id": "essbase:Application",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "owner": "schema:creator",
+        "creationTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:long"
+        },
+        "modifiedBy": "schema:editor",
+        "modifiedTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:long"
+        },
+        "status": "schema:status",
+        "type": "essbase:storageType",
+        "encrypted": "essbase:encrypted",
+        "connectedUsersCount": "essbase:connectedUsersCount"
+      }
+    },
+
+    "Database": {
+      "@id": "essbase:Database",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "application": {
+          "@id": "essbase:belongsToApplication",
+          "@type": "@id"
+        },
+        "owner": "schema:creator",
+        "creationTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:long"
+        },
+        "modifiedBy": "schema:editor",
+        "modifiedTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:long"
+        },
+        "status": "schema:status",
+        "type": "essbase:storageType"
+      }
+    },
+
+    "Dimension": {
+      "@id": "essbase:Dimension",
+      "@context": {
+        "name": "schema:name",
+        "type": "essbase:dimensionType",
+        "storageType": "essbase:storageCategory",
+        "tag": "essbase:dimensionTag",
+        "memberCount": "essbase:memberCount"
+      }
+    },
+
+    "Job": {
+      "@id": "essbase:Job",
+      "@context": {
+        "job_ID": "schema:identifier",
+        "appName": "essbase:applicationName",
+        "dbName": "essbase:databaseName",
+        "jobType": "schema:additionalType",
+        "jobfileName": "essbase:scriptFileName",
+        "userName": "schema:creator",
+        "startTime": {
+          "@id": "schema:startDate",
+          "@type": "xsd:long"
+        },
+        "endTime": {
+          "@id": "schema:endDate",
+          "@type": "xsd:long"
+        },
+        "statusCode": "essbase:statusCode",
+        "statusMessage": "essbase:statusMessage"
+      }
+    },
+
+    "User": {
+      "@id": "essbase:User",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "email": "schema:email",
+        "role": "schema:roleName",
+        "groups": "schema:memberOf"
+      }
+    },
+
+    "Group": {
+      "@id": "essbase:Group",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "description": "schema:description",
+        "role": "schema:roleName",
+        "members": "schema:member"
+      }
+    },
+
+    "Session": {
+      "@id": "essbase:Session",
+      "@context": {
+        "userId": "schema:identifier",
+        "sessionId": "essbase:sessionIdentifier",
+        "loginTimeInSeconds": "essbase:loginDuration",
+        "application": "essbase:activeApplication",
+        "database": "essbase:activeDatabase",
+        "connectionSource": "essbase:connectionSource",
+        "request": "essbase:activeRequestType",
+        "requestState": "essbase:requestState"
+      }
+    },
+
+    "Script": {
+      "@id": "essbase:Script",
+      "@context": {
+        "name": "schema:name",
+        "content": "schema:text",
+        "modifiedBy": "schema:editor",
+        "modifiedTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:long"
+        }
+      }
+    },
+
+    "Filter": {
+      "@id": "essbase:SecurityFilter",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "rows": "essbase:filterRows"
+      }
+    },
+
+    "Connection": {
+      "@id": "essbase:Connection",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "essbase:connectionType",
+        "host": "essbase:databaseHost",
+        "port": "essbase:databasePort",
+        "serviceName": "essbase:serviceName",
+        "user": "essbase:databaseUser"
+      }
+    },
+
+    "Variable": {
+      "@id": "essbase:SubstitutionVariable",
+      "@context": {
+        "name": "schema:name",
+        "value": "schema:value"
+      }
+    },
+
+    "FileItem": {
+      "@id": "essbase:FileItem",
+      "@context": {
+        "name": "schema:name",
+        "fullPath": "essbase:filePath",
+        "type": "essbase:fileType"
+      }
+    },
+
+    "Lock": {
+      "@id": "essbase:Lock",
+      "@context": {
+        "lockId": "schema:identifier",
+        "userId": "essbase:lockOwner",
+        "objectName": "essbase:lockedObject",
+        "lockType": "essbase:lockType",
+        "lockTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:long"
+        }
+      }
+    }
+  }
+}

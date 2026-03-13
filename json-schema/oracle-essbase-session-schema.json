@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oracle-essbase-session-schema.json",
+  "title": "Oracle Essbase Session",
+  "description": "An active user session on the Oracle Essbase server. Sessions track connected users, their active application and database context, and any currently running requests such as calculations or data loads.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User name of the logged-in user who owns this session."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Unique numeric session identifier assigned by the server."
+    },
+    "loginTimeInSeconds": {
+      "type": "string",
+      "description": "Number of seconds elapsed since the user logged in and the session began."
+    },
+    "application": {
+      "type": "string",
+      "description": "Name of the application the user is currently connected to, if any."
+    },
+    "database": {
+      "type": "string",
+      "description": "Name of the database the user is currently connected to, if any."
+    },
+    "dbConnectTimeInSeconds": {
+      "type": "string",
+      "description": "Number of seconds elapsed since the user connected to the active database."
+    },
+    "request": {
+      "type": "string",
+      "description": "Type of the currently active request, such as calculation, data load, or restructure."
+    },
+    "requestTimeInSeconds": {
+      "type": "string",
+      "description": "Number of seconds the currently active request has been running."
+    },
+    "connectionSource": {
+      "type": "string",
+      "description": "Hostname or URL of the service from which the user connected."
+    },
+    "requestState": {
+      "type": "string",
+      "description": "Current status of the active request."
+    }
+  }
+}
