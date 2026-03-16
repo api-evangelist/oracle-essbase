@@ -1,10 +1,18 @@
+aid: oracle-essbase
 name: Oracle Essbase
-description: Oracle Essbase is a multi-dimensional database management system that provides a multidimensional analytical platform for business intelligence applications, financial consolidation, planning, budgeting, and forecasting.
-image: https://www.oracle.com/a/ocom/img/oracle-essbase.jpg
-url: https://www.oracle.com/essbase/
-created: '2024'
-modified: '2026-03-04'
-specificationVersion: '0.18'
+description: >-
+  Oracle Essbase is a multi-dimensional database management system that provides
+  a multidimensional analytical platform for business intelligence applications,
+  financial consolidation, planning, budgeting, and forecasting.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/oracle-essbase/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 tags:
 - Multi-dimensional Database
 - OLAP
@@ -110,9 +118,8 @@ apis:
   - type: Documentation
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/essug/
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 common:
 - type: Portal
   url: https://docs.oracle.com/en/database/other-databases/essbase/21/index.html
