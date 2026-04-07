@@ -31,52 +31,44 @@ security:
   - basicAuth: []
   - bearerAuth: []
 tags:
+  - name: Application Configuration
+    description: Manage application-level configuration settings
   - name: Applications
     description: Manage Essbase applications and their lifecycle
+  - name: Connections
+    description: Manage global and application-level connections
   - name: Databases
     description: Manage databases (cubes) within applications
+  - name: Dimensions
+    description: View dimension information, generations, and levels
+  - name: Files
+    description: Upload, download, copy, move, and delete files in the Essbase file catalog
+  - name: Filters
+    description: Manage database security filters
+  - name: Groups
+    description: Manage user groups and memberships
   - name: Jobs
     description: Execute and monitor asynchronous jobs such as data loads, calculations, and exports
+  - name: Locks
+    description: Manage locks on database objects and blocks
+  - name: Partitions
+    description: Manage database partitions
+  - name: Reports
+    description: MDX reports and drill-through reports
+  - name: Roles
+    description: Service and application role provisioning
+  - name: Scripts
+    description: Manage calculation and MDX scripts
+  - name: Server
+    description: Server properties, configuration, and about information
   - name: Sessions
     description: Manage active user sessions
   - name: User Session
     description: User login, logout, and password management
   - name: Users
     description: Create, search, update, and delete users
-  - name: Groups
-    description: Manage user groups and memberships
-  - name: Scripts
-    description: Manage calculation and MDX scripts
-  - name: Files
-    description: Upload, download, copy, move, and delete files in the Essbase file catalog
-  - name: Filters
-    description: Manage database security filters
-  - name: Connections
-    description: Manage global and application-level connections
-  - name: Datasources
-    description: Manage global and application-level datasources
-  - name: Partitions
-    description: Manage database partitions
-  - name: Dimensions
-    description: View dimension information, generations, and levels
-  - name: Outline
-    description: View and export database outlines
-  - name: Locks
-    description: Manage locks on database objects and blocks
-  - name: Scenarios
-    description: Manage scenario lifecycle, approvals, and comments
   - name: Variables
     description: Manage server-level and application-level substitution variables
-  - name: Server
-    description: Server properties, configuration, and about information
-  - name: Application Configuration
-    description: Manage application-level configuration settings
-  - name: Roles
-    description: Service and application role provisioning
-  - name: Grid
-    description: Grid operations for data retrieval and manipulation
-  - name: Reports
-    description: MDX reports and drill-through reports
 paths:
   /about:
     get:
