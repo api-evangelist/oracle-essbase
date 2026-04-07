@@ -81,7 +81,7 @@ paths:
   /about:
     get:
       operationId: getAboutEssbase
-      summary: Get About Essbase
+      summary: Oracle Essbase Get About Essbase
       description: Returns general information about the Essbase instance, including version and build details.
       tags:
         - Server
@@ -101,7 +101,7 @@ paths:
   /about/instance:
     get:
       operationId: getAboutEssbaseInstance
-      summary: Get About Essbase Instance
+      summary: Oracle Essbase Get About Essbase Instance
       description: Returns detailed information about the Essbase instance deployment and configuration.
       tags:
         - Server
@@ -121,7 +121,7 @@ paths:
   /applications:
     get:
       operationId: listApplications
-      summary: List Applications
+      summary: Oracle Essbase List Applications
       description: >-
         Returns a list of Essbase applications the authenticated user has access
         to. Supports filtering, pagination, sorting, and field selection. If
@@ -191,7 +191,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createApplication
-      summary: Create Application and Database
+      summary: Oracle Essbase Create Application and Database
       description: >-
         Creates a new Essbase application and optionally a database within it.
         Application names are limited to 30 characters, must not contain spaces,
@@ -227,7 +227,7 @@ paths:
   /applications/{applicationName}:
     get:
       operationId: getApplication
-      summary: Get Application
+      summary: Oracle Essbase Get Application
       description: Returns details of the specified Essbase application, including status, type, owner, and configuration.
       tags:
         - Applications
@@ -254,7 +254,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: startStopApplication
-      summary: Start or Stop Application
+      summary: Oracle Essbase Start or Stop Application
       description: Starts or stops an Essbase application by updating its status.
       tags:
         - Applications
@@ -294,7 +294,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteApplication
-      summary: Delete Application
+      summary: Oracle Essbase Delete Application
       description: Deletes the specified Essbase application and all of its databases and associated resources.
       tags:
         - Applications
@@ -318,7 +318,7 @@ paths:
   /applications/actions/copy:
     post:
       operationId: copyApplication
-      summary: Copy Application
+      summary: Oracle Essbase Copy Application
       description: Creates a copy of an existing Essbase application with a new name.
       tags:
         - Applications
@@ -360,7 +360,7 @@ paths:
   /applications/actions/rename:
     post:
       operationId: renameApplication
-      summary: Rename Application
+      summary: Oracle Essbase Rename Application
       description: Renames an existing Essbase application.
       tags:
         - Applications
@@ -402,7 +402,7 @@ paths:
   /applications/actions/tree:
     get:
       operationId: getApplicationTreeView
-      summary: Get Application Tree View
+      summary: Oracle Essbase Get Application Tree View
       description: Returns a hierarchical tree view of applications and their databases.
       tags:
         - Applications
@@ -428,7 +428,7 @@ paths:
   /applications/actions/name/{appVisibility}:
     get:
       operationId: listApplicationNames
-      summary: List Application Names
+      summary: Oracle Essbase List Application Names
       description: Returns a list of application names filtered by visibility.
       tags:
         - Applications
@@ -463,7 +463,7 @@ paths:
   /applications/{applicationName}/encrypt:
     post:
       operationId: encryptApplication
-      summary: Encrypt Application
+      summary: Oracle Essbase Encrypt Application
       description: Encrypts the specified Essbase application for data security.
       tags:
         - Applications
@@ -487,7 +487,7 @@ paths:
   /applications/{applicationName}/decrypt:
     post:
       operationId: decryptApplication
-      summary: Decrypt Application
+      summary: Oracle Essbase Decrypt Application
       description: Decrypts the specified Essbase application.
       tags:
         - Applications
@@ -511,7 +511,7 @@ paths:
   /applications/{applicationName}/encryptionconfig:
     get:
       operationId: getEncryptionInfo
-      summary: Get Encryption Info
+      summary: Oracle Essbase Get Encryption Info
       description: Returns encryption configuration information for the specified application.
       tags:
         - Applications
@@ -543,7 +543,7 @@ paths:
   /applications/{applicationName}/provisionReport:
     get:
       operationId: getApplicationProvisioningReport
-      summary: Get Application Provisioning Report
+      summary: Oracle Essbase Get Application Provisioning Report
       description: Returns the provisioning report for the specified application, detailing user roles and permissions.
       tags:
         - Roles
@@ -571,7 +571,7 @@ paths:
   /applications/actions/shadowCopy:
     post:
       operationId: createShadowApplication
-      summary: Create Shadow Application
+      summary: Oracle Essbase Create Shadow Application
       description: Creates a shadow copy of an existing application for safe editing without affecting the production application.
       tags:
         - Applications
@@ -609,7 +609,7 @@ paths:
   /applications/actions/shadowPromote:
     post:
       operationId: promoteShadowApplication
-      summary: Promote Shadow Application
+      summary: Oracle Essbase Promote Shadow Application
       description: Promotes a shadow application to replace the original production application.
       tags:
         - Applications
@@ -643,7 +643,7 @@ paths:
   /applications/actions/shadowDelete/{shadowAppName}:
     delete:
       operationId: deleteShadowApplication
-      summary: Delete Shadow Application
+      summary: Oracle Essbase Delete Shadow Application
       description: Deletes the specified shadow application.
       tags:
         - Applications
@@ -672,7 +672,7 @@ paths:
   /applications/{applicationName}/databases:
     get:
       operationId: listDatabases
-      summary: List Databases
+      summary: Oracle Essbase List Databases
       description: Returns a list of databases (cubes) within the specified application.
       tags:
         - Databases
@@ -700,7 +700,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}:
     get:
       operationId: getDatabase
-      summary: Get Database
+      summary: Oracle Essbase Get Database
       description: Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings.
       tags:
         - Databases
@@ -728,7 +728,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: startStopDatabase
-      summary: Start or Stop Database
+      summary: Oracle Essbase Start or Stop Database
       description: Starts or stops the specified database by updating its status.
       tags:
         - Databases
@@ -769,7 +769,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteDatabase
-      summary: Delete Database
+      summary: Oracle Essbase Delete Database
       description: Deletes the specified database (cube) from the application.
       tags:
         - Databases
@@ -794,7 +794,7 @@ paths:
   /applications/{applicationName}/databases/actions/copy:
     post:
       operationId: copyDatabase
-      summary: Copy Database
+      summary: Oracle Essbase Copy Database
       description: Creates a copy of an existing database within the same application or to a different application.
       tags:
         - Databases
@@ -838,7 +838,7 @@ paths:
   /applications/{applicationName}/databases/actions/rename:
     post:
       operationId: renameDatabase
-      summary: Rename Database
+      summary: Oracle Essbase Rename Database
       description: Renames an existing database within the application.
       tags:
         - Databases
@@ -878,7 +878,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/aliases:
     get:
       operationId: listAliases
-      summary: List Aliases
+      summary: Oracle Essbase List Aliases
       description: Returns a list of alias tables defined for the specified database.
       tags:
         - Databases
@@ -909,7 +909,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias:
     get:
       operationId: getActiveAlias
-      summary: Get Active Alias
+      summary: Oracle Essbase Get Active Alias
       description: Returns the currently active alias table for the specified database.
       tags:
         - Databases
@@ -942,7 +942,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias:
     put:
       operationId: setActiveAlias
-      summary: Set Active Alias
+      summary: Oracle Essbase Set Active Alias
       description: Sets the active alias table for the specified database.
       tags:
         - Databases
@@ -977,7 +977,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/currencySettings:
     get:
       operationId: getCurrencySettings
-      summary: Get Currency Settings
+      summary: Oracle Essbase Get Currency Settings
       description: Returns the currency conversion settings for the specified database.
       tags:
         - Databases
@@ -1005,7 +1005,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: setCurrencySettings
-      summary: Set Currency Settings
+      summary: Oracle Essbase Set Currency Settings
       description: Updates the currency conversion settings for the specified database.
       tags:
         - Databases
@@ -1036,7 +1036,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/calculationFunctions:
     get:
       operationId: getCalculationFunctions
-      summary: Get Calculation Functions
+      summary: Oracle Essbase Get Calculation Functions
       description: Returns a list of available calculation functions for the specified database.
       tags:
         - Databases
@@ -1065,7 +1065,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/formulaFunctions:
     get:
       operationId: getFormulaFunctions
-      summary: Get Formula Functions
+      summary: Oracle Essbase Get Formula Functions
       description: Returns a list of available formula functions for the specified database.
       tags:
         - Databases
@@ -1094,7 +1094,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/mdxFunctions:
     get:
       operationId: getMdxFunctions
-      summary: Get MDX Functions
+      summary: Oracle Essbase Get MDX Functions
       description: Returns a list of available MDX functions for the specified database.
       tags:
         - Databases
@@ -1123,7 +1123,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/executeReport:
     get:
       operationId: executeReportScript
-      summary: Execute Report Script
+      summary: Oracle Essbase Execute Report Script
       description: Executes a report script on the specified database and returns the report output.
       tags:
         - Reports
@@ -1152,7 +1152,7 @@ paths:
   /jobs:
     get:
       operationId: listJobs
-      summary: List Jobs
+      summary: Oracle Essbase List Jobs
       description: >-
         Returns a list of executed jobs. Supports filtering by job type,
         application, database, and status. Returns job history with execution
@@ -1210,7 +1210,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: executeJob
-      summary: Execute Job
+      summary: Oracle Essbase Execute Job
       description: >-
         Executes an asynchronous job on an Essbase database. Supported job types
         include dataload, dimbuild, calc, clear, importExcel, exportExcel,
@@ -1253,7 +1253,7 @@ paths:
   /jobs/{jobId}:
     get:
       operationId: getJob
-      summary: Get Job
+      summary: Oracle Essbase Get Job
       description: Returns details and current status of the specified job by its identifier.
       tags:
         - Jobs
@@ -1286,7 +1286,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteJob
-      summary: Delete Job Record
+      summary: Oracle Essbase Delete Job Record
       description: Deletes the job record for the specified job identifier.
       tags:
         - Jobs
@@ -1316,7 +1316,7 @@ paths:
   /jobs/{jobId}/actions/rerun:
     post:
       operationId: rerunJob
-      summary: Rerun Job
+      summary: Oracle Essbase Rerun Job
       description: Reruns a previously executed job with the same parameters.
       tags:
         - Jobs
@@ -1350,7 +1350,7 @@ paths:
   /sessions:
     get:
       operationId: listSessions
-      summary: List Sessions
+      summary: Oracle Essbase List Sessions
       description: >-
         Returns a list of currently active sessions. Optionally filter by
         application, database, or user ID. If userId is not provided, all
@@ -1397,7 +1397,7 @@ paths:
   /sessions/{sessionId}:
     delete:
       operationId: deleteSession
-      summary: Delete Session
+      summary: Oracle Essbase Delete Session
       description: Terminates the specified active session by session identifier.
       tags:
         - Sessions
@@ -1426,7 +1426,7 @@ paths:
   /session/login:
     post:
       operationId: login
-      summary: Login
+      summary: Oracle Essbase Login
       description: Authenticates a user and creates a new session. Returns session information upon successful login.
       tags:
         - User Session
@@ -1473,7 +1473,7 @@ paths:
   /session/logout:
     post:
       operationId: logout
-      summary: Logout
+      summary: Oracle Essbase Logout
       description: Terminates the current user session and invalidates the session token.
       tags:
         - User Session
@@ -1489,7 +1489,7 @@ paths:
   /session/password:
     put:
       operationId: changePassword
-      summary: Change Password
+      summary: Oracle Essbase Change Password
       description: Changes the password for the currently authenticated user.
       tags:
         - User Session
@@ -1529,7 +1529,7 @@ paths:
   /users:
     get:
       operationId: listUsers
-      summary: List Users
+      summary: Oracle Essbase List Users
       description: >-
         Returns a list of Essbase users. Supports filtering by name pattern and
         limiting results. Use expand=all to include service roles and group
@@ -1585,7 +1585,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createUser
-      summary: Create User
+      summary: Oracle Essbase Create User
       description: Creates a new Essbase user with the specified details and role assignment.
       tags:
         - Users
@@ -1617,7 +1617,7 @@ paths:
   /users/{userId}:
     get:
       operationId: getUser
-      summary: Get User
+      summary: Oracle Essbase Get User
       description: Returns details of the specified user including roles and group memberships.
       tags:
         - Users
@@ -1649,7 +1649,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateUser
-      summary: Update User
+      summary: Oracle Essbase Update User
       description: Updates details of the specified user such as email, role, or password.
       tags:
         - Users
@@ -1687,7 +1687,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteUser
-      summary: Delete User
+      summary: Oracle Essbase Delete User
       description: Deletes the specified user from Essbase.
       tags:
         - Users
@@ -1716,7 +1716,7 @@ paths:
   /groups:
     get:
       operationId: listGroups
-      summary: List Groups
+      summary: Oracle Essbase List Groups
       description: Returns a list of user groups defined in Essbase.
       tags:
         - Groups
@@ -1754,7 +1754,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createGroup
-      summary: Create Group
+      summary: Oracle Essbase Create Group
       description: Creates a new user group in Essbase.
       tags:
         - Groups
@@ -1786,7 +1786,7 @@ paths:
   /groups/{groupId}:
     get:
       operationId: getGroup
-      summary: Get Group
+      summary: Oracle Essbase Get Group
       description: Returns details of the specified group including its members.
       tags:
         - Groups
@@ -1818,7 +1818,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateGroup
-      summary: Update Group
+      summary: Oracle Essbase Update Group
       description: Updates the specified group details and membership.
       tags:
         - Groups
@@ -1856,7 +1856,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteGroup
-      summary: Delete Group
+      summary: Oracle Essbase Delete Group
       description: Deletes the specified group from Essbase.
       tags:
         - Groups
@@ -1885,7 +1885,7 @@ paths:
   /groups/{groupId}/members:
     get:
       operationId: listGroupMembers
-      summary: List Group Members
+      summary: Oracle Essbase List Group Members
       description: Returns a list of members (users and sub-groups) in the specified group.
       tags:
         - Groups
@@ -1920,7 +1920,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/scripts:
     get:
       operationId: listScripts
-      summary: List Scripts
+      summary: Oracle Essbase List Scripts
       description: Returns a list of calculation and MDX scripts for the specified database.
       tags:
         - Scripts
@@ -1948,7 +1948,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createScript
-      summary: Create Script
+      summary: Oracle Essbase Create Script
       description: Creates a new calculation or MDX script for the specified database.
       tags:
         - Scripts
@@ -1983,7 +1983,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}:
     get:
       operationId: getScript
-      summary: Get Script
+      summary: Oracle Essbase Get Script
       description: Returns the content and details of the specified calculation or MDX script.
       tags:
         - Scripts
@@ -2017,7 +2017,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateScript
-      summary: Update Script
+      summary: Oracle Essbase Update Script
       description: Updates the content of an existing calculation or MDX script.
       tags:
         - Scripts
@@ -2057,7 +2057,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteScript
-      summary: Delete Script
+      summary: Oracle Essbase Delete Script
       description: Deletes the specified calculation or MDX script from the database.
       tags:
         - Scripts
@@ -2088,7 +2088,7 @@ paths:
   /files:
     get:
       operationId: listRootFolders
-      summary: List Root Folders
+      summary: Oracle Essbase List Root Folders
       description: >-
         Returns a list of root-level folders in the Essbase file catalog.
         Typical root folders include applications, gallery, shared, and users.
@@ -2128,7 +2128,7 @@ paths:
   /files/{path}:
     get:
       operationId: listFilesOrDownload
-      summary: List Files or Download File
+      summary: Oracle Essbase List Files or Download File
       description: >-
         Lists the contents of a folder or downloads a specific file from the
         Essbase file catalog. Use Accept header to control response type.
@@ -2177,7 +2177,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: uploadFile
-      summary: Upload File
+      summary: Oracle Essbase Upload File
       description: Uploads a file to the specified path in the Essbase file catalog.
       tags:
         - Files
@@ -2218,7 +2218,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteFile
-      summary: Delete File or Folder
+      summary: Oracle Essbase Delete File or Folder
       description: Deletes the specified file or folder from the Essbase file catalog.
       tags:
         - Files
@@ -2247,7 +2247,7 @@ paths:
   /files/actions/copy:
     post:
       operationId: copyFile
-      summary: Copy File
+      summary: Oracle Essbase Copy File
       description: Copies a file or folder from one location to another in the file catalog.
       tags:
         - Files
@@ -2285,7 +2285,7 @@ paths:
   /files/actions/move:
     post:
       operationId: moveFile
-      summary: Move File
+      summary: Oracle Essbase Move File
       description: Moves a file or folder from one location to another in the file catalog.
       tags:
         - Files
@@ -2323,7 +2323,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/filters:
     get:
       operationId: listFilters
-      summary: List Filters
+      summary: Oracle Essbase List Filters
       description: Returns a list of security filters defined for the specified database.
       tags:
         - Filters
@@ -2351,7 +2351,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createFilter
-      summary: Create Filter
+      summary: Oracle Essbase Create Filter
       description: Creates a new security filter for the specified database to control member-level access.
       tags:
         - Filters
@@ -2386,7 +2386,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/filters/{filterName}:
     get:
       operationId: getFilter
-      summary: Get Filter
+      summary: Oracle Essbase Get Filter
       description: Returns details of the specified security filter.
       tags:
         - Filters
@@ -2420,7 +2420,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateFilter
-      summary: Update Filter
+      summary: Oracle Essbase Update Filter
       description: Updates the specified security filter.
       tags:
         - Filters
@@ -2460,7 +2460,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteFilter
-      summary: Delete Filter
+      summary: Oracle Essbase Delete Filter
       description: Deletes the specified security filter from the database.
       tags:
         - Filters
@@ -2491,7 +2491,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/partitions:
     get:
       operationId: listPartitions
-      summary: List Partitions
+      summary: Oracle Essbase List Partitions
       description: Returns a list of partitions defined for the specified database.
       tags:
         - Partitions
@@ -2519,7 +2519,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createPartition
-      summary: Create Partition
+      summary: Oracle Essbase Create Partition
       description: Creates a new partition between databases for data federation.
       tags:
         - Partitions
@@ -2550,7 +2550,7 @@ paths:
   /applications/{applicationName}/connections:
     get:
       operationId: listApplicationConnections
-      summary: List Application Connections
+      summary: Oracle Essbase List Application Connections
       description: Returns all connections defined for the specified application.
       tags:
         - Connections
@@ -2577,7 +2577,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createApplicationConnection
-      summary: Create Application Connection
+      summary: Oracle Essbase Create Application Connection
       description: Creates a new connection for the specified application for use with data loads and dimension builds.
       tags:
         - Connections
@@ -2607,7 +2607,7 @@ paths:
   /applications/{applicationName}/connections/{connectionName}:
     get:
       operationId: getApplicationConnection
-      summary: Get Application Connection
+      summary: Oracle Essbase Get Application Connection
       description: Returns details of the specified application connection.
       tags:
         - Connections
@@ -2640,7 +2640,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateApplicationConnection
-      summary: Update Application Connection
+      summary: Oracle Essbase Update Application Connection
       description: Updates the specified application connection.
       tags:
         - Connections
@@ -2675,7 +2675,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteApplicationConnection
-      summary: Delete Application Connection
+      summary: Oracle Essbase Delete Application Connection
       description: Deletes the specified application connection.
       tags:
         - Connections
@@ -2705,7 +2705,7 @@ paths:
   /applications/{applicationName}/connections/{connectionName}/actions/test:
     post:
       operationId: testSavedApplicationConnection
-      summary: Test Saved Application Connection
+      summary: Oracle Essbase Test Saved Application Connection
       description: Tests an existing saved application connection to verify connectivity.
       tags:
         - Connections
@@ -2735,7 +2735,7 @@ paths:
   /applications/{applicationName}/connections/actions/test:
     post:
       operationId: testNewApplicationConnection
-      summary: Test New Application Connection
+      summary: Oracle Essbase Test New Application Connection
       description: Tests a new application connection configuration before saving it.
       tags:
         - Connections
@@ -2765,7 +2765,7 @@ paths:
   /connections:
     get:
       operationId: listGlobalConnections
-      summary: List Global Connections
+      summary: Oracle Essbase List Global Connections
       description: Returns a list of global connections available across all applications.
       tags:
         - Connections
@@ -2790,7 +2790,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createGlobalConnection
-      summary: Create Global Connection
+      summary: Oracle Essbase Create Global Connection
       description: Creates a new global connection available across all applications.
       tags:
         - Connections
@@ -2818,7 +2818,7 @@ paths:
   /connections/{connectionName}:
     get:
       operationId: getGlobalConnection
-      summary: Get Global Connection
+      summary: Oracle Essbase Get Global Connection
       description: Returns details of the specified global connection.
       tags:
         - Connections
@@ -2850,7 +2850,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateGlobalConnection
-      summary: Update Global Connection
+      summary: Oracle Essbase Update Global Connection
       description: Updates the specified global connection.
       tags:
         - Connections
@@ -2884,7 +2884,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteGlobalConnection
-      summary: Delete Global Connection
+      summary: Oracle Essbase Delete Global Connection
       description: Deletes the specified global connection.
       tags:
         - Connections
@@ -2913,7 +2913,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/dimensions:
     get:
       operationId: listDimensions
-      summary: List Dimensions
+      summary: Oracle Essbase List Dimensions
       description: Returns a list of dimensions defined in the specified database outline.
       tags:
         - Dimensions
@@ -2944,7 +2944,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}:
     get:
       operationId: getDimension
-      summary: Get Dimension
+      summary: Oracle Essbase Get Dimension
       description: Returns details of the specified dimension including its name, type, and storage properties.
       tags:
         - Dimensions
@@ -2979,7 +2979,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/generations:
     get:
       operationId: listDimensionGenerations
-      summary: List Dimension Generations
+      summary: Oracle Essbase List Dimension Generations
       description: Returns the generation hierarchy for the specified dimension.
       tags:
         - Dimensions
@@ -3024,7 +3024,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/levels:
     get:
       operationId: listDimensionLevels
-      summary: List Dimension Levels
+      summary: Oracle Essbase List Dimension Levels
       description: Returns the level hierarchy for the specified dimension.
       tags:
         - Dimensions
@@ -3069,7 +3069,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/locks:
     get:
       operationId: listLocks
-      summary: List Locks
+      summary: Oracle Essbase List Locks
       description: Returns a list of locks on the specified database.
       tags:
         - Locks
@@ -3100,7 +3100,7 @@ paths:
   /applications/{applicationName}/databases/{databaseName}/locks/{lockId}:
     delete:
       operationId: unlockObject
-      summary: Unlock Object
+      summary: Oracle Essbase Unlock Object
       description: Releases the specified lock on a database object.
       tags:
         - Locks
@@ -3131,7 +3131,7 @@ paths:
   /applications/{applicationName}/configurations:
     get:
       operationId: listApplicationConfigurations
-      summary: List Application Configurations
+      summary: Oracle Essbase List Application Configurations
       description: Returns application-level configuration properties for the specified application.
       tags:
         - Application Configuration
@@ -3158,7 +3158,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateApplicationConfigurations
-      summary: Update Application Configurations
+      summary: Oracle Essbase Update Application Configurations
       description: Updates application-level configuration properties.
       tags:
         - Application Configuration
@@ -3188,7 +3188,7 @@ paths:
   /properties:
     get:
       operationId: listServerProperties
-      summary: List Server Properties
+      summary: Oracle Essbase List Server Properties
       description: Returns server-level configuration properties for the Essbase instance.
       tags:
         - Server
@@ -3213,7 +3213,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     put:
       operationId: updateServerProperties
-      summary: Update Server Properties
+      summary: Oracle Essbase Update Server Properties
       description: Updates server-level configuration properties.
       tags:
         - Server
@@ -3241,7 +3241,7 @@ paths:
   /variables:
     get:
       operationId: listServerVariables
-      summary: List Server Variables
+      summary: Oracle Essbase List Server Variables
       description: Returns server-level substitution variables.
       tags:
         - Variables
@@ -3268,7 +3268,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     post:
       operationId: createServerVariable
-      summary: Create Server Variable
+      summary: Oracle Essbase Create Server Variable
       description: Creates a new server-level substitution variable.
       tags:
         - Variables
@@ -3296,7 +3296,7 @@ paths:
   /variables/{variableName}:
     put:
       operationId: updateServerVariable
-      summary: Update Server Variable
+      summary: Oracle Essbase Update Server Variable
       description: Updates the specified server-level substitution variable.
       tags:
         - Variables
@@ -3330,7 +3330,7 @@ paths:
                 $ref: '#/components/schemas/Error'
     delete:
       operationId: deleteServerVariable
-      summary: Delete Server Variable
+      summary: Oracle Essbase Delete Server Variable
       description: Deletes the specified server-level substitution variable.
       tags:
         - Variables
@@ -3359,7 +3359,7 @@ paths:
   /applications/partitions/supportedfederatedtypes:
     get:
       operationId: getSupportedPartitionTypes
-      summary: Get Supported Partition Types
+      summary: Oracle Essbase Get Supported Partition Types
       description: Returns the list of supported partition types for federated operations.
       tags:
         - Partitions
