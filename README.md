@@ -1,72 +1,100 @@
 # Oracle Essbase (oracle-essbase)
 Oracle Essbase is a multi-dimensional database management system that provides a multidimensional analytical platform for business intelligence applications, financial consolidation, planning, budgeting, and forecasting.
 
-**URL:** [Visit APIs.json URL](https://www.oracle.com/essbase/)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/oracle-essbase/refs/heads/main/apis.yml)
 
 ## Tags:
 
- - Multi-dimensional Database, OLAP, Analytics, Business Intelligence, Planning, Budgeting, Financial Consolidation
+ - Analytics, Budgeting, Business Intelligence, Financial Consolidation, Multi-Dimensional Database, OLAP, Planning
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024-01-01
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### Oracle Essbase REST API
-RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations.
+RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, and user management.
 
-**Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/erest/](https://docs.oracle.com/en/database/other-databases/essbase/21/erest/)
+**Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html)
 
+**Base URL:** `https://{host}:{port}/essbase/rest/v1`
 
 #### Tags:
 
- - REST API, OLAP, Analytics, Calculations
+ - Analytics, Calculations, Data Management, OLAP, REST API
 
 #### Properties
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/erest/)
-- [OpenAPI](https://docs.oracle.com/en/database/other-databases/essbase/21/erest/rest-api-essbase.html)
+- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html)
+- [OpenAPI](openapi/oracle-essbase-rest-api-openapi.yml)
 - [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/erest/op-rest-v1-sessions-post.html)
+- [Reference](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/rest-endpoints.html)
+- [Getting Started](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/api-essbase.html)
+- [JSON Schema](json-schema/oracle-essbase-application-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-database-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-job-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-user-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-session-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-dimension-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-connection-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-script-schema.json)
+- [JSON Schema](json-schema/oracle-essbase-filter-schema.json)
+- [JSON-LD Context](json-ld/oracle-essbase-context.jsonld)
 
 ### Essbase Java API
-Java API for developing applications that interact with Oracle Essbase for data loading, calculations, and retrievals.
+Java API for developing applications that interact with Oracle Essbase for data loading, calculations, and retrievals. Provides libraries, samples, and documentation for building Essbase client tools in Java.
 
 **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/](https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/)
 
 
 #### Tags:
 
- - Java, SDK, Programming Interface
+ - Client Tools, Data Loading, Java, Programming Interface, SDK
 
 #### Properties
 
 - [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/)
 
 ### Essbase C API
-C API for building high-performance applications that interact with Essbase databases.
+C API for building high-performance applications that interact with Essbase databases. Includes the Grid API for Smart View-like functionality and the Outline API for programmatic outline manipulation.
 
 **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/](https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/)
 
 
 #### Tags:
 
- - C API, SDK, Native Interface
+ - C API, Grid API, Native Interface, Outline API, SDK
 
 #### Properties
 
 - [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/)
 
+### Essbase MaxL Scripting Interface
+MaxL is the multi-dimensional database access language for Essbase that provides a scripting-based interface for administering and querying Essbase. It enables automation of administrative operations using statements rather than a series of commands.
+
+**Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html)
+
+
+#### Tags:
+
+ - Administration, Automation, Database Management, Query Language, Scripting
+
+#### Properties
+
+- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html)
+- [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/login-logout-cli-authentication.html)
+
 ### Essbase CLI (Command Line Interface)
-Command-line interface for administering and managing Essbase applications and databases.
+Command-line interface for administering and managing Essbase applications and databases. Provides command-line access for common administrative tasks including application management, data operations, and server configuration.
 
 **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/essug/](https://docs.oracle.com/en/database/other-databases/essbase/21/essug/)
 
 
 #### Tags:
 
- - CLI, Command Line, Administration
+ - Administration, Automation, CLI, Command Line, Server Management
 
 #### Properties
 
@@ -74,18 +102,27 @@ Command-line interface for administering and managing Essbase applications and d
 
 ## Common Properties
 
-- [Getting Started](https://docs.oracle.com/en/database/other-databases/essbase/21/)
+- [Portal](https://docs.oracle.com/en/database/other-databases/essbase/21/index.html)
+- [Getting Started](https://docs.oracle.com/en/database/other-databases/essbase/21/essst/what-is-oracle-essbase.html)
 - [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/)
-- [Downloads](https://www.oracle.com/database/technologies/essbase-downloads.html)
-- [Product Page](https://www.oracle.com/performance-management/essbase/)
+- [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/weblogic-authentication.html)
+- [Blog](https://blogs.oracle.com/proactivesupportepm/category/pse-essbase-on-premise)
+- [Status](https://ocistatus.oraclecloud.com/)
 - [Support](https://support.oracle.com)
-- [Community](https://community.oracle.com/customerconnect/categories/enterprise-performance-management-essbase)
+- [Terms of Service](https://www.oracle.com/legal/terms/)
+- [Privacy Policy](https://www.oracle.com/legal/privacy/)
+- [GitHub Organization](https://github.com/oracle-quickstart/oci-essbase)
+- [Community](https://community.oracle.com/customerconnect/categories/oci-essbase)
+- [Website](https://www.oracle.com/business-analytics/essbase.html)
+- [Login](https://www.oracle.com/cloud/sign-in.html)
+- [Sign Up](https://www.oracle.com/cloud/free/)
+- [Downloads](https://www.oracle.com/database/technologies/essbase-downloads.html)
 - [Tutorials](https://docs.oracle.com/en/database/other-databases/essbase/21/essug/essbase-tutorials.html)
 - [Licensing](https://www.oracle.com/corporate/pricing/specialty-topics.html)
-- [Release Notes](https://docs.oracle.com/en/database/other-databases/essbase/21/essrn/)
+- [Change Log](https://docs.oracle.com/en/database/other-databases/essbase/21/essop/index.html)
 
 ## Maintainers
 
-**FN:** Oracle Corporation
+**FN:** Kin Lane
 
-**Email:** essbase_ww@oracle.com
+**Email:** kin@apievangelist.com
