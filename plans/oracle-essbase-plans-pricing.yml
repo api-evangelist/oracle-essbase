@@ -4,154 +4,110 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Essbase
 providerId: oracle-essbase
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
-  - Budgeting
   - Business Intelligence
-  - Financial Consolidation
   - Multi-Dimensional Database
   - OLAP
-  - Planning
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Oracle Cloud
+description: >-
+  Oracle Essbase is delivered through the Oracle Cloud Marketplace as a
+  Bring-Your-Own-License (BYOL) image deployed on Oracle Cloud Infrastructure
+  (OCI) compute. There is no separate per-API or per-user public price for
+  Essbase itself. Customers pay for the underlying OCI compute, block storage,
+  and networking consumed by the Essbase instance, and supply an existing
+  Oracle Analytics or Essbase license. On-premises deployments are licensed
+  per processor or named-user-plus through the Oracle Technology global price
+  list. Pricing is not published in machine-readable form; engage Oracle Sales
+  for the applicable rate sheet.
+sources:
+  - https://www.oracle.com/business-analytics/essbase/
+  - https://cloudmarketplace.oracle.com/marketplace/en_US/listing/79529283
+  - https://docs.oracle.com/en/database/other-databases/essbase/
+notes: >-
+  Oracle blocks programmatic fetches of www.oracle.com pricing pages (HTTP 403).
+  Plan structure preserved as a single BYOL/Marketplace tier plus an Enterprise
+  custom-licensing tier; replace with verified Oracle Technology Global Price
+  List values when available.
 plans:
-  - id: oracle-essbase-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Oracle Essbase API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: oracle-essbase-byol-marketplace
+    name: BYOL on OCI Marketplace
+    type: usage-based
+    description: >-
+      Bring-Your-Own-License Essbase image on Oracle Cloud Infrastructure.
+      Charges accrue against the underlying OCI compute, storage, and
+      networking; the Essbase software itself requires a separately purchased
+      Oracle license.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Oracle Essbase REST API
-      - name: Essbase Java API
-      - name: Essbase C API
-      - name: Essbase MaxL Scripting Interface
-      - name: Essbase CLI (Command Line Interface)
-  - id: oracle-essbase-pro
-    name: Professional
-    type: paid
-    description: Production tier for Oracle Essbase. Provides higher quotas, priority support, and access
-      to the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: OCI Compute (Essbase host)
+        name: oci_compute
         type: metered
-        metric: requests
+        metric: ocpu-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://www.oracle.com/cloud/price-list/
+        userMultiplied: false
+      - label: OCI Block Storage
+        name: oci_block_storage
+        type: metered
+        metric: gb-month
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: see https://www.oracle.com/cloud/price-list/
+        userMultiplied: false
+      - label: Essbase License (BYOL)
+        name: essbase_license
+        type: subscription
+        metric: license
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
       - name: Oracle Essbase REST API
       - name: Essbase Java API
       - name: Essbase C API
       - name: Essbase MaxL Scripting Interface
       - name: Essbase CLI (Command Line Interface)
   - id: oracle-essbase-enterprise
-    name: Enterprise
+    name: Enterprise (On-Premises or OCI)
     type: enterprise
-    description: Custom-negotiated tier for Oracle Essbase. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+    description: >-
+      Negotiated Oracle Technology license for on-premises Essbase or
+      OCI-hosted deployments. Priced per processor or per named-user-plus on
+      the Oracle Technology Global Price List, with separately negotiated
+      support, premier maintenance, and optional Oracle Analytics Cloud
+      bundling.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Per-Processor License
+        name: per_processor_license
+        type: subscription
+        metric: processor
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://{host}:{port}/essbase/rest/v1
+      - label: Named User Plus License
+        name: named_user_plus
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
+        price: contact sales
+        userMultiplied: true
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
       - name: Oracle Essbase REST API
       - name: Essbase Java API
       - name: Essbase C API

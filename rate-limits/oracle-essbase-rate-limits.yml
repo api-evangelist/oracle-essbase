@@ -4,108 +4,65 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Essbase
 providerId: oracle-essbase
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Analytics
-  - Budgeting
-  - Business Intelligence
-  - Financial Consolidation
-  - Multi-Dimensional Database
   - OLAP
-  - Planning
+  - Oracle Cloud
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Oracle Essbase API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: >-
+  Oracle Essbase does not publish per-second or per-minute API rate limits in
+  its REST API documentation. Throttling, when present, is governed by the
+  underlying OCI compute capacity (OCPU and memory of the Essbase host) and
+  by Essbase's own session, query, and calc concurrency settings configured
+  per service instance. Customers can size and tune limits at deployment time
+  rather than relying on a multi-tenant published rate.
+sources:
+  - https://docs.oracle.com/en/database/other-databases/essbase/
+  - https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/index.html
+notes: >-
+  No public per-tier RPS/RPM numbers are published. Limits are effectively the
+  capacity of the deployed OCI compute shape plus Essbase's configurable
+  session, calculation, and query limits. Set reconciled to true after
+  capturing instance-specific tuning values.
 responseCodes:
-  throttled: 429
-  quotaExceeded: 429
+  unauthorized: 401
+  forbidden: 403
+  notFound: 404
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Oracle Essbase REST API
-      - Essbase Java API
-      - Essbase C API
-      - Essbase MaxL Scripting Interface
-      - Essbase CLI (Command Line Interface)
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Oracle Essbase REST API
-      - Essbase Java API
-      - Essbase C API
-      - Essbase MaxL Scripting Interface
-      - Essbase CLI (Command Line Interface)
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Oracle Essbase REST API
-      - Essbase Java API
-      - Essbase C API
-      - Essbase MaxL Scripting Interface
-      - Essbase CLI (Command Line Interface)
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Oracle Essbase REST API
-      - Essbase Java API
-      - Essbase C API
-      - Essbase MaxL Scripting Interface
-      - Essbase CLI (Command Line Interface)
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Oracle Essbase REST API
-      - Essbase Java API
-      - Essbase C API
-      - Essbase MaxL Scripting Interface
-      - Essbase CLI (Command Line Interface)
+  - name: Concurrent Sessions (configurable)
+    scope: instance
+    metric: concurrent_sessions
+    limit: see Essbase configuration
+    notes: >-
+      Configured per Essbase application via NETDELAY, NETRETRY, and
+      session/connection settings. Default Essbase server limits are tuned at
+      provisioning time, not exposed through a public per-tier API rate.
+  - name: REST API Requests
+    scope: instance
+    metric: varies
+    limit: bound by OCI compute shape
+    notes: >-
+      Throughput is bound by the OCPU count and memory of the underlying OCI
+      compute shape running the Essbase instance, not by a separate public
+      rate-limit policy.
 policies:
+  - name: Capacity-Bound Throttling
+    description: >-
+      Throughput limits are determined by the OCI compute shape (OCPU,
+      memory) and configurable Essbase session, query, and calc concurrency
+      settings rather than a published multi-tenant rate-limit table.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: >-
+      Clients should implement exponential backoff with jitter on 5xx
+      responses; honor any Retry-After header when present.
+  - name: Session Management
+    description: >-
+      Long-running calc, MaxL, or query operations should reuse authenticated
+      sessions rather than re-authenticating per request to avoid exhausting
+      session-pool capacity.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
