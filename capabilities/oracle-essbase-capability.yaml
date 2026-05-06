@@ -1,0 +1,2284 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical
+    operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations,
+    data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions,
+    outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  tags:
+  - Oracle
+  - Essbase
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: oracle-essbase
+    baseUri: https://localhost:9001/essbase/rest/v1
+    description: Oracle Essbase REST API HTTP API.
+    authentication:
+      type: basic
+      username: '{{ORACLE_ESSBASE_USERNAME}}'
+      password: '{{ORACLE_ESSBASE_PASSWORD}}'
+    resources:
+    - name: about
+      path: /about
+      operations:
+      - name: getaboutessbase
+        method: GET
+        description: Oracle Essbase Get About Essbase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: about-instance
+      path: /about/instance
+      operations:
+      - name: getaboutessbaseinstance
+        method: GET
+        description: Oracle Essbase Get About Essbase Instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications
+      path: /applications
+      operations:
+      - name: listapplications
+        method: GET
+        description: Oracle Essbase List Applications
+        inputParameters:
+        - name: applicationNameForConnection
+          in: query
+          type: string
+          description: Application name for connection filtering.
+        - name: connectionName
+          in: query
+          type: string
+          description: Filter applications by connection name.
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return. If omitted, all fields are returned.
+        - name: filter
+          in: query
+          type: string
+          description: Wildcard filter for application names.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of applications to return. Must be 100 or less if status is included.
+        - name: offset
+          in: query
+          type: integer
+          description: Number of applications to skip from the start of the result set.
+        - name: orderBy
+          in: query
+          type: string
+          description: Sort order in format column:direction (e.g., name:asc).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplication
+        method: POST
+        description: Oracle Essbase Create Application and Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname
+      path: /applications/{applicationName}
+      operations:
+      - name: getapplication
+        method: GET
+        description: Oracle Essbase Get Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: startstopapplication
+        method: PUT
+        description: Oracle Essbase Start or Stop Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteapplication
+        method: DELETE
+        description: Oracle Essbase Delete Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-copy
+      path: /applications/actions/copy
+      operations:
+      - name: copyapplication
+        method: POST
+        description: Oracle Essbase Copy Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-rename
+      path: /applications/actions/rename
+      operations:
+      - name: renameapplication
+        method: POST
+        description: Oracle Essbase Rename Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-tree
+      path: /applications/actions/tree
+      operations:
+      - name: getapplicationtreeview
+        method: GET
+        description: Oracle Essbase Get Application Tree View
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-name-appvisibility
+      path: /applications/actions/name/{appVisibility}
+      operations:
+      - name: listapplicationnames
+        method: GET
+        description: Oracle Essbase List Application Names
+        inputParameters:
+        - name: appVisibility
+          in: path
+          type: string
+          required: true
+          description: Application visibility filter.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-encrypt
+      path: /applications/{applicationName}/encrypt
+      operations:
+      - name: encryptapplication
+        method: POST
+        description: Oracle Essbase Encrypt Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-decrypt
+      path: /applications/{applicationName}/decrypt
+      operations:
+      - name: decryptapplication
+        method: POST
+        description: Oracle Essbase Decrypt Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-encryptionconfig
+      path: /applications/{applicationName}/encryptionconfig
+      operations:
+      - name: getencryptioninfo
+        method: GET
+        description: Oracle Essbase Get Encryption Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-provisionreport
+      path: /applications/{applicationName}/provisionReport
+      operations:
+      - name: getapplicationprovisioningreport
+        method: GET
+        description: Oracle Essbase Get Application Provisioning Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-shadowcopy
+      path: /applications/actions/shadowCopy
+      operations:
+      - name: createshadowapplication
+        method: POST
+        description: Oracle Essbase Create Shadow Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-shadowpromote
+      path: /applications/actions/shadowPromote
+      operations:
+      - name: promoteshadowapplication
+        method: POST
+        description: Oracle Essbase Promote Shadow Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-actions-shadowdelete-shadowappname
+      path: /applications/actions/shadowDelete/{shadowAppName}
+      operations:
+      - name: deleteshadowapplication
+        method: DELETE
+        description: Oracle Essbase Delete Shadow Application
+        inputParameters:
+        - name: shadowAppName
+          in: path
+          type: string
+          required: true
+          description: Name of the shadow application to delete.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases
+      path: /applications/{applicationName}/databases
+      operations:
+      - name: listdatabases
+        method: GET
+        description: Oracle Essbase List Databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}
+      operations:
+      - name: getdatabase
+        method: GET
+        description: Oracle Essbase Get Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: startstopdatabase
+        method: PUT
+        description: Oracle Essbase Start or Stop Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletedatabase
+        method: DELETE
+        description: Oracle Essbase Delete Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-actions-c
+      path: /applications/{applicationName}/databases/actions/copy
+      operations:
+      - name: copydatabase
+        method: POST
+        description: Oracle Essbase Copy Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-actions-r
+      path: /applications/{applicationName}/databases/actions/rename
+      operations:
+      - name: renamedatabase
+        method: POST
+        description: Oracle Essbase Rename Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/aliases
+      operations:
+      - name: listaliases
+        method: GET
+        description: Oracle Essbase List Aliases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias
+      operations:
+      - name: getactivealias
+        method: GET
+        description: Oracle Essbase Get Active Alias
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias
+      operations:
+      - name: setactivealias
+        method: PUT
+        description: Oracle Essbase Set Active Alias
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/currencySettings
+      operations:
+      - name: getcurrencysettings
+        method: GET
+        description: Oracle Essbase Get Currency Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setcurrencysettings
+        method: POST
+        description: Oracle Essbase Set Currency Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/calculationFunctions
+      operations:
+      - name: getcalculationfunctions
+        method: GET
+        description: Oracle Essbase Get Calculation Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/formulaFunctions
+      operations:
+      - name: getformulafunctions
+        method: GET
+        description: Oracle Essbase Get Formula Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/mdxFunctions
+      operations:
+      - name: getmdxfunctions
+        method: GET
+        description: Oracle Essbase Get MDX Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/executeReport
+      operations:
+      - name: executereportscript
+        method: GET
+        description: Oracle Essbase Execute Report Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs
+      path: /jobs
+      operations:
+      - name: listjobs
+        method: GET
+        description: Oracle Essbase List Jobs
+        inputParameters:
+        - name: applicationName
+          in: query
+          type: string
+          description: Filter by application name.
+        - name: databaseName
+          in: query
+          type: string
+          description: Filter by database name.
+        - name: jobtype
+          in: query
+          type: string
+          description: Filter by job type.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of jobs to return.
+        - name: offset
+          in: query
+          type: integer
+          description: Number of records to skip.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: executejob
+        method: POST
+        description: Oracle Essbase Execute Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs-jobid
+      path: /jobs/{jobId}
+      operations:
+      - name: getjob
+        method: GET
+        description: Oracle Essbase Get Job
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          required: true
+          description: Unique job identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletejob
+        method: DELETE
+        description: Oracle Essbase Delete Job Record
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          required: true
+          description: Unique job identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs-jobid-actions-rerun
+      path: /jobs/{jobId}/actions/rerun
+      operations:
+      - name: rerunjob
+        method: POST
+        description: Oracle Essbase Rerun Job
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          required: true
+          description: Unique job identifier of the job to rerun.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sessions
+      path: /sessions
+      operations:
+      - name: listsessions
+        method: GET
+        description: Oracle Essbase List Sessions
+        inputParameters:
+        - name: application
+          in: query
+          type: string
+          description: Filter by application name.
+        - name: database
+          in: query
+          type: string
+          description: Filter by database name.
+        - name: userId
+          in: query
+          type: string
+          description: Filter by user ID. If not provided, returns all sessions.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sessions-sessionid
+      path: /sessions/{sessionId}
+      operations:
+      - name: deletesession
+        method: DELETE
+        description: Oracle Essbase Delete Session
+        inputParameters:
+        - name: sessionId
+          in: path
+          type: string
+          required: true
+          description: Session identifier to terminate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: session-login
+      path: /session/login
+      operations:
+      - name: login
+        method: POST
+        description: Oracle Essbase Login
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: session-logout
+      path: /session/logout
+      operations:
+      - name: logout
+        method: POST
+        description: Oracle Essbase Logout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: session-password
+      path: /session/password
+      operations:
+      - name: changepassword
+        method: PUT
+        description: Oracle Essbase Change Password
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      operations:
+      - name: listusers
+        method: GET
+        description: Oracle Essbase List Users
+        inputParameters:
+        - name: expand
+          in: query
+          type: string
+          description: Include service role and groups. Values are all or none.
+        - name: filter
+          in: query
+          type: string
+          description: User ID wildcard pattern for filtering.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of users to return. -1 for no limit.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createuser
+        method: POST
+        description: Oracle Essbase Create User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users-userid
+      path: /users/{userId}
+      operations:
+      - name: getuser
+        method: GET
+        description: Oracle Essbase Get User
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuser
+        method: PUT
+        description: Oracle Essbase Update User
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuser
+        method: DELETE
+        description: Oracle Essbase Delete User
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          required: true
+          description: User identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: groups
+      path: /groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Oracle Essbase List Groups
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Group name wildcard pattern for filtering.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of groups to return.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: Oracle Essbase Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: groups-groupid
+      path: /groups/{groupId}
+      operations:
+      - name: getgroup
+        method: GET
+        description: Oracle Essbase Get Group
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+          description: Group identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updategroup
+        method: PUT
+        description: Oracle Essbase Update Group
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+          description: Group identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletegroup
+        method: DELETE
+        description: Oracle Essbase Delete Group
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+          description: Group identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: groups-groupid-members
+      path: /groups/{groupId}/members
+      operations:
+      - name: listgroupmembers
+        method: GET
+        description: Oracle Essbase List Group Members
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+          description: Group identifier.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/scripts
+      operations:
+      - name: listscripts
+        method: GET
+        description: Oracle Essbase List Scripts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createscript
+        method: POST
+        description: Oracle Essbase Create Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationname-databases-databasen
+      path: /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}
+      operations:
+      - name: getscript
+        method: GET
+        description: Oracle Essbase Get Script
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          required: true
+          description: Script name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatescript
+        method: PUT
+        description: Oracle Essbase Update Script
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          required: true
+          description: Script name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletescript
+        method: DELETE
+        description: Oracle Essbase Delete Script
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          required: true
+          description: Script name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files
+      path: /files
+      operations:
+      - name: listrootfolders
+        method: GET
+        description: Oracle Essbase List Root Folders
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter the list of files.
+        - name: recursive
+          in: query
+          type: boolean
+          description: Return search results recursively.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: oracle-essbase-rest
+    description: REST adapter for Oracle Essbase REST API.
+    resources:
+    - path: /about
+      name: getaboutessbase
+      operations:
+      - method: GET
+        name: getaboutessbase
+        description: Oracle Essbase Get About Essbase
+        call: oracle-essbase.getaboutessbase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /about/instance
+      name: getaboutessbaseinstance
+      operations:
+      - method: GET
+        name: getaboutessbaseinstance
+        description: Oracle Essbase Get About Essbase Instance
+        call: oracle-essbase.getaboutessbaseinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications
+      name: listapplications
+      operations:
+      - method: GET
+        name: listapplications
+        description: Oracle Essbase List Applications
+        call: oracle-essbase.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications
+      name: createapplication
+      operations:
+      - method: POST
+        name: createapplication
+        description: Oracle Essbase Create Application and Database
+        call: oracle-essbase.createapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}
+      name: getapplication
+      operations:
+      - method: GET
+        name: getapplication
+        description: Oracle Essbase Get Application
+        call: oracle-essbase.getapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}
+      name: startstopapplication
+      operations:
+      - method: PUT
+        name: startstopapplication
+        description: Oracle Essbase Start or Stop Application
+        call: oracle-essbase.startstopapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}
+      name: deleteapplication
+      operations:
+      - method: DELETE
+        name: deleteapplication
+        description: Oracle Essbase Delete Application
+        call: oracle-essbase.deleteapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/copy
+      name: copyapplication
+      operations:
+      - method: POST
+        name: copyapplication
+        description: Oracle Essbase Copy Application
+        call: oracle-essbase.copyapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/rename
+      name: renameapplication
+      operations:
+      - method: POST
+        name: renameapplication
+        description: Oracle Essbase Rename Application
+        call: oracle-essbase.renameapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/tree
+      name: getapplicationtreeview
+      operations:
+      - method: GET
+        name: getapplicationtreeview
+        description: Oracle Essbase Get Application Tree View
+        call: oracle-essbase.getapplicationtreeview
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/name/{appVisibility}
+      name: listapplicationnames
+      operations:
+      - method: GET
+        name: listapplicationnames
+        description: Oracle Essbase List Application Names
+        call: oracle-essbase.listapplicationnames
+        with:
+          appVisibility: rest.appVisibility
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/encrypt
+      name: encryptapplication
+      operations:
+      - method: POST
+        name: encryptapplication
+        description: Oracle Essbase Encrypt Application
+        call: oracle-essbase.encryptapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/decrypt
+      name: decryptapplication
+      operations:
+      - method: POST
+        name: decryptapplication
+        description: Oracle Essbase Decrypt Application
+        call: oracle-essbase.decryptapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/encryptionconfig
+      name: getencryptioninfo
+      operations:
+      - method: GET
+        name: getencryptioninfo
+        description: Oracle Essbase Get Encryption Info
+        call: oracle-essbase.getencryptioninfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/provisionReport
+      name: getapplicationprovisioningreport
+      operations:
+      - method: GET
+        name: getapplicationprovisioningreport
+        description: Oracle Essbase Get Application Provisioning Report
+        call: oracle-essbase.getapplicationprovisioningreport
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/shadowCopy
+      name: createshadowapplication
+      operations:
+      - method: POST
+        name: createshadowapplication
+        description: Oracle Essbase Create Shadow Application
+        call: oracle-essbase.createshadowapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/shadowPromote
+      name: promoteshadowapplication
+      operations:
+      - method: POST
+        name: promoteshadowapplication
+        description: Oracle Essbase Promote Shadow Application
+        call: oracle-essbase.promoteshadowapplication
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/actions/shadowDelete/{shadowAppName}
+      name: deleteshadowapplication
+      operations:
+      - method: DELETE
+        name: deleteshadowapplication
+        description: Oracle Essbase Delete Shadow Application
+        call: oracle-essbase.deleteshadowapplication
+        with:
+          shadowAppName: rest.shadowAppName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases
+      name: listdatabases
+      operations:
+      - method: GET
+        name: listdatabases
+        description: Oracle Essbase List Databases
+        call: oracle-essbase.listdatabases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}
+      name: getdatabase
+      operations:
+      - method: GET
+        name: getdatabase
+        description: Oracle Essbase Get Database
+        call: oracle-essbase.getdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}
+      name: startstopdatabase
+      operations:
+      - method: PUT
+        name: startstopdatabase
+        description: Oracle Essbase Start or Stop Database
+        call: oracle-essbase.startstopdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}
+      name: deletedatabase
+      operations:
+      - method: DELETE
+        name: deletedatabase
+        description: Oracle Essbase Delete Database
+        call: oracle-essbase.deletedatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/actions/copy
+      name: copydatabase
+      operations:
+      - method: POST
+        name: copydatabase
+        description: Oracle Essbase Copy Database
+        call: oracle-essbase.copydatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/actions/rename
+      name: renamedatabase
+      operations:
+      - method: POST
+        name: renamedatabase
+        description: Oracle Essbase Rename Database
+        call: oracle-essbase.renamedatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/aliases
+      name: listaliases
+      operations:
+      - method: GET
+        name: listaliases
+        description: Oracle Essbase List Aliases
+        call: oracle-essbase.listaliases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias
+      name: getactivealias
+      operations:
+      - method: GET
+        name: getactivealias
+        description: Oracle Essbase Get Active Alias
+        call: oracle-essbase.getactivealias
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias
+      name: setactivealias
+      operations:
+      - method: PUT
+        name: setactivealias
+        description: Oracle Essbase Set Active Alias
+        call: oracle-essbase.setactivealias
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/currencySettings
+      name: getcurrencysettings
+      operations:
+      - method: GET
+        name: getcurrencysettings
+        description: Oracle Essbase Get Currency Settings
+        call: oracle-essbase.getcurrencysettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/currencySettings
+      name: setcurrencysettings
+      operations:
+      - method: POST
+        name: setcurrencysettings
+        description: Oracle Essbase Set Currency Settings
+        call: oracle-essbase.setcurrencysettings
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/calculationFunctions
+      name: getcalculationfunctions
+      operations:
+      - method: GET
+        name: getcalculationfunctions
+        description: Oracle Essbase Get Calculation Functions
+        call: oracle-essbase.getcalculationfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/formulaFunctions
+      name: getformulafunctions
+      operations:
+      - method: GET
+        name: getformulafunctions
+        description: Oracle Essbase Get Formula Functions
+        call: oracle-essbase.getformulafunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/mdxFunctions
+      name: getmdxfunctions
+      operations:
+      - method: GET
+        name: getmdxfunctions
+        description: Oracle Essbase Get MDX Functions
+        call: oracle-essbase.getmdxfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/executeReport
+      name: executereportscript
+      operations:
+      - method: GET
+        name: executereportscript
+        description: Oracle Essbase Execute Report Script
+        call: oracle-essbase.executereportscript
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /jobs
+      name: listjobs
+      operations:
+      - method: GET
+        name: listjobs
+        description: Oracle Essbase List Jobs
+        call: oracle-essbase.listjobs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /jobs
+      name: executejob
+      operations:
+      - method: POST
+        name: executejob
+        description: Oracle Essbase Execute Job
+        call: oracle-essbase.executejob
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /jobs/{jobId}
+      name: getjob
+      operations:
+      - method: GET
+        name: getjob
+        description: Oracle Essbase Get Job
+        call: oracle-essbase.getjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /jobs/{jobId}
+      name: deletejob
+      operations:
+      - method: DELETE
+        name: deletejob
+        description: Oracle Essbase Delete Job Record
+        call: oracle-essbase.deletejob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /jobs/{jobId}/actions/rerun
+      name: rerunjob
+      operations:
+      - method: POST
+        name: rerunjob
+        description: Oracle Essbase Rerun Job
+        call: oracle-essbase.rerunjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /sessions
+      name: listsessions
+      operations:
+      - method: GET
+        name: listsessions
+        description: Oracle Essbase List Sessions
+        call: oracle-essbase.listsessions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /sessions/{sessionId}
+      name: deletesession
+      operations:
+      - method: DELETE
+        name: deletesession
+        description: Oracle Essbase Delete Session
+        call: oracle-essbase.deletesession
+        with:
+          sessionId: rest.sessionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /session/login
+      name: login
+      operations:
+      - method: POST
+        name: login
+        description: Oracle Essbase Login
+        call: oracle-essbase.login
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /session/logout
+      name: logout
+      operations:
+      - method: POST
+        name: logout
+        description: Oracle Essbase Logout
+        call: oracle-essbase.logout
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /session/password
+      name: changepassword
+      operations:
+      - method: PUT
+        name: changepassword
+        description: Oracle Essbase Change Password
+        call: oracle-essbase.changepassword
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users
+      name: listusers
+      operations:
+      - method: GET
+        name: listusers
+        description: Oracle Essbase List Users
+        call: oracle-essbase.listusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users
+      name: createuser
+      operations:
+      - method: POST
+        name: createuser
+        description: Oracle Essbase Create User
+        call: oracle-essbase.createuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}
+      name: getuser
+      operations:
+      - method: GET
+        name: getuser
+        description: Oracle Essbase Get User
+        call: oracle-essbase.getuser
+        with:
+          userId: rest.userId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}
+      name: updateuser
+      operations:
+      - method: PUT
+        name: updateuser
+        description: Oracle Essbase Update User
+        call: oracle-essbase.updateuser
+        with:
+          userId: rest.userId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /users/{userId}
+      name: deleteuser
+      operations:
+      - method: DELETE
+        name: deleteuser
+        description: Oracle Essbase Delete User
+        call: oracle-essbase.deleteuser
+        with:
+          userId: rest.userId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups
+      name: listgroups
+      operations:
+      - method: GET
+        name: listgroups
+        description: Oracle Essbase List Groups
+        call: oracle-essbase.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups
+      name: creategroup
+      operations:
+      - method: POST
+        name: creategroup
+        description: Oracle Essbase Create Group
+        call: oracle-essbase.creategroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups/{groupId}
+      name: getgroup
+      operations:
+      - method: GET
+        name: getgroup
+        description: Oracle Essbase Get Group
+        call: oracle-essbase.getgroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups/{groupId}
+      name: updategroup
+      operations:
+      - method: PUT
+        name: updategroup
+        description: Oracle Essbase Update Group
+        call: oracle-essbase.updategroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups/{groupId}
+      name: deletegroup
+      operations:
+      - method: DELETE
+        name: deletegroup
+        description: Oracle Essbase Delete Group
+        call: oracle-essbase.deletegroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /groups/{groupId}/members
+      name: listgroupmembers
+      operations:
+      - method: GET
+        name: listgroupmembers
+        description: Oracle Essbase List Group Members
+        call: oracle-essbase.listgroupmembers
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/scripts
+      name: listscripts
+      operations:
+      - method: GET
+        name: listscripts
+        description: Oracle Essbase List Scripts
+        call: oracle-essbase.listscripts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/scripts
+      name: createscript
+      operations:
+      - method: POST
+        name: createscript
+        description: Oracle Essbase Create Script
+        call: oracle-essbase.createscript
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}
+      name: getscript
+      operations:
+      - method: GET
+        name: getscript
+        description: Oracle Essbase Get Script
+        call: oracle-essbase.getscript
+        with:
+          scriptName: rest.scriptName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}
+      name: updatescript
+      operations:
+      - method: PUT
+        name: updatescript
+        description: Oracle Essbase Update Script
+        call: oracle-essbase.updatescript
+        with:
+          scriptName: rest.scriptName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}
+      name: deletescript
+      operations:
+      - method: DELETE
+        name: deletescript
+        description: Oracle Essbase Delete Script
+        call: oracle-essbase.deletescript
+        with:
+          scriptName: rest.scriptName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /files
+      name: listrootfolders
+      operations:
+      - method: GET
+        name: listrootfolders
+        description: Oracle Essbase List Root Folders
+        call: oracle-essbase.listrootfolders
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: oracle-essbase-mcp
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API for AI agent use.
+    tools:
+    - name: getaboutessbase
+      description: Oracle Essbase Get About Essbase
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getaboutessbase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getaboutessbaseinstance
+      description: Oracle Essbase Get About Essbase Instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getaboutessbaseinstance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplications
+      description: Oracle Essbase List Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listapplications
+      with:
+        applicationNameForConnection: tools.applicationNameForConnection
+        connectionName: tools.connectionName
+        fields: tools.fields
+        filter: tools.filter
+        limit: tools.limit
+        offset: tools.offset
+        orderBy: tools.orderBy
+      inputParameters:
+      - name: applicationNameForConnection
+        type: string
+        description: Application name for connection filtering.
+      - name: connectionName
+        type: string
+        description: Filter applications by connection name.
+      - name: fields
+        type: string
+        description: Comma-separated list of fields to return. If omitted, all fields are returned.
+      - name: filter
+        type: string
+        description: Wildcard filter for application names.
+      - name: limit
+        type: integer
+        description: Maximum number of applications to return. Must be 100 or less if status is included.
+      - name: offset
+        type: integer
+        description: Number of applications to skip from the start of the result set.
+      - name: orderBy
+        type: string
+        description: Sort order in format column:direction (e.g., name:asc).
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createapplication
+      description: Oracle Essbase Create Application and Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.createapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplication
+      description: Oracle Essbase Get Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startstopapplication
+      description: Oracle Essbase Start or Stop Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.startstopapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteapplication
+      description: Oracle Essbase Delete Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deleteapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copyapplication
+      description: Oracle Essbase Copy Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.copyapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: renameapplication
+      description: Oracle Essbase Rename Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.renameapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationtreeview
+      description: Oracle Essbase Get Application Tree View
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getapplicationtreeview
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listapplicationnames
+      description: Oracle Essbase List Application Names
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listapplicationnames
+      with:
+        appVisibility: tools.appVisibility
+      inputParameters:
+      - name: appVisibility
+        type: string
+        description: Application visibility filter.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: encryptapplication
+      description: Oracle Essbase Encrypt Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.encryptapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: decryptapplication
+      description: Oracle Essbase Decrypt Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.decryptapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getencryptioninfo
+      description: Oracle Essbase Get Encryption Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getencryptioninfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getapplicationprovisioningreport
+      description: Oracle Essbase Get Application Provisioning Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getapplicationprovisioningreport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createshadowapplication
+      description: Oracle Essbase Create Shadow Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.createshadowapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: promoteshadowapplication
+      description: Oracle Essbase Promote Shadow Application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.promoteshadowapplication
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteshadowapplication
+      description: Oracle Essbase Delete Shadow Application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deleteshadowapplication
+      with:
+        shadowAppName: tools.shadowAppName
+      inputParameters:
+      - name: shadowAppName
+        type: string
+        description: Name of the shadow application to delete.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listdatabases
+      description: Oracle Essbase List Databases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listdatabases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getdatabase
+      description: Oracle Essbase Get Database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: startstopdatabase
+      description: Oracle Essbase Start or Stop Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.startstopdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletedatabase
+      description: Oracle Essbase Delete Database
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deletedatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copydatabase
+      description: Oracle Essbase Copy Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.copydatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: renamedatabase
+      description: Oracle Essbase Rename Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.renamedatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listaliases
+      description: Oracle Essbase List Aliases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listaliases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getactivealias
+      description: Oracle Essbase Get Active Alias
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getactivealias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: setactivealias
+      description: Oracle Essbase Set Active Alias
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.setactivealias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcurrencysettings
+      description: Oracle Essbase Get Currency Settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getcurrencysettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: setcurrencysettings
+      description: Oracle Essbase Set Currency Settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.setcurrencysettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getcalculationfunctions
+      description: Oracle Essbase Get Calculation Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getcalculationfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getformulafunctions
+      description: Oracle Essbase Get Formula Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getformulafunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmdxfunctions
+      description: Oracle Essbase Get MDX Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getmdxfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: executereportscript
+      description: Oracle Essbase Execute Report Script
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.executereportscript
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listjobs
+      description: Oracle Essbase List Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listjobs
+      with:
+        applicationName: tools.applicationName
+        databaseName: tools.databaseName
+        jobtype: tools.jobtype
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: applicationName
+        type: string
+        description: Filter by application name.
+      - name: databaseName
+        type: string
+        description: Filter by database name.
+      - name: jobtype
+        type: string
+        description: Filter by job type.
+      - name: limit
+        type: integer
+        description: Maximum number of jobs to return.
+      - name: offset
+        type: integer
+        description: Number of records to skip.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: executejob
+      description: Oracle Essbase Execute Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.executejob
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getjob
+      description: Oracle Essbase Get Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getjob
+      with:
+        jobId: tools.jobId
+      inputParameters:
+      - name: jobId
+        type: integer
+        description: Unique job identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletejob
+      description: Oracle Essbase Delete Job Record
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deletejob
+      with:
+        jobId: tools.jobId
+      inputParameters:
+      - name: jobId
+        type: integer
+        description: Unique job identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: rerunjob
+      description: Oracle Essbase Rerun Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.rerunjob
+      with:
+        jobId: tools.jobId
+      inputParameters:
+      - name: jobId
+        type: integer
+        description: Unique job identifier of the job to rerun.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listsessions
+      description: Oracle Essbase List Sessions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listsessions
+      with:
+        application: tools.application
+        database: tools.database
+        userId: tools.userId
+      inputParameters:
+      - name: application
+        type: string
+        description: Filter by application name.
+      - name: database
+        type: string
+        description: Filter by database name.
+      - name: userId
+        type: string
+        description: Filter by user ID. If not provided, returns all sessions.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletesession
+      description: Oracle Essbase Delete Session
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deletesession
+      with:
+        sessionId: tools.sessionId
+      inputParameters:
+      - name: sessionId
+        type: string
+        description: Session identifier to terminate.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: login
+      description: Oracle Essbase Login
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.login
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: logout
+      description: Oracle Essbase Logout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.logout
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: changepassword
+      description: Oracle Essbase Change Password
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.changepassword
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listusers
+      description: Oracle Essbase List Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listusers
+      with:
+        expand: tools.expand
+        filter: tools.filter
+        limit: tools.limit
+      inputParameters:
+      - name: expand
+        type: string
+        description: Include service role and groups. Values are all or none.
+      - name: filter
+        type: string
+        description: User ID wildcard pattern for filtering.
+      - name: limit
+        type: integer
+        description: Maximum number of users to return. -1 for no limit.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createuser
+      description: Oracle Essbase Create User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.createuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getuser
+      description: Oracle Essbase Get User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getuser
+      with:
+        userId: tools.userId
+      inputParameters:
+      - name: userId
+        type: string
+        description: User identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateuser
+      description: Oracle Essbase Update User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.updateuser
+      with:
+        userId: tools.userId
+      inputParameters:
+      - name: userId
+        type: string
+        description: User identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteuser
+      description: Oracle Essbase Delete User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deleteuser
+      with:
+        userId: tools.userId
+      inputParameters:
+      - name: userId
+        type: string
+        description: User identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listgroups
+      description: Oracle Essbase List Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listgroups
+      with:
+        filter: tools.filter
+        limit: tools.limit
+      inputParameters:
+      - name: filter
+        type: string
+        description: Group name wildcard pattern for filtering.
+      - name: limit
+        type: integer
+        description: Maximum number of groups to return.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creategroup
+      description: Oracle Essbase Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.creategroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroup
+      description: Oracle Essbase Get Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getgroup
+      with:
+        groupId: tools.groupId
+      inputParameters:
+      - name: groupId
+        type: string
+        description: Group identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updategroup
+      description: Oracle Essbase Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.updategroup
+      with:
+        groupId: tools.groupId
+      inputParameters:
+      - name: groupId
+        type: string
+        description: Group identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletegroup
+      description: Oracle Essbase Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deletegroup
+      with:
+        groupId: tools.groupId
+      inputParameters:
+      - name: groupId
+        type: string
+        description: Group identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listgroupmembers
+      description: Oracle Essbase List Group Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listgroupmembers
+      with:
+        groupId: tools.groupId
+      inputParameters:
+      - name: groupId
+        type: string
+        description: Group identifier.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listscripts
+      description: Oracle Essbase List Scripts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listscripts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createscript
+      description: Oracle Essbase Create Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oracle-essbase.createscript
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getscript
+      description: Oracle Essbase Get Script
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.getscript
+      with:
+        scriptName: tools.scriptName
+      inputParameters:
+      - name: scriptName
+        type: string
+        description: Script name.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatescript
+      description: Oracle Essbase Update Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.updatescript
+      with:
+        scriptName: tools.scriptName
+      inputParameters:
+      - name: scriptName
+        type: string
+        description: Script name.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletescript
+      description: Oracle Essbase Delete Script
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oracle-essbase.deletescript
+      with:
+        scriptName: tools.scriptName
+      inputParameters:
+      - name: scriptName
+        type: string
+        description: Script name.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listrootfolders
+      description: Oracle Essbase List Root Folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oracle-essbase.listrootfolders
+      with:
+        filter: tools.filter
+        recursive: tools.recursive
+      inputParameters:
+      - name: filter
+        type: string
+        description: Filter the list of files.
+      - name: recursive
+        type: boolean
+        description: Return search results recursively.
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_USERNAME: ORACLE_ESSBASE_USERNAME
+    ORACLE_ESSBASE_PASSWORD: ORACLE_ESSBASE_PASSWORD
