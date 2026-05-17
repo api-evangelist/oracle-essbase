@@ -42,7 +42,7 @@ apis:
         url: https://docs.oracle.com/en/database/other-databases/essbase/21/erest/op-rest-v1-sessions-post.html
       - type: Reference
         url: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/rest-endpoints.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/api-essbase.html
       - type: JSON Schema
         url: json-schema/oracle-essbase-application-schema.json
@@ -123,7 +123,7 @@ maintainers:
 common:
   - type: Portal
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/index.html
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/essst/what-is-oracle-essbase.html
   - type: Documentation
     url: https://docs.oracle.com/en/database/other-databases/essbase/
@@ -131,15 +131,15 @@ common:
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/weblogic-authentication.html
   - type: Blog
     url: https://blogs.oracle.com/proactivesupportepm/category/pse-essbase-on-premise
-  - type: Status
+  - type: StatusPage
     url: https://ocistatus.oraclecloud.com/
   - type: Support
     url: https://support.oracle.com
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.oracle.com/legal/terms/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.oracle.com/legal/privacy/privacy-policy/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/oracle-quickstart/oci-essbase
   - type: Community
     url: https://community.oracle.com/customerconnect/categories/oci-essbase
@@ -147,7 +147,7 @@ common:
     url: https://www.oracle.com/business-analytics/essbase.html
   - type: Login
     url: https://www.oracle.com/cloud/sign-in.html
-  - type: Sign Up
+  - type: SignUp
     url: https://www.oracle.com/cloud/free/
   - type: Downloads
     url: https://www.oracle.com/database/technologies/essbase-downloads.html
@@ -155,5 +155,5 @@ common:
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/essug/essbase-tutorials.html
   - type: Licensing
     url: https://www.oracle.com/corporate/pricing/specialty-topics.html
-  - type: Change Log
+  - type: ChangeLog
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/essop/index.html
