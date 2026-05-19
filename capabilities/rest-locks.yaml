@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Locks
+  description: 'Oracle Essbase REST API — Locks. 2 operations. Lead operation: Oracle Essbase List Locks. Self-contained Naftiko
+    capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Locks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-locks
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Locks business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-databases-databaseName-locks
+      path: /applications/{applicationName}/databases/{databaseName}/locks
+      operations:
+      - name: listlocks
+        method: GET
+        description: Oracle Essbase List Locks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-locks-lockId
+      path: /applications/{applicationName}/databases/{databaseName}/locks/{lockId}
+      operations:
+      - name: unlockobject
+        method: DELETE
+        description: Oracle Essbase Unlock Object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lockId
+          in: path
+          type: string
+          description: Lock identifier.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-locks-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Locks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/databases/{databasename}/locks
+      name: applications-applicationname-databases-databasename-locks
+      description: REST surface for applications-applicationName-databases-databaseName-locks.
+      operations:
+      - method: GET
+        name: listlocks
+        description: Oracle Essbase List Locks
+        call: rest-locks.listlocks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/locks/{lockid}
+      name: applications-applicationname-databases-databasename-locks-lockid
+      description: REST surface for applications-applicationName-databases-databaseName-locks-lockId.
+      operations:
+      - method: DELETE
+        name: unlockobject
+        description: Oracle Essbase Unlock Object
+        call: rest-locks.unlockobject
+        with:
+          lockId: rest.lockId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-locks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Locks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-locks
+      description: Oracle Essbase List Locks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-locks.listlocks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-unlock-object
+      description: Oracle Essbase Unlock Object
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-locks.unlockobject
+      with:
+        lockId: tools.lockId
+      outputParameters:
+      - type: object
+        mapping: $.

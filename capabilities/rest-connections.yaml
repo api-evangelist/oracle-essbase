@@ -1,0 +1,494 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Connections
+  description: 'Oracle Essbase REST API — Connections. 12 operations. Lead operation: Oracle Essbase List Application Connections.
+    Self-contained Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Connections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-connections
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Connections business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-connections
+      path: /applications/{applicationName}/connections
+      operations:
+      - name: listapplicationconnections
+        method: GET
+        description: Oracle Essbase List Application Connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapplicationconnection
+        method: POST
+        description: Oracle Essbase Create Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-connections-actions-test
+      path: /applications/{applicationName}/connections/actions/test
+      operations:
+      - name: testnewapplicationconnection
+        method: POST
+        description: Oracle Essbase Test New Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-connections-connectionName
+      path: /applications/{applicationName}/connections/{connectionName}
+      operations:
+      - name: getapplicationconnection
+        method: GET
+        description: Oracle Essbase Get Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+      - name: updateapplicationconnection
+        method: PUT
+        description: Oracle Essbase Update Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapplicationconnection
+        method: DELETE
+        description: Oracle Essbase Delete Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+    - name: applications-applicationName-connections-connectionName-actions-test
+      path: /applications/{applicationName}/connections/{connectionName}/actions/test
+      operations:
+      - name: testsavedapplicationconnection
+        method: POST
+        description: Oracle Essbase Test Saved Application Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+    - name: connections
+      path: /connections
+      operations:
+      - name: listglobalconnections
+        method: GET
+        description: Oracle Essbase List Global Connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createglobalconnection
+        method: POST
+        description: Oracle Essbase Create Global Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: connections-connectionName
+      path: /connections/{connectionName}
+      operations:
+      - name: getglobalconnection
+        method: GET
+        description: Oracle Essbase Get Global Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+      - name: updateglobalconnection
+        method: PUT
+        description: Oracle Essbase Update Global Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteglobalconnection
+        method: DELETE
+        description: Oracle Essbase Delete Global Connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connectionName
+          in: path
+          type: string
+          description: Connection name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-connections-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Connections. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/connections
+      name: applications-applicationname-connections
+      description: REST surface for applications-applicationName-connections.
+      operations:
+      - method: GET
+        name: listapplicationconnections
+        description: Oracle Essbase List Application Connections
+        call: rest-connections.listapplicationconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapplicationconnection
+        description: Oracle Essbase Create Application Connection
+        call: rest-connections.createapplicationconnection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/connections/actions/test
+      name: applications-applicationname-connections-actions-test
+      description: REST surface for applications-applicationName-connections-actions-test.
+      operations:
+      - method: POST
+        name: testnewapplicationconnection
+        description: Oracle Essbase Test New Application Connection
+        call: rest-connections.testnewapplicationconnection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/connections/{connectionname}
+      name: applications-applicationname-connections-connectionname
+      description: REST surface for applications-applicationName-connections-connectionName.
+      operations:
+      - method: GET
+        name: getapplicationconnection
+        description: Oracle Essbase Get Application Connection
+        call: rest-connections.getapplicationconnection
+        with:
+          connectionName: rest.connectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapplicationconnection
+        description: Oracle Essbase Update Application Connection
+        call: rest-connections.updateapplicationconnection
+        with:
+          connectionName: rest.connectionName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapplicationconnection
+        description: Oracle Essbase Delete Application Connection
+        call: rest-connections.deleteapplicationconnection
+        with:
+          connectionName: rest.connectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/connections/{connectionname}/actions/test
+      name: applications-applicationname-connections-connectionname-actions-test
+      description: REST surface for applications-applicationName-connections-connectionName-actions-test.
+      operations:
+      - method: POST
+        name: testsavedapplicationconnection
+        description: Oracle Essbase Test Saved Application Connection
+        call: rest-connections.testsavedapplicationconnection
+        with:
+          connectionName: rest.connectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connections
+      name: connections
+      description: REST surface for connections.
+      operations:
+      - method: GET
+        name: listglobalconnections
+        description: Oracle Essbase List Global Connections
+        call: rest-connections.listglobalconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createglobalconnection
+        description: Oracle Essbase Create Global Connection
+        call: rest-connections.createglobalconnection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connections/{connectionname}
+      name: connections-connectionname
+      description: REST surface for connections-connectionName.
+      operations:
+      - method: GET
+        name: getglobalconnection
+        description: Oracle Essbase Get Global Connection
+        call: rest-connections.getglobalconnection
+        with:
+          connectionName: rest.connectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateglobalconnection
+        description: Oracle Essbase Update Global Connection
+        call: rest-connections.updateglobalconnection
+        with:
+          connectionName: rest.connectionName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteglobalconnection
+        description: Oracle Essbase Delete Global Connection
+        call: rest-connections.deleteglobalconnection
+        with:
+          connectionName: rest.connectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-connections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Connections. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-application-connections
+      description: Oracle Essbase List Application Connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-connections.listapplicationconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-create-application-connection
+      description: Oracle Essbase Create Application Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-connections.createapplicationconnection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-test-new-application
+      description: Oracle Essbase Test New Application Connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: rest-connections.testnewapplicationconnection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-application-connection
+      description: Oracle Essbase Get Application Connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-connections.getapplicationconnection
+      with:
+        connectionName: tools.connectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-update-application-connection
+      description: Oracle Essbase Update Application Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-connections.updateapplicationconnection
+      with:
+        connectionName: tools.connectionName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-application-connection
+      description: Oracle Essbase Delete Application Connection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-connections.deleteapplicationconnection
+      with:
+        connectionName: tools.connectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-test-saved-application
+      description: Oracle Essbase Test Saved Application Connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: rest-connections.testsavedapplicationconnection
+      with:
+        connectionName: tools.connectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-list-global-connections
+      description: Oracle Essbase List Global Connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-connections.listglobalconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-create-global-connection
+      description: Oracle Essbase Create Global Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-connections.createglobalconnection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-global-connection
+      description: Oracle Essbase Get Global Connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-connections.getglobalconnection
+      with:
+        connectionName: tools.connectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-update-global-connection
+      description: Oracle Essbase Update Global Connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-connections.updateglobalconnection
+      with:
+        connectionName: tools.connectionName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-global-connection
+      description: Oracle Essbase Delete Global Connection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-connections.deleteglobalconnection
+      with:
+        connectionName: tools.connectionName
+      outputParameters:
+      - type: object
+        mapping: $.

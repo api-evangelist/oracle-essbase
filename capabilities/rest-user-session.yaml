@@ -1,0 +1,154 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — User Session
+  description: 'Oracle Essbase REST API — User Session. 3 operations. Lead operation: Oracle Essbase Login. Self-contained
+    Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - User Session
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-user-session
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — User Session business capability. Self-contained, no shared references.
+    resources:
+    - name: session-login
+      path: /session/login
+      operations:
+      - name: login
+        method: POST
+        description: Oracle Essbase Login
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: session-logout
+      path: /session/logout
+      operations:
+      - name: logout
+        method: POST
+        description: Oracle Essbase Logout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: session-password
+      path: /session/password
+      operations:
+      - name: changepassword
+        method: PUT
+        description: Oracle Essbase Change Password
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-user-session-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — User Session. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/session/login
+      name: session-login
+      description: REST surface for session-login.
+      operations:
+      - method: POST
+        name: login
+        description: Oracle Essbase Login
+        call: rest-user-session.login
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/session/logout
+      name: session-logout
+      description: REST surface for session-logout.
+      operations:
+      - method: POST
+        name: logout
+        description: Oracle Essbase Logout
+        call: rest-user-session.logout
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/session/password
+      name: session-password
+      description: REST surface for session-password.
+      operations:
+      - method: PUT
+        name: changepassword
+        description: Oracle Essbase Change Password
+        call: rest-user-session.changepassword
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-user-session-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — User Session. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-login
+      description: Oracle Essbase Login
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-user-session.login
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-logout
+      description: Oracle Essbase Logout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-user-session.logout
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-change-password
+      description: Oracle Essbase Change Password
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-user-session.changepassword
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

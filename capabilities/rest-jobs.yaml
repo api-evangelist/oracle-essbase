@@ -1,0 +1,257 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Jobs
+  description: 'Oracle Essbase REST API — Jobs. 5 operations. Lead operation: Oracle Essbase List Jobs. Self-contained Naftiko
+    capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Jobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-jobs
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Jobs business capability. Self-contained, no shared references.
+    resources:
+    - name: jobs
+      path: /jobs
+      operations:
+      - name: listjobs
+        method: GET
+        description: Oracle Essbase List Jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: applicationName
+          in: query
+          type: string
+          description: Filter by application name.
+        - name: databaseName
+          in: query
+          type: string
+          description: Filter by database name.
+        - name: jobtype
+          in: query
+          type: string
+          description: Filter by job type.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of jobs to return.
+        - name: offset
+          in: query
+          type: integer
+          description: Number of records to skip.
+      - name: executejob
+        method: POST
+        description: Oracle Essbase Execute Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: jobs-jobId
+      path: /jobs/{jobId}
+      operations:
+      - name: getjob
+        method: GET
+        description: Oracle Essbase Get Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          description: Unique job identifier.
+          required: true
+      - name: deletejob
+        method: DELETE
+        description: Oracle Essbase Delete Job Record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          description: Unique job identifier.
+          required: true
+    - name: jobs-jobId-actions-rerun
+      path: /jobs/{jobId}/actions/rerun
+      operations:
+      - name: rerunjob
+        method: POST
+        description: Oracle Essbase Rerun Job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: integer
+          description: Unique job identifier of the job to rerun.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-jobs-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Jobs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/jobs
+      name: jobs
+      description: REST surface for jobs.
+      operations:
+      - method: GET
+        name: listjobs
+        description: Oracle Essbase List Jobs
+        call: rest-jobs.listjobs
+        with:
+          applicationName: rest.applicationName
+          databaseName: rest.databaseName
+          jobtype: rest.jobtype
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: executejob
+        description: Oracle Essbase Execute Job
+        call: rest-jobs.executejob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/{jobid}
+      name: jobs-jobid
+      description: REST surface for jobs-jobId.
+      operations:
+      - method: GET
+        name: getjob
+        description: Oracle Essbase Get Job
+        call: rest-jobs.getjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletejob
+        description: Oracle Essbase Delete Job Record
+        call: rest-jobs.deletejob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/{jobid}/actions/rerun
+      name: jobs-jobid-actions-rerun
+      description: REST surface for jobs-jobId-actions-rerun.
+      operations:
+      - method: POST
+        name: rerunjob
+        description: Oracle Essbase Rerun Job
+        call: rest-jobs.rerunjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Jobs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-jobs
+      description: Oracle Essbase List Jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-jobs.listjobs
+      with:
+        applicationName: tools.applicationName
+        databaseName: tools.databaseName
+        jobtype: tools.jobtype
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-execute-job
+      description: Oracle Essbase Execute Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-jobs.executejob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-job
+      description: Oracle Essbase Get Job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-jobs.getjob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-job-record
+      description: Oracle Essbase Delete Job Record
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-jobs.deletejob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-rerun-job
+      description: Oracle Essbase Rerun Job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-jobs.rerunjob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.

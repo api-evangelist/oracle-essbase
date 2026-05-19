@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Groups
+  description: 'Oracle Essbase REST API — Groups. 6 operations. Lead operation: Oracle Essbase List Groups. Self-contained
+    Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-groups
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: groups
+      path: /groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Oracle Essbase List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: Group name wildcard pattern for filtering.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of groups to return.
+      - name: creategroup
+        method: POST
+        description: Oracle Essbase Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: groups-groupId
+      path: /groups/{groupId}
+      operations:
+      - name: getgroup
+        method: GET
+        description: Oracle Essbase Get Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Group identifier.
+          required: true
+      - name: updategroup
+        method: PUT
+        description: Oracle Essbase Update Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Group identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegroup
+        method: DELETE
+        description: Oracle Essbase Delete Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Group identifier.
+          required: true
+    - name: groups-groupId-members
+      path: /groups/{groupId}/members
+      operations:
+      - name: listgroupmembers
+        method: GET
+        description: Oracle Essbase List Group Members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Group identifier.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-groups-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Groups. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/groups
+      name: groups
+      description: REST surface for groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: Oracle Essbase List Groups
+        call: rest-groups.listgroups
+        with:
+          filter: rest.filter
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Oracle Essbase Create Group
+        call: rest-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/groups/{groupid}
+      name: groups-groupid
+      description: REST surface for groups-groupId.
+      operations:
+      - method: GET
+        name: getgroup
+        description: Oracle Essbase Get Group
+        call: rest-groups.getgroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updategroup
+        description: Oracle Essbase Update Group
+        call: rest-groups.updategroup
+        with:
+          groupId: rest.groupId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegroup
+        description: Oracle Essbase Delete Group
+        call: rest-groups.deletegroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/groups/{groupid}/members
+      name: groups-groupid-members
+      description: REST surface for groups-groupId-members.
+      operations:
+      - method: GET
+        name: listgroupmembers
+        description: Oracle Essbase List Group Members
+        call: rest-groups.listgroupmembers
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Groups. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-groups
+      description: Oracle Essbase List Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.listgroups
+      with:
+        filter: tools.filter
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-create-group
+      description: Oracle Essbase Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-group
+      description: Oracle Essbase Get Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.getgroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-update-group
+      description: Oracle Essbase Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-groups.updategroup
+      with:
+        groupId: tools.groupId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-group
+      description: Oracle Essbase Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-groups.deletegroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-list-group-members
+      description: Oracle Essbase List Group Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.listgroupmembers
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

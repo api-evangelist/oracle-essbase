@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Application Configuration
+  description: 'Oracle Essbase REST API — Application Configuration. 2 operations. Lead operation: Oracle Essbase List Application
+    Configurations. Self-contained Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Application Configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-application-configuration
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Application Configuration business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-configurations
+      path: /applications/{applicationName}/configurations
+      operations:
+      - name: listapplicationconfigurations
+        method: GET
+        description: Oracle Essbase List Application Configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapplicationconfigurations
+        method: PUT
+        description: Oracle Essbase Update Application Configurations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-application-configuration-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Application Configuration. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/configurations
+      name: applications-applicationname-configurations
+      description: REST surface for applications-applicationName-configurations.
+      operations:
+      - method: GET
+        name: listapplicationconfigurations
+        description: Oracle Essbase List Application Configurations
+        call: rest-application-configuration.listapplicationconfigurations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapplicationconfigurations
+        description: Oracle Essbase Update Application Configurations
+        call: rest-application-configuration.updateapplicationconfigurations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-application-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Application Configuration. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-application-configurations
+      description: Oracle Essbase List Application Configurations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-application-configuration.listapplicationconfigurations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-update-application-configurations
+      description: Oracle Essbase Update Application Configurations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-application-configuration.updateapplicationconfigurations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

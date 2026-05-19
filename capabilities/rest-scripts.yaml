@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Scripts
+  description: 'Oracle Essbase REST API — Scripts. 5 operations. Lead operation: Oracle Essbase List Scripts. Self-contained
+    Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Scripts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-scripts
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Scripts business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-databases-databaseName-scripts
+      path: /applications/{applicationName}/databases/{databaseName}/scripts
+      operations:
+      - name: listscripts
+        method: GET
+        description: Oracle Essbase List Scripts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createscript
+        method: POST
+        description: Oracle Essbase Create Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-databases-databaseName-scripts-scriptName
+      path: /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}
+      operations:
+      - name: getscript
+        method: GET
+        description: Oracle Essbase Get Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          description: Script name.
+          required: true
+      - name: updatescript
+        method: PUT
+        description: Oracle Essbase Update Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          description: Script name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletescript
+        method: DELETE
+        description: Oracle Essbase Delete Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          description: Script name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-scripts-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Scripts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/databases/{databasename}/scripts
+      name: applications-applicationname-databases-databasename-scripts
+      description: REST surface for applications-applicationName-databases-databaseName-scripts.
+      operations:
+      - method: GET
+        name: listscripts
+        description: Oracle Essbase List Scripts
+        call: rest-scripts.listscripts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscript
+        description: Oracle Essbase Create Script
+        call: rest-scripts.createscript
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/scripts/{scriptname}
+      name: applications-applicationname-databases-databasename-scripts-scriptname
+      description: REST surface for applications-applicationName-databases-databaseName-scripts-scriptName.
+      operations:
+      - method: GET
+        name: getscript
+        description: Oracle Essbase Get Script
+        call: rest-scripts.getscript
+        with:
+          scriptName: rest.scriptName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatescript
+        description: Oracle Essbase Update Script
+        call: rest-scripts.updatescript
+        with:
+          scriptName: rest.scriptName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletescript
+        description: Oracle Essbase Delete Script
+        call: rest-scripts.deletescript
+        with:
+          scriptName: rest.scriptName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-scripts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Scripts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-scripts
+      description: Oracle Essbase List Scripts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-scripts.listscripts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-create-script
+      description: Oracle Essbase Create Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-scripts.createscript
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-script
+      description: Oracle Essbase Get Script
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-scripts.getscript
+      with:
+        scriptName: tools.scriptName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-update-script
+      description: Oracle Essbase Update Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-scripts.updatescript
+      with:
+        scriptName: tools.scriptName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-script
+      description: Oracle Essbase Delete Script
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-scripts.deletescript
+      with:
+        scriptName: tools.scriptName
+      outputParameters:
+      - type: object
+        mapping: $.

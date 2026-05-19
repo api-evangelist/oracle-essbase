@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Dimensions
+  description: 'Oracle Essbase REST API — Dimensions. 4 operations. Lead operation: Oracle Essbase List Dimensions. Self-contained
+    Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Dimensions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-dimensions
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Dimensions business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-databases-databaseName-dimensions
+      path: /applications/{applicationName}/databases/{databaseName}/dimensions
+      operations:
+      - name: listdimensions
+        method: GET
+        description: Oracle Essbase List Dimensions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-dimensions-dimensionName
+      path: /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}
+      operations:
+      - name: getdimension
+        method: GET
+        description: Oracle Essbase Get Dimension
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dimensionName
+          in: path
+          type: string
+          description: Dimension name.
+          required: true
+    - name: applications-applicationName-databases-databaseName-dimensions-dimensionName-gen
+      path: /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/generations
+      operations:
+      - name: listdimensiongenerations
+        method: GET
+        description: Oracle Essbase List Dimension Generations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dimensionName
+          in: path
+          type: string
+          description: Dimension name.
+          required: true
+    - name: applications-applicationName-databases-databaseName-dimensions-dimensionName-lev
+      path: /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/levels
+      operations:
+      - name: listdimensionlevels
+        method: GET
+        description: Oracle Essbase List Dimension Levels
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dimensionName
+          in: path
+          type: string
+          description: Dimension name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-dimensions-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Dimensions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/databases/{databasename}/dimensions
+      name: applications-applicationname-databases-databasename-dimensions
+      description: REST surface for applications-applicationName-databases-databaseName-dimensions.
+      operations:
+      - method: GET
+        name: listdimensions
+        description: Oracle Essbase List Dimensions
+        call: rest-dimensions.listdimensions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/dimensions/{dimensionname}
+      name: applications-applicationname-databases-databasename-dimensions-dimensionname
+      description: REST surface for applications-applicationName-databases-databaseName-dimensions-dimensionName.
+      operations:
+      - method: GET
+        name: getdimension
+        description: Oracle Essbase Get Dimension
+        call: rest-dimensions.getdimension
+        with:
+          dimensionName: rest.dimensionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/dimensions/{dimensionname}/generations
+      name: applications-applicationname-databases-databasename-dimensions-dimensionname-gen
+      description: REST surface for applications-applicationName-databases-databaseName-dimensions-dimensionName-gen.
+      operations:
+      - method: GET
+        name: listdimensiongenerations
+        description: Oracle Essbase List Dimension Generations
+        call: rest-dimensions.listdimensiongenerations
+        with:
+          dimensionName: rest.dimensionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/dimensions/{dimensionname}/levels
+      name: applications-applicationname-databases-databasename-dimensions-dimensionname-lev
+      description: REST surface for applications-applicationName-databases-databaseName-dimensions-dimensionName-lev.
+      operations:
+      - method: GET
+        name: listdimensionlevels
+        description: Oracle Essbase List Dimension Levels
+        call: rest-dimensions.listdimensionlevels
+        with:
+          dimensionName: rest.dimensionName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-dimensions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Dimensions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-dimensions
+      description: Oracle Essbase List Dimensions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-dimensions.listdimensions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-dimension
+      description: Oracle Essbase Get Dimension
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-dimensions.getdimension
+      with:
+        dimensionName: tools.dimensionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-list-dimension-generations
+      description: Oracle Essbase List Dimension Generations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-dimensions.listdimensiongenerations
+      with:
+        dimensionName: tools.dimensionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-list-dimension-levels
+      description: Oracle Essbase List Dimension Levels
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-dimensions.listdimensionlevels
+      with:
+        dimensionName: tools.dimensionName
+      outputParameters:
+      - type: object
+        mapping: $.

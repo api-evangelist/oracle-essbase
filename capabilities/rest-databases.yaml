@@ -1,0 +1,515 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Essbase REST API — Databases
+  description: 'Oracle Essbase REST API — Databases. 14 operations. Lead operation: Oracle Essbase List Databases. Self-contained
+    Naftiko capability covering one Oracle Essbase business surface.'
+  tags:
+  - Oracle Essbase
+  - Databases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_ESSBASE_API_KEY: ORACLE_ESSBASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-databases
+    baseUri: https://{host}:{port}/essbase/rest/v1
+    description: Oracle Essbase REST API — Databases business capability. Self-contained, no shared references.
+    resources:
+    - name: applications-applicationName-databases
+      path: /applications/{applicationName}/databases
+      operations:
+      - name: listdatabases
+        method: GET
+        description: Oracle Essbase List Databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-actions-copy
+      path: /applications/{applicationName}/databases/actions/copy
+      operations:
+      - name: copydatabase
+        method: POST
+        description: Oracle Essbase Copy Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-databases-actions-rename
+      path: /applications/{applicationName}/databases/actions/rename
+      operations:
+      - name: renamedatabase
+        method: POST
+        description: Oracle Essbase Rename Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-databases-databaseName
+      path: /applications/{applicationName}/databases/{databaseName}
+      operations:
+      - name: getdatabase
+        method: GET
+        description: Oracle Essbase Get Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: startstopdatabase
+        method: PUT
+        description: Oracle Essbase Start or Stop Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedatabase
+        method: DELETE
+        description: Oracle Essbase Delete Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-aliases
+      path: /applications/{applicationName}/databases/{databaseName}/aliases
+      operations:
+      - name: listaliases
+        method: GET
+        description: Oracle Essbase List Aliases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-aliases-getActiveAlias
+      path: /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias
+      operations:
+      - name: getactivealias
+        method: GET
+        description: Oracle Essbase Get Active Alias
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-aliases-setActiveAlias
+      path: /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias
+      operations:
+      - name: setactivealias
+        method: PUT
+        description: Oracle Essbase Set Active Alias
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-databases-databaseName-calculationFunctions
+      path: /applications/{applicationName}/databases/{databaseName}/calculationFunctions
+      operations:
+      - name: getcalculationfunctions
+        method: GET
+        description: Oracle Essbase Get Calculation Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-currencySettings
+      path: /applications/{applicationName}/databases/{databaseName}/currencySettings
+      operations:
+      - name: getcurrencysettings
+        method: GET
+        description: Oracle Essbase Get Currency Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: setcurrencysettings
+        method: POST
+        description: Oracle Essbase Set Currency Settings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: applications-applicationName-databases-databaseName-formulaFunctions
+      path: /applications/{applicationName}/databases/{databaseName}/formulaFunctions
+      operations:
+      - name: getformulafunctions
+        method: GET
+        description: Oracle Essbase Get Formula Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: applications-applicationName-databases-databaseName-mdxFunctions
+      path: /applications/{applicationName}/databases/{databaseName}/mdxFunctions
+      operations:
+      - name: getmdxfunctions
+        method: GET
+        description: Oracle Essbase Get MDX Functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_ESSBASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-databases-rest
+    port: 8080
+    description: REST adapter for Oracle Essbase REST API — Databases. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/applications/{applicationname}/databases
+      name: applications-applicationname-databases
+      description: REST surface for applications-applicationName-databases.
+      operations:
+      - method: GET
+        name: listdatabases
+        description: Oracle Essbase List Databases
+        call: rest-databases.listdatabases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/actions/copy
+      name: applications-applicationname-databases-actions-copy
+      description: REST surface for applications-applicationName-databases-actions-copy.
+      operations:
+      - method: POST
+        name: copydatabase
+        description: Oracle Essbase Copy Database
+        call: rest-databases.copydatabase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/actions/rename
+      name: applications-applicationname-databases-actions-rename
+      description: REST surface for applications-applicationName-databases-actions-rename.
+      operations:
+      - method: POST
+        name: renamedatabase
+        description: Oracle Essbase Rename Database
+        call: rest-databases.renamedatabase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}
+      name: applications-applicationname-databases-databasename
+      description: REST surface for applications-applicationName-databases-databaseName.
+      operations:
+      - method: GET
+        name: getdatabase
+        description: Oracle Essbase Get Database
+        call: rest-databases.getdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: startstopdatabase
+        description: Oracle Essbase Start or Stop Database
+        call: rest-databases.startstopdatabase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedatabase
+        description: Oracle Essbase Delete Database
+        call: rest-databases.deletedatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/aliases
+      name: applications-applicationname-databases-databasename-aliases
+      description: REST surface for applications-applicationName-databases-databaseName-aliases.
+      operations:
+      - method: GET
+        name: listaliases
+        description: Oracle Essbase List Aliases
+        call: rest-databases.listaliases
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/aliases/getactivealias
+      name: applications-applicationname-databases-databasename-aliases-getactivealias
+      description: REST surface for applications-applicationName-databases-databaseName-aliases-getActiveAlias.
+      operations:
+      - method: GET
+        name: getactivealias
+        description: Oracle Essbase Get Active Alias
+        call: rest-databases.getactivealias
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/aliases/setactivealias
+      name: applications-applicationname-databases-databasename-aliases-setactivealias
+      description: REST surface for applications-applicationName-databases-databaseName-aliases-setActiveAlias.
+      operations:
+      - method: PUT
+        name: setactivealias
+        description: Oracle Essbase Set Active Alias
+        call: rest-databases.setactivealias
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/calculationfunctions
+      name: applications-applicationname-databases-databasename-calculationfunctions
+      description: REST surface for applications-applicationName-databases-databaseName-calculationFunctions.
+      operations:
+      - method: GET
+        name: getcalculationfunctions
+        description: Oracle Essbase Get Calculation Functions
+        call: rest-databases.getcalculationfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/currencysettings
+      name: applications-applicationname-databases-databasename-currencysettings
+      description: REST surface for applications-applicationName-databases-databaseName-currencySettings.
+      operations:
+      - method: GET
+        name: getcurrencysettings
+        description: Oracle Essbase Get Currency Settings
+        call: rest-databases.getcurrencysettings
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: setcurrencysettings
+        description: Oracle Essbase Set Currency Settings
+        call: rest-databases.setcurrencysettings
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/formulafunctions
+      name: applications-applicationname-databases-databasename-formulafunctions
+      description: REST surface for applications-applicationName-databases-databaseName-formulaFunctions.
+      operations:
+      - method: GET
+        name: getformulafunctions
+        description: Oracle Essbase Get Formula Functions
+        call: rest-databases.getformulafunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/applications/{applicationname}/databases/{databasename}/mdxfunctions
+      name: applications-applicationname-databases-databasename-mdxfunctions
+      description: REST surface for applications-applicationName-databases-databaseName-mdxFunctions.
+      operations:
+      - method: GET
+        name: getmdxfunctions
+        description: Oracle Essbase Get MDX Functions
+        call: rest-databases.getmdxfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-databases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Essbase REST API — Databases. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: oracle-essbase-list-databases
+      description: Oracle Essbase List Databases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.listdatabases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-copy-database
+      description: Oracle Essbase Copy Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-databases.copydatabase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-rename-database
+      description: Oracle Essbase Rename Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-databases.renamedatabase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-database
+      description: Oracle Essbase Get Database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-start-stop-database
+      description: Oracle Essbase Start or Stop Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-databases.startstopdatabase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-delete-database
+      description: Oracle Essbase Delete Database
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-databases.deletedatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-list-aliases
+      description: Oracle Essbase List Aliases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.listaliases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-active-alias
+      description: Oracle Essbase Get Active Alias
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getactivealias
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-set-active-alias
+      description: Oracle Essbase Set Active Alias
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-databases.setactivealias
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-calculation-functions
+      description: Oracle Essbase Get Calculation Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getcalculationfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-currency-settings
+      description: Oracle Essbase Get Currency Settings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getcurrencysettings
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-set-currency-settings
+      description: Oracle Essbase Set Currency Settings
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-databases.setcurrencysettings
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-formula-functions
+      description: Oracle Essbase Get Formula Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getformulafunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-essbase-get-mdx-functions
+      description: Oracle Essbase Get MDX Functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-databases.getmdxfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
