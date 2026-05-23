@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterRow",
+  "title": "FilterRow",
+  "type": "object",
+  "description": "A single row in a security filter defining access for a member combination.",
+  "properties": {
+    "access": {
+      "type": "string",
+      "description": "Access level.",
+      "enum": [
+        "READ",
+        "WRITE",
+        "NONE",
+        "METAREAD"
+      ]
+    },
+    "member": {
+      "type": "string",
+      "description": "Member specification or combination."
+    }
+  }
+}

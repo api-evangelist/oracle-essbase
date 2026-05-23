@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RuntimeSubstitutionVariable",
+  "title": "RuntimeSubstitutionVariable",
+  "type": "object",
+  "description": "A runtime substitution variable for calculation scripts.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Variable name."
+    },
+    "type": {
+      "type": "string",
+      "description": "Variable data type.",
+      "enum": [
+        "STRING",
+        "NUMBER",
+        "DATE",
+        "MEMBER"
+      ]
+    },
+    "value": {
+      "description": "Default value."
+    },
+    "dimension": {
+      "type": "string",
+      "description": "Dimension name (for MEMBER type)."
+    },
+    "singleChoice": {
+      "type": "boolean",
+      "description": "Whether only a single member can be selected."
+    },
+    "allowMissing": {
+      "type": "boolean",
+      "description": "Whether missing data is allowed."
+    }
+  }
+}

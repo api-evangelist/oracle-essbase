@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GroupInput",
+  "title": "GroupInput",
+  "type": "object",
+  "description": "Input for creating or updating a group.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Group name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Group description."
+    },
+    "role": {
+      "type": "string",
+      "description": "Service role to assign to the group."
+    },
+    "members": {
+      "type": "array",
+      "description": "Member user IDs or sub-group names.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

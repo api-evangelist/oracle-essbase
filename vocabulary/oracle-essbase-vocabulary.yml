@@ -1,0 +1,43 @@
+name: Oracle Essbase Domain Vocabulary
+provider: Oracle Essbase
+providerId: oracle-essbase
+description: Tag-derived vocabulary for the Oracle Essbase API surface; sourced from openapi/ tags.
+terms:
+- term: Application Configuration
+  description: Manage application-level configuration settings
+- term: Applications
+  description: Manage Essbase applications and their lifecycle
+- term: Connections
+  description: Manage global and application-level connections
+- term: Databases
+  description: Manage databases (cubes) within applications
+- term: Dimensions
+  description: View dimension information, generations, and levels
+- term: Files
+  description: Upload, download, copy, move, and delete files in the Essbase file catalog
+- term: Filters
+  description: Manage database security filters
+- term: Groups
+  description: Manage user groups and memberships
+- term: Jobs
+  description: Execute and monitor asynchronous jobs such as data loads, calculations, and exports
+- term: Locks
+  description: Manage locks on database objects and blocks
+- term: Partitions
+  description: Manage database partitions
+- term: Reports
+  description: MDX reports and drill-through reports
+- term: Roles
+  description: Service and application role provisioning
+- term: Scripts
+  description: Manage calculation and MDX scripts
+- term: Server
+  description: Server properties, configuration, and about information
+- term: Sessions
+  description: Manage active user sessions
+- term: User Session
+  description: User login, logout, and password management
+- term: Users
+  description: Create, search, update, and delete users
+- term: Variables
+  description: Manage server-level and application-level substitution variables

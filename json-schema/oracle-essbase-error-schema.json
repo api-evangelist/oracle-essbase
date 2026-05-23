@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Error",
+  "title": "Error",
+  "type": "object",
+  "description": "Error response from the Essbase REST API.",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message."
+    },
+    "errorCode": {
+      "type": "string",
+      "description": "Machine-readable error code."
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional error details."
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationList",
+  "title": "ApplicationList",
+  "type": "object",
+  "description": "Paginated list of Essbase applications.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Application"
+      }
+    },
+    "totalResults": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Total number of matching results."
+    },
+    "limit": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Maximum number of results per page."
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of results skipped."
+    },
+    "hasMore": {
+      "type": "boolean",
+      "description": "Whether more results are available."
+    },
+    "count": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Number of results in this page."
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

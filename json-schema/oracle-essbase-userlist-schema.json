@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserList",
+  "title": "UserList",
+  "type": "object",
+  "description": "Paginated list of users.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "totalResults": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "limit": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "hasMore": {
+      "type": "boolean"
+    }
+  }
+}

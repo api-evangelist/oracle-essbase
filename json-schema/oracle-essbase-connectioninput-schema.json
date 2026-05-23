@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionInput",
+  "title": "ConnectionInput",
+  "type": "object",
+  "description": "Input for creating or updating a connection.",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Connection name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Connection description."
+    },
+    "type": {
+      "type": "string",
+      "description": "Connection type."
+    },
+    "host": {
+      "type": "string",
+      "description": "Database host or server address."
+    },
+    "port": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Database port number."
+    },
+    "serviceName": {
+      "type": "string",
+      "description": "Database service or SID name."
+    },
+    "user": {
+      "type": "string",
+      "description": "Database username."
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "Database password."
+    }
+  }
+}

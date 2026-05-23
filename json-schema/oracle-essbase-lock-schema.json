@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Lock",
+  "title": "Lock",
+  "type": "object",
+  "description": "A lock on a database object or block.",
+  "properties": {
+    "lockId": {
+      "type": "string",
+      "description": "Lock identifier."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User who holds the lock."
+    },
+    "objectName": {
+      "type": "string",
+      "description": "Name of the locked object."
+    },
+    "lockType": {
+      "type": "string",
+      "description": "Type of lock."
+    },
+    "lockTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time the lock was acquired in milliseconds since epoch."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterList",
+  "title": "FilterList",
+  "type": "object",
+  "description": "List of filters.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Filter"
+      }
+    }
+  }
+}

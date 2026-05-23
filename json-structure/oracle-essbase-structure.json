@@ -1,0 +1,1130 @@
+{
+  "provider": "Oracle Essbase",
+  "providerId": "oracle-essbase",
+  "kind": "json-structure",
+  "description": "Structural overview of the Oracle Essbase API surface; extracted from openapi/.",
+  "schemaCount": 35,
+  "operationCount": 99,
+  "schemas": [
+    {
+      "name": "AboutInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Application",
+      "type": "object",
+      "propertyCount": 18,
+      "required": []
+    },
+    {
+      "name": "ApplicationList",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "CreateApplication",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "applicationName",
+        "databaseName"
+      ]
+    },
+    {
+      "name": "Database",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "DatabaseList",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "JobInput",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "jobtype"
+      ]
+    },
+    {
+      "name": "JobParameters",
+      "type": "object",
+      "propertyCount": 33,
+      "required": []
+    },
+    {
+      "name": "JobRecord",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "JobList",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "RuntimeSubstitutionVariable",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Session",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "UserInput",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "UserList",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Group",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "GroupInput",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "GroupList",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Script",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ScriptInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "content"
+      ]
+    },
+    {
+      "name": "ScriptList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Filter",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "FilterInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "FilterRow",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "FilterList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FileItem",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "FileList",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ConnectionInput",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "Dimension",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Lock",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Variable",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "VariablesSetting",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Link",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/about",
+      "operationId": "getAboutEssbase",
+      "summary": "Oracle Essbase Get About Essbase",
+      "tags": [
+        "Server"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/about/instance",
+      "operationId": "getAboutEssbaseInstance",
+      "summary": "Oracle Essbase Get About Essbase Instance",
+      "tags": [
+        "Server"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications",
+      "operationId": "listApplications",
+      "summary": "Oracle Essbase List Applications",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications",
+      "operationId": "createApplication",
+      "summary": "Oracle Essbase Create Application and Database",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}",
+      "operationId": "getApplication",
+      "summary": "Oracle Essbase Get Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}",
+      "operationId": "startStopApplication",
+      "summary": "Oracle Essbase Start or Stop Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}",
+      "operationId": "deleteApplication",
+      "summary": "Oracle Essbase Delete Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/actions/copy",
+      "operationId": "copyApplication",
+      "summary": "Oracle Essbase Copy Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/actions/rename",
+      "operationId": "renameApplication",
+      "summary": "Oracle Essbase Rename Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/actions/tree",
+      "operationId": "getApplicationTreeView",
+      "summary": "Oracle Essbase Get Application Tree View",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/actions/name/{appVisibility}",
+      "operationId": "listApplicationNames",
+      "summary": "Oracle Essbase List Application Names",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/encrypt",
+      "operationId": "encryptApplication",
+      "summary": "Oracle Essbase Encrypt Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/decrypt",
+      "operationId": "decryptApplication",
+      "summary": "Oracle Essbase Decrypt Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/encryptionconfig",
+      "operationId": "getEncryptionInfo",
+      "summary": "Oracle Essbase Get Encryption Info",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/provisionReport",
+      "operationId": "getApplicationProvisioningReport",
+      "summary": "Oracle Essbase Get Application Provisioning Report",
+      "tags": [
+        "Roles"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/actions/shadowCopy",
+      "operationId": "createShadowApplication",
+      "summary": "Oracle Essbase Create Shadow Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/actions/shadowPromote",
+      "operationId": "promoteShadowApplication",
+      "summary": "Oracle Essbase Promote Shadow Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/actions/shadowDelete/{shadowAppName}",
+      "operationId": "deleteShadowApplication",
+      "summary": "Oracle Essbase Delete Shadow Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases",
+      "operationId": "listDatabases",
+      "summary": "Oracle Essbase List Databases",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}",
+      "operationId": "getDatabase",
+      "summary": "Oracle Essbase Get Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/databases/{databaseName}",
+      "operationId": "startStopDatabase",
+      "summary": "Oracle Essbase Start or Stop Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}/databases/{databaseName}",
+      "operationId": "deleteDatabase",
+      "summary": "Oracle Essbase Delete Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/actions/copy",
+      "operationId": "copyDatabase",
+      "summary": "Oracle Essbase Copy Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/actions/rename",
+      "operationId": "renameDatabase",
+      "summary": "Oracle Essbase Rename Database",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/aliases",
+      "operationId": "listAliases",
+      "summary": "Oracle Essbase List Aliases",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias",
+      "operationId": "getActiveAlias",
+      "summary": "Oracle Essbase Get Active Alias",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias",
+      "operationId": "setActiveAlias",
+      "summary": "Oracle Essbase Set Active Alias",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/currencySettings",
+      "operationId": "getCurrencySettings",
+      "summary": "Oracle Essbase Get Currency Settings",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/{databaseName}/currencySettings",
+      "operationId": "setCurrencySettings",
+      "summary": "Oracle Essbase Set Currency Settings",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/calculationFunctions",
+      "operationId": "getCalculationFunctions",
+      "summary": "Oracle Essbase Get Calculation Functions",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/formulaFunctions",
+      "operationId": "getFormulaFunctions",
+      "summary": "Oracle Essbase Get Formula Functions",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/mdxFunctions",
+      "operationId": "getMdxFunctions",
+      "summary": "Oracle Essbase Get MDX Functions",
+      "tags": [
+        "Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/executeReport",
+      "operationId": "executeReportScript",
+      "summary": "Oracle Essbase Execute Report Script",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/jobs",
+      "operationId": "listJobs",
+      "summary": "Oracle Essbase List Jobs",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/jobs",
+      "operationId": "executeJob",
+      "summary": "Oracle Essbase Execute Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/jobs/{jobId}",
+      "operationId": "getJob",
+      "summary": "Oracle Essbase Get Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/jobs/{jobId}",
+      "operationId": "deleteJob",
+      "summary": "Oracle Essbase Delete Job Record",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/jobs/{jobId}/actions/rerun",
+      "operationId": "rerunJob",
+      "summary": "Oracle Essbase Rerun Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sessions",
+      "operationId": "listSessions",
+      "summary": "Oracle Essbase List Sessions",
+      "tags": [
+        "Sessions"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sessions/{sessionId}",
+      "operationId": "deleteSession",
+      "summary": "Oracle Essbase Delete Session",
+      "tags": [
+        "Sessions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/session/login",
+      "operationId": "login",
+      "summary": "Oracle Essbase Login",
+      "tags": [
+        "User Session"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/session/logout",
+      "operationId": "logout",
+      "summary": "Oracle Essbase Logout",
+      "tags": [
+        "User Session"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/session/password",
+      "operationId": "changePassword",
+      "summary": "Oracle Essbase Change Password",
+      "tags": [
+        "User Session"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users",
+      "operationId": "listUsers",
+      "summary": "Oracle Essbase List Users",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/users",
+      "operationId": "createUser",
+      "summary": "Oracle Essbase Create User",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/users/{userId}",
+      "operationId": "getUser",
+      "summary": "Oracle Essbase Get User",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/users/{userId}",
+      "operationId": "updateUser",
+      "summary": "Oracle Essbase Update User",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/users/{userId}",
+      "operationId": "deleteUser",
+      "summary": "Oracle Essbase Delete User",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/groups",
+      "operationId": "listGroups",
+      "summary": "Oracle Essbase List Groups",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/groups",
+      "operationId": "createGroup",
+      "summary": "Oracle Essbase Create Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/groups/{groupId}",
+      "operationId": "getGroup",
+      "summary": "Oracle Essbase Get Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/groups/{groupId}",
+      "operationId": "updateGroup",
+      "summary": "Oracle Essbase Update Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/groups/{groupId}",
+      "operationId": "deleteGroup",
+      "summary": "Oracle Essbase Delete Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/groups/{groupId}/members",
+      "operationId": "listGroupMembers",
+      "summary": "Oracle Essbase List Group Members",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/scripts",
+      "operationId": "listScripts",
+      "summary": "Oracle Essbase List Scripts",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/{databaseName}/scripts",
+      "operationId": "createScript",
+      "summary": "Oracle Essbase Create Script",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}",
+      "operationId": "getScript",
+      "summary": "Oracle Essbase Get Script",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}",
+      "operationId": "updateScript",
+      "summary": "Oracle Essbase Update Script",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}",
+      "operationId": "deleteScript",
+      "summary": "Oracle Essbase Delete Script",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/files",
+      "operationId": "listRootFolders",
+      "summary": "Oracle Essbase List Root Folders",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/files/{path}",
+      "operationId": "listFilesOrDownload",
+      "summary": "Oracle Essbase List Files or Download File",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/files/{path}",
+      "operationId": "uploadFile",
+      "summary": "Oracle Essbase Upload File",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/files/{path}",
+      "operationId": "deleteFile",
+      "summary": "Oracle Essbase Delete File or Folder",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/files/actions/copy",
+      "operationId": "copyFile",
+      "summary": "Oracle Essbase Copy File",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/files/actions/move",
+      "operationId": "moveFile",
+      "summary": "Oracle Essbase Move File",
+      "tags": [
+        "Files"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/filters",
+      "operationId": "listFilters",
+      "summary": "Oracle Essbase List Filters",
+      "tags": [
+        "Filters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/{databaseName}/filters",
+      "operationId": "createFilter",
+      "summary": "Oracle Essbase Create Filter",
+      "tags": [
+        "Filters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/filters/{filterName}",
+      "operationId": "getFilter",
+      "summary": "Oracle Essbase Get Filter",
+      "tags": [
+        "Filters"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/databases/{databaseName}/filters/{filterName}",
+      "operationId": "updateFilter",
+      "summary": "Oracle Essbase Update Filter",
+      "tags": [
+        "Filters"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}/databases/{databaseName}/filters/{filterName}",
+      "operationId": "deleteFilter",
+      "summary": "Oracle Essbase Delete Filter",
+      "tags": [
+        "Filters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/partitions",
+      "operationId": "listPartitions",
+      "summary": "Oracle Essbase List Partitions",
+      "tags": [
+        "Partitions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/databases/{databaseName}/partitions",
+      "operationId": "createPartition",
+      "summary": "Oracle Essbase Create Partition",
+      "tags": [
+        "Partitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/connections",
+      "operationId": "listApplicationConnections",
+      "summary": "Oracle Essbase List Application Connections",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/connections",
+      "operationId": "createApplicationConnection",
+      "summary": "Oracle Essbase Create Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/connections/{connectionName}",
+      "operationId": "getApplicationConnection",
+      "summary": "Oracle Essbase Get Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/connections/{connectionName}",
+      "operationId": "updateApplicationConnection",
+      "summary": "Oracle Essbase Update Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}/connections/{connectionName}",
+      "operationId": "deleteApplicationConnection",
+      "summary": "Oracle Essbase Delete Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/connections/{connectionName}/actions/test",
+      "operationId": "testSavedApplicationConnection",
+      "summary": "Oracle Essbase Test Saved Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications/{applicationName}/connections/actions/test",
+      "operationId": "testNewApplicationConnection",
+      "summary": "Oracle Essbase Test New Application Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connections",
+      "operationId": "listGlobalConnections",
+      "summary": "Oracle Essbase List Global Connections",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connections",
+      "operationId": "createGlobalConnection",
+      "summary": "Oracle Essbase Create Global Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connections/{connectionName}",
+      "operationId": "getGlobalConnection",
+      "summary": "Oracle Essbase Get Global Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/connections/{connectionName}",
+      "operationId": "updateGlobalConnection",
+      "summary": "Oracle Essbase Update Global Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/connections/{connectionName}",
+      "operationId": "deleteGlobalConnection",
+      "summary": "Oracle Essbase Delete Global Connection",
+      "tags": [
+        "Connections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/dimensions",
+      "operationId": "listDimensions",
+      "summary": "Oracle Essbase List Dimensions",
+      "tags": [
+        "Dimensions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}",
+      "operationId": "getDimension",
+      "summary": "Oracle Essbase Get Dimension",
+      "tags": [
+        "Dimensions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/generations",
+      "operationId": "listDimensionGenerations",
+      "summary": "Oracle Essbase List Dimension Generations",
+      "tags": [
+        "Dimensions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/levels",
+      "operationId": "listDimensionLevels",
+      "summary": "Oracle Essbase List Dimension Levels",
+      "tags": [
+        "Dimensions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/databases/{databaseName}/locks",
+      "operationId": "listLocks",
+      "summary": "Oracle Essbase List Locks",
+      "tags": [
+        "Locks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/applications/{applicationName}/databases/{databaseName}/locks/{lockId}",
+      "operationId": "unlockObject",
+      "summary": "Oracle Essbase Unlock Object",
+      "tags": [
+        "Locks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{applicationName}/configurations",
+      "operationId": "listApplicationConfigurations",
+      "summary": "Oracle Essbase List Application Configurations",
+      "tags": [
+        "Application Configuration"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/applications/{applicationName}/configurations",
+      "operationId": "updateApplicationConfigurations",
+      "summary": "Oracle Essbase Update Application Configurations",
+      "tags": [
+        "Application Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/properties",
+      "operationId": "listServerProperties",
+      "summary": "Oracle Essbase List Server Properties",
+      "tags": [
+        "Server"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/properties",
+      "operationId": "updateServerProperties",
+      "summary": "Oracle Essbase Update Server Properties",
+      "tags": [
+        "Server"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/variables",
+      "operationId": "listServerVariables",
+      "summary": "Oracle Essbase List Server Variables",
+      "tags": [
+        "Variables"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/variables",
+      "operationId": "createServerVariable",
+      "summary": "Oracle Essbase Create Server Variable",
+      "tags": [
+        "Variables"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/variables/{variableName}",
+      "operationId": "updateServerVariable",
+      "summary": "Oracle Essbase Update Server Variable",
+      "tags": [
+        "Variables"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/variables/{variableName}",
+      "operationId": "deleteServerVariable",
+      "summary": "Oracle Essbase Delete Server Variable",
+      "tags": [
+        "Variables"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/partitions/supportedfederatedtypes",
+      "operationId": "getSupportedPartitionTypes",
+      "summary": "Oracle Essbase Get Supported Partition Types",
+      "tags": [
+        "Partitions"
+      ]
+    }
+  ]
+}

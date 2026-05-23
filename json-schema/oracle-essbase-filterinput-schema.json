@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilterInput",
+  "title": "FilterInput",
+  "type": "object",
+  "description": "Input for creating or updating a security filter.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Filter name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Filter description."
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/FilterRow"
+      }
+    }
+  }
+}

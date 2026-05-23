@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseList",
+  "title": "DatabaseList",
+  "type": "object",
+  "description": "Paginated list of databases.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Database"
+      }
+    },
+    "totalResults": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "limit": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "hasMore": {
+      "type": "boolean"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AboutInfo",
+  "title": "AboutInfo",
+  "type": "object",
+  "description": "Information about the Essbase instance.",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Essbase version number."
+    },
+    "build": {
+      "type": "string",
+      "description": "Build identifier."
+    },
+    "catalog": {
+      "type": "string",
+      "description": "Catalog information."
+    }
+  }
+}

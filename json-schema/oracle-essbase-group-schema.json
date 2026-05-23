@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "description": "An Essbase user group.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Group identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Group name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Group description."
+    },
+    "role": {
+      "type": "string",
+      "description": "Service role assigned to the group."
+    },
+    "members": {
+      "type": "array",
+      "description": "List of member user IDs or sub-group names.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScriptInput",
+  "title": "ScriptInput",
+  "type": "object",
+  "description": "Input for creating or updating a script.",
+  "required": [
+    "name",
+    "content"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Script name."
+    },
+    "content": {
+      "type": "string",
+      "description": "Script content (calculation or MDX statements)."
+    }
+  }
+}

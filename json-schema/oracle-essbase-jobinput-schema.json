@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobInput",
+  "title": "JobInput",
+  "type": "object",
+  "description": "Input for executing an asynchronous job.",
+  "required": [
+    "jobtype"
+  ],
+  "properties": {
+    "application": {
+      "type": "string",
+      "description": "Application name."
+    },
+    "db": {
+      "type": "string",
+      "description": "Database name."
+    },
+    "jobtype": {
+      "type": "string",
+      "description": "Type of job to execute.",
+      "enum": [
+        "dataload",
+        "dimbuild",
+        "calc",
+        "clear",
+        "importExcel",
+        "exportExcel",
+        "lcmExport",
+        "lcmImport",
+        "clearAggregation",
+        "buildAggregation",
+        "asoBufferDataLoad",
+        "asoBufferCommit",
+        "exportData",
+        "mdxScript"
+      ]
+    },
+    "parameters": {
+      "$ref": "#/components/schemas/JobParameters"
+    }
+  }
+}

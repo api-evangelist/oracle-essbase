@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VariablesSetting",
+  "title": "VariablesSetting",
+  "type": "object",
+  "description": "Settings controlling variable visibility and update permissions.",
+  "properties": {
+    "showVariables": {
+      "type": "boolean",
+      "description": "Whether substitution variables are visible."
+    },
+    "updateVariables": {
+      "type": "boolean",
+      "description": "Whether substitution variables can be updated."
+    }
+  }
+}

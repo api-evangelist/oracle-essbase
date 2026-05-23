@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobList",
+  "title": "JobList",
+  "type": "object",
+  "description": "Paginated list of job records.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JobRecord"
+      }
+    },
+    "totalResults": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "limit": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "hasMore": {
+      "type": "boolean"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

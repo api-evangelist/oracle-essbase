@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobRecord",
+  "title": "JobRecord",
+  "type": "object",
+  "description": "Record of an executed or running job.",
+  "properties": {
+    "job_ID": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique job identifier."
+    },
+    "appName": {
+      "type": "string",
+      "description": "Application name."
+    },
+    "dbName": {
+      "type": "string",
+      "description": "Database name."
+    },
+    "jobType": {
+      "type": "string",
+      "description": "Job type that was executed."
+    },
+    "jobfileName": {
+      "type": "string",
+      "description": "Associated script or file name."
+    },
+    "userName": {
+      "type": "string",
+      "description": "User who submitted the job."
+    },
+    "startTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job start time in milliseconds since epoch."
+    },
+    "endTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Job end time in milliseconds since epoch."
+    },
+    "statusCode": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Status code: 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed."
+    },
+    "statusMessage": {
+      "type": "string",
+      "description": "Human-readable status message."
+    },
+    "jobInputInfo": {
+      "type": "object",
+      "description": "Input parameters used for the job.",
+      "additionalProperties": true
+    },
+    "jobOutputInfo": {
+      "type": "object",
+      "description": "Output and results of the job.",
+      "additionalProperties": true
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateApplication",
+  "title": "CreateApplication",
+  "type": "object",
+  "description": "Request body for creating a new Essbase application and database.",
+  "required": [
+    "applicationName",
+    "databaseName"
+  ],
+  "properties": {
+    "applicationName": {
+      "type": "string",
+      "description": "Application name (max 30 characters, no spaces, case-insensitive).",
+      "maxLength": 30
+    },
+    "databaseName": {
+      "type": "string",
+      "description": "Database (cube) name (no spaces)."
+    },
+    "allowDuplicates": {
+      "type": "boolean",
+      "description": "Allow duplicate member names in outline."
+    },
+    "enableScenario": {
+      "type": "boolean",
+      "description": "Enable scenario management (BSO only; must be false for ASO)."
+    },
+    "databaseType": {
+      "type": "string",
+      "description": "Database storage type.",
+      "enum": [
+        "BSO",
+        "ASO"
+      ]
+    },
+    "appType": {
+      "type": "string",
+      "description": "Application encoding type.",
+      "enum": [
+        "NATIVE",
+        "UTF8"
+      ]
+    },
+    "dbType": {
+      "type": "string",
+      "description": "Database type classification.",
+      "enum": [
+        "NORMAL",
+        "CURRENCY",
+        "ASO"
+      ]
+    },
+    "memberCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Initial member count."
+    },
+    "memberPrefix": {
+      "type": "string",
+      "description": "Prefix for generated members."
+    }
+  }
+}
