@@ -1,0 +1,2380 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase Get About Essbase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/about"
+          },
+          "docs": "Returns general information about the Essbase instance, including version and build details."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get About Essbase Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/about/instance"
+          },
+          "docs": "Returns detailed information about the Essbase instance deployment and configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Server Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/properties"
+          },
+          "docs": "Returns server-level configuration properties for the Essbase instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Server Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/properties",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates server-level configuration properties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications",
+            "params": [
+              {
+                "name": "applicationNameForConnection",
+                "value": "",
+                "type": "query",
+                "description": "Application name for connection filtering."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "query",
+                "description": "Filter applications by connection name."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. If omitted, all fields are returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Wildcard filter for application names."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of applications to return. Must be 100 or less if status is included."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of applications to skip from the start of the result set."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort order in format column:direction (e.g., name:asc)."
+              }
+            ]
+          },
+          "docs": "Returns a list of Essbase applications the authenticated user has access to. Supports filtering, pagination, sorting, and field selection. If application status is required in the response, limit must be 100 or less."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Application and Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Essbase application and optionally a database within it. Application names are limited to 30 characters, must not contain spaces, and are case-insensitive. Specify BSO (block storage) or ASO (aggregate storage) for the database type."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified Essbase application, including status, type, owner, and configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Start or Stop Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or stops an Essbase application by updating its status."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified Essbase application and all of its databases and associated resources."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a copy of an existing Essbase application with a new name."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rename Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/rename",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an existing Essbase application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application Tree View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/tree"
+          },
+          "docs": "Returns a hierarchical tree view of applications and their databases."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/name/:appVisibility",
+            "params": [
+              {
+                "name": "appVisibility",
+                "value": "",
+                "type": "path",
+                "description": "Application visibility filter."
+              }
+            ]
+          },
+          "docs": "Returns a list of application names filtered by visibility."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Encrypt Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/encrypt",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Encrypts the specified Essbase application for data security."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Decrypt Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/decrypt",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Decrypts the specified Essbase application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Encryption Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/encryptionconfig",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns encryption configuration information for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowCopy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a shadow copy of an existing application for safe editing without affecting the production application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Promote Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowPromote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promotes a shadow application to replace the original production application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowDelete/:shadowAppName",
+            "params": [
+              {
+                "name": "shadowAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the shadow application to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified shadow application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application Provisioning Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/provisionReport",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns the provisioning report for the specified application, detailing user roles and permissions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns a list of databases (cubes) within the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Start or Stop Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or stops the specified database by updating its status."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified database (cube) from the application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/actions/copy",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a copy of an existing database within the same application or to a different application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rename Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/actions/rename",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an existing database within the application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Aliases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of alias tables defined for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Active Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns the currently active alias table for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Set Active Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the active alias table for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Currency Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/currencySettings",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns the currency conversion settings for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Set Currency Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/currencySettings",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the currency conversion settings for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Calculation Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/calculationFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available calculation functions for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Formula Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/formulaFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available formula functions for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get MDX Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/mdxFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available MDX functions for the specified database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase Execute Report Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/executeReport",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Executes a report script on the specified database and returns the report output."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by database name."
+              },
+              {
+                "name": "jobtype",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Returns a list of executed jobs. Supports filtering by job type, application, database, and status. Returns job history with execution details."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Execute Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an asynchronous job on an Essbase database. Supported job types include dataload, dimbuild, calc, clear, importExcel, exportExcel, lcmExport, lcmImport, clearAggregation, buildAggregation, asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns a job record with a job_ID for monitoring progress."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier."
+              }
+            ]
+          },
+          "docs": "Returns details and current status of the specified job by its identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Job Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the job record for the specified job identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rerun Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId/actions/rerun",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier of the job to rerun."
+              }
+            ]
+          },
+          "docs": "Reruns a previously executed job with the same parameters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/sessions",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              },
+              {
+                "name": "database",
+                "value": "",
+                "type": "query",
+                "description": "Filter by database name."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID. If not provided, returns all sessions."
+              }
+            ]
+          },
+          "docs": "Returns a list of currently active sessions. Optionally filter by application, database, or user ID. If userId is not provided, all sessions are retrieved."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session identifier to terminate."
+              }
+            ]
+          },
+          "docs": "Terminates the specified active session by session identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/session/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and creates a new session. Returns session information upon successful login."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/session/logout"
+          },
+          "docs": "Terminates the current user session and invalidates the session token."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Change Password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/session/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes the password for the currently authenticated user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/users",
+            "params": [
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Include service role and groups. Values are all or none."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "User ID wildcard pattern for filtering."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of users to return. -1 for no limit."
+              }
+            ]
+          },
+          "docs": "Returns a list of Essbase users. Supports filtering by name pattern and limiting results. Use expand=all to include service roles and group memberships. Supports CSV export via Accept: application/octet-stream header. Not available in EPM Shared Services security mode."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Essbase user with the specified details and role assignment."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified user including roles and group memberships."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates details of the specified user such as email, role, or password."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the specified user from Essbase."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Group name wildcard pattern for filtering."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of groups to return."
+              }
+            ]
+          },
+          "docs": "Returns a list of user groups defined in Essbase."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user group in Essbase."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Group identifier."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified group including its members."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Group identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified group details and membership."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Group identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the specified group from Essbase."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/groups/:groupId/members",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Group identifier."
+              }
+            ]
+          },
+          "docs": "Returns a list of members (users and sub-groups) in the specified group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of calculation and MDX scripts for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new calculation or MDX script for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ]
+          },
+          "docs": "Returns the content and details of the specified calculation or MDX script."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the content of an existing calculation or MDX script."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified calculation or MDX script from the database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Root Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/files",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list of files."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Return search results recursively."
+              }
+            ]
+          },
+          "docs": "Returns a list of root-level folders in the Essbase file catalog. Typical root folders include applications, gallery, shared, and users."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Files or Download File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "File or folder path in the file catalog."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list of files."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Return search results recursively."
+              }
+            ]
+          },
+          "docs": "Lists the contents of a folder or downloads a specific file from the Essbase file catalog. Use Accept header to control response type."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Upload File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Destination file path in the file catalog."
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Whether to overwrite an existing file."
+              }
+            ]
+          },
+          "docs": "Uploads a file to the specified path in the Essbase file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete File or Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "File or folder path to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified file or folder from the Essbase file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/actions/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copies a file or folder from one location to another in the file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Move File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/actions/move",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Moves a file or folder from one location to another in the file catalog."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/filters",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of security filters defined for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/filters",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new security filter for the specified database to control member-level access."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/filters/:filterName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "filterName",
+                "value": "",
+                "type": "path",
+                "description": "Filter name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified security filter."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/filters/:filterName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "filterName",
+                "value": "",
+                "type": "path",
+                "description": "Filter name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified security filter."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/filters/:filterName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "filterName",
+                "value": "",
+                "type": "path",
+                "description": "Filter name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified security filter from the database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Partitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Partitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/partitions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of partitions defined for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Partition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/partitions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new partition between databases for data federation."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Supported Partition Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/partitions/supportedfederatedtypes"
+          },
+          "docs": "Returns the list of supported partition types for federated operations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns all connections defined for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection for the specified application for use with data loads and dimension builds."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Test Saved Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName/actions/test",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Tests an existing saved application connection to verify connectivity."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Test New Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/actions/test",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tests a new application connection configuration before saving it."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Global Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections"
+          },
+          "docs": "Returns a list of global connections available across all applications."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new global connection available across all applications."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified global connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified global connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified global connection."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dimensions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of dimensions defined in the specified database outline."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified dimension including its name, type, and storage properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimension Generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName/generations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns the generation hierarchy for the specified dimension."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimension Levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName/levels",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns the level hierarchy for the specified dimension."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/locks",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of locks on the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Unlock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/locks/:lockId",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "lockId",
+                "value": "",
+                "type": "path",
+                "description": "Lock identifier."
+              }
+            ]
+          },
+          "docs": "Releases the specified lock on a database object."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/configurations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns application-level configuration properties for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Application Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/configurations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates application-level configuration properties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Variables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Server Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables"
+          },
+          "docs": "Returns server-level substitution variables."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new server-level substitution variable."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables/:variableName",
+            "params": [
+              {
+                "name": "variableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified server-level substitution variable."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables/:variableName",
+            "params": [
+              {
+                "name": "variableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified server-level substitution variable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
