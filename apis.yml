@@ -45,25 +45,25 @@ apis:
         url: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/rest-endpoints.html
       - type: GettingStarted
         url: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/api-essbase.html
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-application-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-database-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-job-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-user-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-session-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-dimension-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-connection-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-script-schema.json
-      - type: JSON Schema
+      - type: JSONSchema
         url: json-schema/oracle-essbase-filter-schema.json
-      - type: JSON-LD Context
+      - type: JSONLDContext
         url: json-ld/oracle-essbase-context.jsonld
     contact:
       - FN: Oracle Support
@@ -158,7 +158,7 @@ common:
     url: https://www.oracle.com/business-analytics/essbase.html
   - type: Login
     url: https://www.oracle.com/cloud/sign-in.html
-  - type: SignUp
+  - type: Signup
     url: https://www.oracle.com/cloud/free/
   - type: Downloads
     url: https://www.oracle.com/database/technologies/essbase-downloads.html

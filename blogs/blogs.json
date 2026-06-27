@@ -2,17 +2,11 @@
   "repo": "oracle-essbase",
   "feeds": [
     {
-      "source": "https://blogs.oracle.com/proactivesupportepm/feed",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/weblogic-authentication.html",
-      "feed_url": "https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/weblogic-authentication.html",
-      "title": "",
+      "source": "https://blogs.oracle.com/proactivesupportepm/category/pse-essbase-on-premise",
       "saved": 0,
-      "method": "none"
+      "error": "HTTP 403 Forbidden"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:58:25Z"
 }
