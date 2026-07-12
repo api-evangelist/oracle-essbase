@@ -132,6 +132,10 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/oracle-essbase-domain-security.yml
+  - type: Authentication
+    url: authentication/oracle-essbase-authentication.yml
   - type: Portal
     url: https://docs.oracle.com/en/database/other-databases/essbase/21/index.html
   - type: GettingStarted

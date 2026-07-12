@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-essbase-rest-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using Essbase username and password.
+  sources:
+  - openapi/oracle-essbase-rest-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.
+  sources:
+  - openapi/oracle-essbase-rest-api-openapi.yml
