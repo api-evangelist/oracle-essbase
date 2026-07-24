@@ -1,0 +1,296 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Scripts API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Scripts
+  description: Manage calculation and MDX scripts
+paths:
+  /applications/{applicationName}/databases/{databaseName}/scripts:
+    get:
+      operationId: listScripts
+      summary: Oracle Essbase List Scripts
+      description: Returns a list of calculation and MDX scripts for the specified database.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Script list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createScript
+      summary: Oracle Essbase Create Script
+      description: Creates a new calculation or MDX script for the specified database.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptInput'
+      responses:
+        '200':
+          description: Script created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Failed to create script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/scripts/{scriptName}:
+    get:
+      operationId: getScript
+      summary: Oracle Essbase Get Script
+      description: Returns the content and details of the specified calculation or MDX script.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: scriptName
+        in: path
+        required: true
+        description: Script name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Script details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateScript
+      summary: Oracle Essbase Update Script
+      description: Updates the content of an existing calculation or MDX script.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: scriptName
+        in: path
+        required: true
+        description: Script name.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptInput'
+      responses:
+        '200':
+          description: Script updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '400':
+          description: Failed to update script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteScript
+      summary: Oracle Essbase Delete Script
+      description: Deletes the specified calculation or MDX script from the database.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: scriptName
+        in: path
+        required: true
+        description: Script name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Script deleted successfully.
+        '400':
+          description: Failed to delete script.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+  schemas:
+    Script:
+      type: object
+      description: A calculation or MDX script associated with a database.
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+        modifiedBy:
+          type: string
+          description: User who last modified the script.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ScriptInput:
+      type: object
+      description: Input for creating or updating a script.
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    ScriptList:
+      type: object
+      description: List of scripts.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

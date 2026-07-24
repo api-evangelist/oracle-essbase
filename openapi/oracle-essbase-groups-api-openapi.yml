@@ -1,0 +1,342 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Groups API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Groups
+  description: Manage user groups and memberships
+paths:
+  /groups:
+    get:
+      operationId: listGroups
+      summary: Oracle Essbase List Groups
+      description: Returns a list of user groups defined in Essbase.
+      tags:
+      - Groups
+      parameters:
+      - name: filter
+        in: query
+        description: Group name wildcard pattern for filtering.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of groups to return.
+        schema:
+          type: integer
+          format: int32
+          default: -1
+      responses:
+        '200':
+          description: Group list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createGroup
+      summary: Oracle Essbase Create Group
+      description: Creates a new user group in Essbase.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Group created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Failed to create group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /groups/{groupId}:
+    get:
+      operationId: getGroup
+      summary: Oracle Essbase Get Group
+      description: Returns details of the specified group including its members.
+      tags:
+      - Groups
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: Group identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateGroup
+      summary: Oracle Essbase Update Group
+      description: Updates the specified group details and membership.
+      tags:
+      - Groups
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: Group identifier.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupInput'
+      responses:
+        '200':
+          description: Group updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: Failed to update group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteGroup
+      summary: Oracle Essbase Delete Group
+      description: Deletes the specified group from Essbase.
+      tags:
+      - Groups
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: Group identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group deleted successfully.
+        '400':
+          description: Failed to delete group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /groups/{groupId}/members:
+    get:
+      operationId: listGroupMembers
+      summary: Oracle Essbase List Group Members
+      description: Returns a list of members (users and sub-groups) in the specified group.
+      tags:
+      - Groups
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        description: Group identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Group members returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    GroupList:
+      type: object
+      description: Paginated list of groups.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Group:
+      type: object
+      description: An Essbase user group.
+      properties:
+        id:
+          type: string
+          description: Group identifier.
+        name:
+          type: string
+          description: Group name.
+        description:
+          type: string
+          description: Group description.
+        role:
+          type: string
+          description: Service role assigned to the group.
+        members:
+          type: array
+          description: List of member user IDs or sub-group names.
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GroupInput:
+      type: object
+      description: Input for creating or updating a group.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Group name.
+        description:
+          type: string
+          description: Group description.
+        role:
+          type: string
+          description: Service role to assign to the group.
+        members:
+          type: array
+          description: Member user IDs or sub-group names.
+          items:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

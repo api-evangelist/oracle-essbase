@@ -1,0 +1,508 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Connections API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Connections
+  description: Manage global and application-level connections
+paths:
+  /applications/{applicationName}/connections:
+    get:
+      operationId: listApplicationConnections
+      summary: Oracle Essbase List Application Connections
+      description: Returns all connections defined for the specified application.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Connection list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createApplicationConnection
+      summary: Oracle Essbase Create Application Connection
+      description: Creates a new connection for the specified application for use with data loads and dimension builds.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection created successfully.
+        '400':
+          description: Failed to create connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/{connectionName}:
+    get:
+      operationId: getApplicationConnection
+      summary: Oracle Essbase Get Application Connection
+      description: Returns details of the specified application connection.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateApplicationConnection
+      summary: Oracle Essbase Update Application Connection
+      description: Updates the specified application connection.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection updated successfully.
+        '400':
+          description: Failed to update connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteApplicationConnection
+      summary: Oracle Essbase Delete Application Connection
+      description: Deletes the specified application connection.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/{connectionName}/actions/test:
+    post:
+      operationId: testSavedApplicationConnection
+      summary: Oracle Essbase Test Saved Application Connection
+      description: Tests an existing saved application connection to verify connectivity.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection test completed successfully.
+        '400':
+          description: Connection test failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/connections/actions/test:
+    post:
+      operationId: testNewApplicationConnection
+      summary: Oracle Essbase Test New Application Connection
+      description: Tests a new application connection configuration before saving it.
+      tags:
+      - Connections
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection test completed successfully.
+        '400':
+          description: Connection test failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /connections:
+    get:
+      operationId: listGlobalConnections
+      summary: Oracle Essbase List Global Connections
+      description: Returns a list of global connections available across all applications.
+      tags:
+      - Connections
+      responses:
+        '200':
+          description: Global connection list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createGlobalConnection
+      summary: Oracle Essbase Create Global Connection
+      description: Creates a new global connection available across all applications.
+      tags:
+      - Connections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Global connection created successfully.
+        '400':
+          description: Failed to create connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /connections/{connectionName}:
+    get:
+      operationId: getGlobalConnection
+      summary: Oracle Essbase Get Global Connection
+      description: Returns details of the specified global connection.
+      tags:
+      - Connections
+      parameters:
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateGlobalConnection
+      summary: Oracle Essbase Update Global Connection
+      description: Updates the specified global connection.
+      tags:
+      - Connections
+      parameters:
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionInput'
+      responses:
+        '200':
+          description: Connection updated successfully.
+        '400':
+          description: Failed to update connection.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteGlobalConnection
+      summary: Oracle Essbase Delete Global Connection
+      description: Deletes the specified global connection.
+      tags:
+      - Connections
+      parameters:
+      - name: connectionName
+        in: path
+        required: true
+        description: Connection name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Connection deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+  schemas:
+    ConnectionInput:
+      type: object
+      description: Input for creating or updating a connection.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type.
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        password:
+          type: string
+          format: password
+          description: Database password.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Connection:
+      type: object
+      description: A data source connection for data loading and dimension building.
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type (e.g., Oracle, SQL Server, file-based).
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        walletPath:
+          type: string
+          description: Path to the wallet file for secure connections.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

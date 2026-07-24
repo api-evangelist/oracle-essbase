@@ -1,0 +1,526 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Jobs API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Jobs
+  description: Execute and monitor asynchronous jobs such as data loads, calculations, and exports
+paths:
+  /jobs:
+    get:
+      operationId: listJobs
+      summary: Oracle Essbase List Jobs
+      description: Returns a list of executed jobs. Supports filtering by job type, application, database, and status. Returns job history with execution details.
+      tags:
+      - Jobs
+      parameters:
+      - name: applicationName
+        in: query
+        description: Filter by application name.
+        schema:
+          type: string
+      - name: databaseName
+        in: query
+        description: Filter by database name.
+        schema:
+          type: string
+      - name: jobtype
+        in: query
+        description: Filter by job type.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of jobs to return.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        description: Number of records to skip.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        '200':
+          description: Job list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: executeJob
+      summary: Oracle Essbase Execute Job
+      description: Executes an asynchronous job on an Essbase database. Supported job types include dataload, dimbuild, calc, clear, importExcel, exportExcel, lcmExport, lcmImport, clearAggregation, buildAggregation, asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns a job record with a job_ID for monitoring progress.
+      tags:
+      - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+      responses:
+        '200':
+          description: Job started successfully. Returns job record with job_ID for tracking.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request. Invalid application, database, or null argument.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Service unavailable. Naming or server exception.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /jobs/{jobId}:
+    get:
+      operationId: getJob
+      summary: Oracle Essbase Get Job
+      description: Returns details and current status of the specified job by its identifier.
+      tags:
+      - Jobs
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: Unique job identifier.
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Job details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteJob
+      summary: Oracle Essbase Delete Job Record
+      description: Deletes the job record for the specified job identifier.
+      tags:
+      - Jobs
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: Unique job identifier.
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Job record deleted successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /jobs/{jobId}/actions/rerun:
+    post:
+      operationId: rerunJob
+      summary: Oracle Essbase Rerun Job
+      description: Reruns a previously executed job with the same parameters.
+      tags:
+      - Jobs
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: Unique job identifier of the job to rerun.
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Job rerun started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobRecord'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    RuntimeSubstitutionVariable:
+      type: object
+      description: A runtime substitution variable for calculation scripts.
+      properties:
+        name:
+          type: string
+          description: Variable name.
+        type:
+          type: string
+          description: Variable data type.
+          enum:
+          - STRING
+          - NUMBER
+          - DATE
+          - MEMBER
+        value:
+          description: Default value.
+        dimension:
+          type: string
+          description: Dimension name (for MEMBER type).
+        singleChoice:
+          type: boolean
+          description: Whether only a single member can be selected.
+        allowMissing:
+          type: boolean
+          description: Whether missing data is allowed.
+    JobParameters:
+      type: object
+      description: 'Job-specific parameters. Required fields depend on the job type. For dataload: file and optionally rule, abortOnError. For dimbuild: file and rule. For calc: script. For clear: option. For lcmExport/lcmImport: zipFileName.'
+      properties:
+        file:
+          type: string
+          description: Source file name for dataload, dimbuild, or mdxScript jobs.
+        rule:
+          type: string
+          description: Rules file name for dataload or dimbuild jobs.
+        abortOnError:
+          type: string
+          description: Stop on first error (true/false) for dataload jobs.
+        script:
+          type: string
+          description: Calculation script name (.csc file) for calc jobs.
+        option:
+          type: string
+          description: Clear option for clear jobs.
+          enum:
+          - allData
+          - upperLevel
+          - nonInput
+          - partialData
+          - PARTIAL_DATA
+        partialDataExpression:
+          type: string
+          description: MDX expression for partial data clear.
+        importExcelFileName:
+          type: string
+          description: Excel workbook file name for importExcel jobs.
+        catalogExcelPath:
+          type: string
+          description: Path to the workbook in the file catalog.
+        loaddata:
+          type: string
+          description: Whether to load data (true/false) for importExcel jobs.
+        recreateApplication:
+          type: string
+          description: Whether to recreate application if it exists (true/false).
+        createFiles:
+          type: string
+          description: Whether to create cube artifacts (true/false).
+        executeScript:
+          type: string
+          description: Whether to execute calc scripts (true/false).
+        buildOption:
+          type: string
+          description: Build option for importExcel jobs.
+          enum:
+          - NONE
+          - RETAIN_ALL_DATA
+          - REMOVE_ALL_DATA
+        dataLevel:
+          type: string
+          description: Data level for export operations.
+          enum:
+          - ALL_DATA
+          - UPPER_LEVEL_BLOCKS
+          - NON_INPUT_BLOCKS
+          - LEVEL_ZERO_BLOCKS
+          - INPUT_LEVEL_DATA_BLOCKS
+        columnFormat:
+          type: string
+          description: Whether to use tabular format (true/false).
+        compress:
+          type: string
+          description: Whether to compress data (true/false).
+        zipFileName:
+          type: string
+          description: Backup zip file name for lcmExport/lcmImport jobs.
+        skipdata:
+          type: string
+          description: Whether to exclude data from LCM export (true/false).
+        generateArtifactList:
+          type: string
+          description: Whether to generate artifact list (true/false).
+        overwrite:
+          type: string
+          description: Whether to overwrite existing resources (true/false).
+        targetApplicationName:
+          type: string
+          description: Target application name for lcmImport if different from source.
+        includeServerLevel:
+          type: string
+          description: Include global connections and datasources (true/false).
+        basedOnQueryData:
+          type: string
+          description: Select based on query patterns (true/false) for buildAggregation.
+        ratioToStop:
+          type: string
+          description: Size ratio stopping value for buildAggregation.
+        enableAlternateRollups:
+          type: string
+          description: Consider secondary hierarchies (true/false).
+        bufferId:
+          type: integer
+          description: Single buffer ID for asoBufferCommit (1-4294967296).
+        commitOption:
+          type: string
+          description: Commit option for asoBufferCommit.
+          enum:
+          - STORE_DATA
+          - ADD_DATA
+          - SUBTRACT_DATA
+          - OVERRIDE_ALL_DATA
+          - OVERRIDE_INCREMENTAL_DATA
+        actionType:
+          type: string
+          description: Action type for asoBufferCommit.
+          enum:
+          - COMMIT
+          - ABORT
+        restructureOption:
+          type: string
+          description: Data preservation option for dimbuild.
+          enum:
+          - PRESERVE_ALL_DATA
+          - PRESERVE_NO_DATA
+          - PRESERVE_LEAFLEVEL_DATA
+          - PRESERVE_INPUT_DATA
+        forceDimBuild:
+          type: string
+          description: Force build despite user activity (true/false).
+        rtsv:
+          type: array
+          description: Runtime substitution variables for calc jobs.
+          items:
+            $ref: '#/components/schemas/RuntimeSubstitutionVariable'
+        useConnection:
+          type: string
+          description: Whether to use a saved connection (true/false).
+        connection:
+          type: string
+          description: Connection name for dataload or dimbuild.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    JobRecord:
+      type: object
+      description: Record of an executed or running job.
+      properties:
+        job_ID:
+          type: integer
+          format: int64
+          description: Unique job identifier.
+        appName:
+          type: string
+          description: Application name.
+        dbName:
+          type: string
+          description: Database name.
+        jobType:
+          type: string
+          description: Job type that was executed.
+        jobfileName:
+          type: string
+          description: Associated script or file name.
+        userName:
+          type: string
+          description: User who submitted the job.
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time in milliseconds since epoch.
+        endTime:
+          type: integer
+          format: int64
+          description: Job end time in milliseconds since epoch.
+        statusCode:
+          type: integer
+          format: int32
+          description: 'Status code: 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed.'
+        statusMessage:
+          type: string
+          description: Human-readable status message.
+        jobInputInfo:
+          type: object
+          description: Input parameters used for the job.
+          additionalProperties: true
+        jobOutputInfo:
+          type: object
+          description: Output and results of the job.
+          additionalProperties: true
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JobList:
+      type: object
+      description: Paginated list of job records.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRecord'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    JobInput:
+      type: object
+      description: Input for executing an asynchronous job.
+      required:
+      - jobtype
+      properties:
+        application:
+          type: string
+          description: Application name.
+        db:
+          type: string
+          description: Database name.
+        jobtype:
+          type: string
+          description: Type of job to execute.
+          enum:
+          - dataload
+          - dimbuild
+          - calc
+          - clear
+          - importExcel
+          - exportExcel
+          - lcmExport
+          - lcmImport
+          - clearAggregation
+          - buildAggregation
+          - asoBufferDataLoad
+          - asoBufferCommit
+          - exportData
+          - mdxScript
+        parameters:
+          $ref: '#/components/schemas/JobParameters'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

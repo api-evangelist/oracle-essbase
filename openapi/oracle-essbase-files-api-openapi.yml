@@ -1,0 +1,335 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Files API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Files
+  description: Upload, download, copy, move, and delete files in the Essbase file catalog
+paths:
+  /files:
+    get:
+      operationId: listRootFolders
+      summary: Oracle Essbase List Root Folders
+      description: Returns a list of root-level folders in the Essbase file catalog. Typical root folders include applications, gallery, shared, and users.
+      tags:
+      - Files
+      parameters:
+      - name: filter
+        in: query
+        description: Filter the list of files.
+        schema:
+          type: string
+      - name: recursive
+        in: query
+        description: Return search results recursively.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Root folder list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileList'
+        '400':
+          description: Invalid path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/{path}:
+    get:
+      operationId: listFilesOrDownload
+      summary: Oracle Essbase List Files or Download File
+      description: Lists the contents of a folder or downloads a specific file from the Essbase file catalog. Use Accept header to control response type.
+      tags:
+      - Files
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: File or folder path in the file catalog.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Filter the list of files.
+        schema:
+          type: string
+      - name: recursive
+        in: query
+        description: Return search results recursively.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: File listing or file content returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileList'
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Invalid path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: uploadFile
+      summary: Oracle Essbase Upload File
+      description: Uploads a file to the specified path in the Essbase file catalog.
+      tags:
+      - Files
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: Destination file path in the file catalog.
+        schema:
+          type: string
+      - name: overwrite
+        in: query
+        description: Whether to overwrite an existing file.
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: File uploaded successfully.
+        '400':
+          description: Failed to upload file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteFile
+      summary: Oracle Essbase Delete File or Folder
+      description: Deletes the specified file or folder from the Essbase file catalog.
+      tags:
+      - Files
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: File or folder path to delete.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File or folder deleted successfully.
+        '400':
+          description: Failed to delete file or folder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/actions/copy:
+    post:
+      operationId: copyFile
+      summary: Oracle Essbase Copy File
+      description: Copies a file or folder from one location to another in the file catalog.
+      tags:
+      - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Source file path.
+                to:
+                  type: string
+                  description: Destination file path.
+      responses:
+        '200':
+          description: File copied successfully.
+        '400':
+          description: Failed to copy file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /files/actions/move:
+    post:
+      operationId: moveFile
+      summary: Oracle Essbase Move File
+      description: Moves a file or folder from one location to another in the file catalog.
+      tags:
+      - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Source file path.
+                to:
+                  type: string
+                  description: Destination file path.
+      responses:
+        '200':
+          description: File moved successfully.
+        '400':
+          description: Failed to move file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    FileItem:
+      type: object
+      description: A file or folder entry in the Essbase file catalog.
+      properties:
+        name:
+          type: string
+          description: File or folder name.
+        fullPath:
+          type: string
+          description: Full path in the file catalog.
+        type:
+          type: string
+          description: Item type.
+          enum:
+          - file
+          - folder
+        permissions:
+          type: object
+          description: Permissions on this item.
+          properties:
+            addFolder:
+              type: boolean
+              description: Permission to add sub-folders.
+            addFile:
+              type: boolean
+              description: Permission to add files.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    FileList:
+      type: object
+      description: File catalog listing response.
+      properties:
+        currentFolder:
+          $ref: '#/components/schemas/FileItem'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileItem'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

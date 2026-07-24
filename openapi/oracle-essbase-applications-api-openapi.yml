@@ -1,0 +1,750 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Applications API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Applications
+  description: Manage Essbase applications and their lifecycle
+paths:
+  /applications:
+    get:
+      operationId: listApplications
+      summary: Oracle Essbase List Applications
+      description: Returns a list of Essbase applications the authenticated user has access to. Supports filtering, pagination, sorting, and field selection. If application status is required in the response, limit must be 100 or less.
+      tags:
+      - Applications
+      parameters:
+      - name: applicationNameForConnection
+        in: query
+        description: Application name for connection filtering.
+        schema:
+          type: string
+      - name: connectionName
+        in: query
+        description: Filter applications by connection name.
+        schema:
+          type: string
+      - name: fields
+        in: query
+        description: Comma-separated list of fields to return. If omitted, all fields are returned.
+        schema:
+          type: string
+      - name: filter
+        in: query
+        description: Wildcard filter for application names.
+        schema:
+          type: string
+          default: '*'
+      - name: limit
+        in: query
+        description: Maximum number of applications to return. Must be 100 or less if status is included.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        description: Number of applications to skip from the start of the result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: orderBy
+        in: query
+        description: Sort order in format column:direction (e.g., name:asc).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of applications returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+        '400':
+          description: Failed to get applications.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createApplication
+      summary: Oracle Essbase Create Application and Database
+      description: Creates a new Essbase application and optionally a database within it. Application names are limited to 30 characters, must not contain spaces, and are case-insensitive. Specify BSO (block storage) or ASO (aggregate storage) for the database type.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplication'
+      responses:
+        '200':
+          description: Application created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to create application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}:
+    get:
+      operationId: getApplication
+      summary: Oracle Essbase Get Application
+      description: Returns details of the specified Essbase application, including status, type, owner, and configuration.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to get application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: startStopApplication
+      summary: Oracle Essbase Start or Stop Application
+      description: Starts or stops an Essbase application by updating its status.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Desired application status.
+                  enum:
+                  - started
+                  - stopped
+      responses:
+        '200':
+          description: Application status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to update application status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteApplication
+      summary: Oracle Essbase Delete Application
+      description: Deletes the specified Essbase application and all of its databases and associated resources.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application deleted successfully.
+        '400':
+          description: Failed to delete application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/copy:
+    post:
+      operationId: copyApplication
+      summary: Oracle Essbase Copy Application
+      description: Creates a copy of an existing Essbase application with a new name.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Source application name.
+                to:
+                  type: string
+                  description: Destination application name.
+      responses:
+        '200':
+          description: Application copied successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to copy application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/rename:
+    post:
+      operationId: renameApplication
+      summary: Oracle Essbase Rename Application
+      description: Renames an existing Essbase application.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Current application name.
+                to:
+                  type: string
+                  description: New application name.
+      responses:
+        '200':
+          description: Application renamed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to rename application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/tree:
+    get:
+      operationId: getApplicationTreeView
+      summary: Oracle Essbase Get Application Tree View
+      description: Returns a hierarchical tree view of applications and their databases.
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: Application tree view returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/name/{appVisibility}:
+    get:
+      operationId: listApplicationNames
+      summary: Oracle Essbase List Application Names
+      description: Returns a list of application names filtered by visibility.
+      tags:
+      - Applications
+      parameters:
+      - name: appVisibility
+        in: path
+        required: true
+        description: Application visibility filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application names returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/encrypt:
+    post:
+      operationId: encryptApplication
+      summary: Oracle Essbase Encrypt Application
+      description: Encrypts the specified Essbase application for data security.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application encrypted successfully.
+        '400':
+          description: Failed to encrypt application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/decrypt:
+    post:
+      operationId: decryptApplication
+      summary: Oracle Essbase Decrypt Application
+      description: Decrypts the specified Essbase application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Application decrypted successfully.
+        '400':
+          description: Failed to decrypt application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/encryptionconfig:
+    get:
+      operationId: getEncryptionInfo
+      summary: Oracle Essbase Get Encryption Info
+      description: Returns encryption configuration information for the specified application.
+      tags:
+      - Applications
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Encryption info returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encrypted:
+                    type: boolean
+                    description: Whether the application is encrypted.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowCopy:
+    post:
+      operationId: createShadowApplication
+      summary: Oracle Essbase Create Shadow Application
+      description: Creates a shadow copy of an existing application for safe editing without affecting the production application.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - applicationName
+              properties:
+                applicationName:
+                  type: string
+                  description: Name of the source application to shadow.
+      responses:
+        '200':
+          description: Shadow application created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '400':
+          description: Failed to create shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowPromote:
+    post:
+      operationId: promoteShadowApplication
+      summary: Oracle Essbase Promote Shadow Application
+      description: Promotes a shadow application to replace the original production application.
+      tags:
+      - Applications
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shadowAppName
+              properties:
+                shadowAppName:
+                  type: string
+                  description: Name of the shadow application to promote.
+      responses:
+        '200':
+          description: Shadow application promoted successfully.
+        '400':
+          description: Failed to promote shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/actions/shadowDelete/{shadowAppName}:
+    delete:
+      operationId: deleteShadowApplication
+      summary: Oracle Essbase Delete Shadow Application
+      description: Deletes the specified shadow application.
+      tags:
+      - Applications
+      parameters:
+      - name: shadowAppName
+        in: path
+        required: true
+        description: Name of the shadow application to delete.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Shadow application deleted successfully.
+        '400':
+          description: Failed to delete shadow application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+  schemas:
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    CreateApplication:
+      type: object
+      description: Request body for creating a new Essbase application and database.
+      required:
+      - applicationName
+      - databaseName
+      properties:
+        applicationName:
+          type: string
+          description: Application name (max 30 characters, no spaces, case-insensitive).
+          maxLength: 30
+        databaseName:
+          type: string
+          description: Database (cube) name (no spaces).
+        allowDuplicates:
+          type: boolean
+          description: Allow duplicate member names in outline.
+        enableScenario:
+          type: boolean
+          description: Enable scenario management (BSO only; must be false for ASO).
+        databaseType:
+          type: string
+          description: Database storage type.
+          enum:
+          - BSO
+          - ASO
+        appType:
+          type: string
+          description: Application encoding type.
+          enum:
+          - NATIVE
+          - UTF8
+        dbType:
+          type: string
+          description: Database type classification.
+          enum:
+          - NORMAL
+          - CURRENCY
+          - ASO
+        memberCount:
+          type: integer
+          format: int32
+          description: Initial member count.
+        memberPrefix:
+          type: string
+          description: Prefix for generated members.
+    ApplicationList:
+      type: object
+      description: Paginated list of Essbase applications.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
+          format: int64
+          description: Total number of matching results.
+        limit:
+          type: integer
+          format: int64
+          description: Maximum number of results per page.
+        offset:
+          type: integer
+          format: int64
+          description: Number of results skipped.
+        hasMore:
+          type: boolean
+          description: Whether more results are available.
+        count:
+          type: integer
+          format: int64
+          description: Number of results in this page.
+        properties:
+          type: object
+          additionalProperties:
+            type: string
+    Application:
+      type: object
+      description: An Essbase application containing one or more databases (cubes).
+      properties:
+        name:
+          type: string
+          description: Application name.
+        owner:
+          type: string
+          description: Application owner user ID.
+        creationTime:
+          type: integer
+          format: int64
+          description: Creation timestamp in milliseconds since epoch.
+        modifiedBy:
+          type: string
+          description: User who last modified the application.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        status:
+          type: string
+          description: Current application status.
+          enum:
+          - started
+          - stopped
+        description:
+          type: string
+          description: Application description.
+        type:
+          type: string
+          description: Application storage type.
+          enum:
+          - ASO
+          - BSO
+          - CURRENCY
+        startTime:
+          type: integer
+          format: int64
+          description: Application start timestamp in milliseconds since epoch.
+        connectedUsersCount:
+          type: integer
+          format: int32
+          description: Number of users currently connected.
+        role:
+          type: string
+          description: Authenticated user role for this application.
+        easManagedApp:
+          type: boolean
+          description: Whether the application is managed in EAS Lite.
+        startStopAppAllowed:
+          type: boolean
+          description: Whether users with read permission can start the application.
+        inspectAppAllowed:
+          type: boolean
+          description: Whether application inspection is allowed.
+        encrypted:
+          type: boolean
+          description: Whether the application data is encrypted.
+        aiConnection:
+          type: string
+          description: AI connection configuration name.
+        appVariablesSetting:
+          $ref: '#/components/schemas/VariablesSetting'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

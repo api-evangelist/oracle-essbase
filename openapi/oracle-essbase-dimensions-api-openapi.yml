@@ -1,0 +1,245 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Dimensions API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Dimensions
+  description: View dimension information, generations, and levels
+paths:
+  /applications/{applicationName}/databases/{databaseName}/dimensions:
+    get:
+      operationId: listDimensions
+      summary: Oracle Essbase List Dimensions
+      description: Returns a list of dimensions defined in the specified database outline.
+      tags:
+      - Dimensions
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Dimension list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dimension'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}:
+    get:
+      operationId: getDimension
+      summary: Oracle Essbase Get Dimension
+      description: Returns details of the specified dimension including its name, type, and storage properties.
+      tags:
+      - Dimensions
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: dimensionName
+        in: path
+        required: true
+        description: Dimension name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dimension details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dimension'
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/generations:
+    get:
+      operationId: listDimensionGenerations
+      summary: Oracle Essbase List Dimension Generations
+      description: Returns the generation hierarchy for the specified dimension.
+      tags:
+      - Dimensions
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: dimensionName
+        in: path
+        required: true
+        description: Dimension name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Generations returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: integer
+                      format: int32
+                      description: Generation number.
+                    name:
+                      type: string
+                      description: Generation name.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/dimensions/{dimensionName}/levels:
+    get:
+      operationId: listDimensionLevels
+      summary: Oracle Essbase List Dimension Levels
+      description: Returns the level hierarchy for the specified dimension.
+      tags:
+      - Dimensions
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      - name: dimensionName
+        in: path
+        required: true
+        description: Dimension name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Levels returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    number:
+                      type: integer
+                      format: int32
+                      description: Level number.
+                    name:
+                      type: string
+                      description: Level name.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Dimension:
+      type: object
+      description: A dimension in an Essbase database outline.
+      properties:
+        name:
+          type: string
+          description: Dimension name.
+        type:
+          type: string
+          description: Dimension type (e.g., accounts, time, attribute).
+        storageType:
+          type: string
+          description: Dimension storage type.
+        tag:
+          type: string
+          description: Dimension tag.
+        memberCount:
+          type: integer
+          format: int32
+          description: Number of members in the dimension.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

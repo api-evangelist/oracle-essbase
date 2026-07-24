@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Sessions API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Sessions
+  description: Manage active user sessions
+paths:
+  /sessions:
+    get:
+      operationId: listSessions
+      summary: Oracle Essbase List Sessions
+      description: Returns a list of currently active sessions. Optionally filter by application, database, or user ID. If userId is not provided, all sessions are retrieved.
+      tags:
+      - Sessions
+      parameters:
+      - name: application
+        in: query
+        description: Filter by application name.
+        schema:
+          type: string
+      - name: database
+        in: query
+        description: Filter by database name.
+        schema:
+          type: string
+      - name: userId
+        in: query
+        description: Filter by user ID. If not provided, returns all sessions.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+        '400':
+          description: Essbase or platform security exception.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /sessions/{sessionId}:
+    delete:
+      operationId: deleteSession
+      summary: Oracle Essbase Delete Session
+      description: Terminates the specified active session by session identifier.
+      tags:
+      - Sessions
+      parameters:
+      - name: sessionId
+        in: path
+        required: true
+        description: Session identifier to terminate.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session terminated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Session:
+      type: object
+      description: An active user session on the Essbase server.
+      properties:
+        userId:
+          type: string
+          description: Logged-in user name.
+        sessionId:
+          type: string
+          description: Numeric session identifier.
+        loginTimeInSeconds:
+          type: string
+          description: Number of seconds ago the session began.
+        application:
+          type: string
+          description: Name of active application.
+        database:
+          type: string
+          description: Name of active database.
+        dbConnectTimeInSeconds:
+          type: string
+          description: Number of seconds ago the database was set active.
+        request:
+          type: string
+          description: Type of active request (e.g., calculation, data load, restructure).
+        requestTimeInSeconds:
+          type: string
+          description: Number of seconds the active request has been running.
+        connectionSource:
+          type: string
+          description: Host name of the connected service.
+        requestState:
+          type: string
+          description: Status of the active request.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.

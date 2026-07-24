@@ -1,0 +1,631 @@
+openapi: 3.1.0
+info:
+  title: Oracle Essbase REST Application Configuration Databases API
+  description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
+  version: 21.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/legal/terms/
+  x-provider: oracle-essbase
+servers:
+- url: https://{host}:{port}/essbase/rest/v1
+  description: Oracle Essbase REST API server
+  variables:
+    host:
+      default: localhost
+      description: Essbase server hostname
+    port:
+      default: '9001'
+      description: Essbase server port
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Databases
+  description: Manage databases (cubes) within applications
+paths:
+  /applications/{applicationName}/databases:
+    get:
+      operationId: listDatabases
+      summary: Oracle Essbase List Databases
+      description: Returns a list of databases (cubes) within the specified application.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      responses:
+        '200':
+          description: Database list returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseList'
+        '400':
+          description: Failed to list databases.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}:
+    get:
+      operationId: getDatabase
+      summary: Oracle Essbase Get Database
+      description: Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Database details returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to get database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: startStopDatabase
+      summary: Oracle Essbase Start or Stop Database
+      description: Starts or stops the specified database by updating its status.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Desired database status.
+                  enum:
+                  - started
+                  - stopped
+      responses:
+        '200':
+          description: Database status updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to update database status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteDatabase
+      summary: Oracle Essbase Delete Database
+      description: Deletes the specified database (cube) from the application.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Database deleted successfully.
+        '400':
+          description: Failed to delete database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/actions/copy:
+    post:
+      operationId: copyDatabase
+      summary: Oracle Essbase Copy Database
+      description: Creates a copy of an existing database within the same application or to a different application.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Source database name.
+                to:
+                  type: string
+                  description: Destination database name.
+      responses:
+        '200':
+          description: Database copied successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '400':
+          description: Failed to copy database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/actions/rename:
+    post:
+      operationId: renameDatabase
+      summary: Oracle Essbase Rename Database
+      description: Renames an existing database within the application.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - from
+              - to
+              properties:
+                from:
+                  type: string
+                  description: Current database name.
+                to:
+                  type: string
+                  description: New database name.
+      responses:
+        '200':
+          description: Database renamed successfully.
+        '400':
+          description: Failed to rename database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases:
+    get:
+      operationId: listAliases
+      summary: Oracle Essbase List Aliases
+      description: Returns a list of alias tables defined for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Alias list returned successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases/getActiveAlias:
+    get:
+      operationId: getActiveAlias
+      summary: Oracle Essbase Get Active Alias
+      description: Returns the currently active alias table for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Active alias returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activeAlias:
+                    type: string
+                    description: Name of the active alias table.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/aliases/setActiveAlias:
+    put:
+      operationId: setActiveAlias
+      summary: Oracle Essbase Set Active Alias
+      description: Sets the active alias table for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                activeAlias:
+                  type: string
+                  description: Name of the alias table to activate.
+      responses:
+        '200':
+          description: Active alias updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/currencySettings:
+    get:
+      operationId: getCurrencySettings
+      summary: Oracle Essbase Get Currency Settings
+      description: Returns the currency conversion settings for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Currency settings returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: setCurrencySettings
+      summary: Oracle Essbase Set Currency Settings
+      description: Updates the currency conversion settings for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Currency settings updated successfully.
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/calculationFunctions:
+    get:
+      operationId: getCalculationFunctions
+      summary: Oracle Essbase Get Calculation Functions
+      description: Returns a list of available calculation functions for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Calculation functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/formulaFunctions:
+    get:
+      operationId: getFormulaFunctions
+      summary: Oracle Essbase Get Formula Functions
+      description: Returns a list of available formula functions for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: Formula functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /applications/{applicationName}/databases/{databaseName}/mdxFunctions:
+    get:
+      operationId: getMdxFunctions
+      summary: Oracle Essbase Get MDX Functions
+      description: Returns a list of available MDX functions for the specified database.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/applicationName'
+      - $ref: '#/components/parameters/databaseName'
+      responses:
+        '200':
+          description: MDX functions returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+  schemas:
+    DatabaseList:
+      type: object
+      description: Paginated list of databases.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Database'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Database:
+      type: object
+      description: An Essbase database (cube) within an application.
+      properties:
+        name:
+          type: string
+          description: Database name.
+        application:
+          type: string
+          description: Parent application name.
+        owner:
+          type: string
+          description: Database owner user ID.
+        creationTime:
+          type: integer
+          format: int64
+          description: Creation timestamp in milliseconds since epoch.
+        modifiedBy:
+          type: string
+          description: User who last modified the database.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        status:
+          type: string
+          description: Current database status.
+          enum:
+          - started
+          - stopped
+        startTime:
+          type: integer
+          format: int64
+          description: Database start timestamp in milliseconds since epoch.
+        description:
+          type: string
+          description: Database description.
+        type:
+          type: string
+          description: Database storage type.
+          enum:
+          - ASO
+          - BSO
+          - CURRENCY
+        applicationRole:
+          type: string
+          description: User application role for this database.
+        easManagedApp:
+          type: boolean
+          description: Whether the parent application is managed in EAS Lite.
+        startStopDBAllowed:
+          type: boolean
+          description: Permission to start or stop the database.
+        inspectDBAllowed:
+          type: boolean
+          description: Permission to inspect the database.
+        dbVariablesSetting:
+          $ref: '#/components/schemas/VariablesSetting'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using Essbase username and password.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer token authentication for cloud deployments on Oracle Cloud Infrastructure.
