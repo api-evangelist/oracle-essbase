@@ -1,0 +1,1164 @@
+{
+  "info": {
+    "_postman_id": "43887872-63df-47c1-bdfd-33c7a2f44b75",
+    "name": "Oracle Essbase REST Application Configuration Jobs API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:11.000Z",
+    "updatedAt": "2026-07-28T02:28:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-43887872-63df-47c1-bdfd-33c7a2f44b75"
+  },
+  "item": [
+    {
+      "name": "jobs",
+      "item": [
+        {
+          "name": "{jobId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "rerun",
+                  "item": [
+                    {
+                      "name": "Oracle Essbase Rerun Job",
+                      "id": "f619ab20-b5f7-40b9-8236-7242879ee094",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/:jobId/actions/rerun",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            ":jobId",
+                            "actions",
+                            "rerun"
+                          ],
+                          "variable": [
+                            {
+                              "id": "02e6f51b-5ab2-4bce-98cd-145694a91ac7",
+                              "key": "jobId",
+                              "value": "<long>",
+                              "description": "(Required) Unique job identifier of the job to rerun."
+                            }
+                          ]
+                        },
+                        "description": "Reruns a previously executed job with the same parameters."
+                      },
+                      "response": [
+                        {
+                          "id": "00e94f51-2af7-4e84-b28b-764cb7ee264e",
+                          "name": "Job rerun started successfully.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/:jobId/actions/rerun",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                ":jobId",
+                                "actions",
+                                "rerun"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"job_ID\": \"<long>\",\n  \"appName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"jobfileName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"statusCode\": \"<integer>\",\n  \"statusMessage\": \"<string>\",\n  \"jobInputInfo\": {\n    \"mollit_3\": \"labore minim\",\n    \"officiab0\": 91733702\n  },\n  \"jobOutputInfo\": {\n    \"ex_7a\": -10484482\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:28:11.000Z",
+                          "updatedAt": "2026-07-28T02:28:11.000Z",
+                          "uid": "35240-00e94f51-2af7-4e84-b28b-764cb7ee264e"
+                        },
+                        {
+                          "id": "16756fc4-2795-4a29-9ac9-27b113455c66",
+                          "name": "Bad request.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/:jobId/actions/rerun",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                ":jobId",
+                                "actions",
+                                "rerun"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:11.000Z",
+                          "updatedAt": "2026-07-28T02:28:11.000Z",
+                          "uid": "35240-16756fc4-2795-4a29-9ac9-27b113455c66"
+                        },
+                        {
+                          "id": "2dd8b310-dd71-4865-a58e-b2822f932e85",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/:jobId/actions/rerun",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                ":jobId",
+                                "actions",
+                                "rerun"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:11.000Z",
+                          "updatedAt": "2026-07-28T02:28:11.000Z",
+                          "uid": "35240-2dd8b310-dd71-4865-a58e-b2822f932e85"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:11.000Z",
+                      "updatedAt": "2026-07-28T02:28:11.000Z",
+                      "uid": "35240-f619ab20-b5f7-40b9-8236-7242879ee094"
+                    }
+                  ],
+                  "id": "4fd304f5-d956-42b1-9b1e-fac374ead918",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-4fd304f5-d956-42b1-9b1e-fac374ead918"
+                }
+              ],
+              "id": "c0620742-07bf-4e76-8867-7693b75d3010",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-c0620742-07bf-4e76-8867-7693b75d3010"
+            },
+            {
+              "name": "Oracle Essbase Get Job",
+              "id": "94e3de4b-cc67-4f4a-8047-00ca43b24fac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/:jobId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cd2f1a43-47af-4394-9782-e6c097253a7c",
+                      "key": "jobId",
+                      "value": "<long>",
+                      "description": "(Required) Unique job identifier."
+                    }
+                  ]
+                },
+                "description": "Returns details and current status of the specified job by its identifier."
+              },
+              "response": [
+                {
+                  "id": "10b88202-9653-4b92-ac14-8e972f2922d6",
+                  "name": "Job details returned successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"job_ID\": \"<long>\",\n  \"appName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"jobfileName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"statusCode\": \"<integer>\",\n  \"statusMessage\": \"<string>\",\n  \"jobInputInfo\": {\n    \"mollit_3\": \"labore minim\",\n    \"officiab0\": 91733702\n  },\n  \"jobOutputInfo\": {\n    \"ex_7a\": -10484482\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-10b88202-9653-4b92-ac14-8e972f2922d6"
+                },
+                {
+                  "id": "2ea8f0b1-d279-462b-a3cf-10a079d6fb7b",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-2ea8f0b1-d279-462b-a3cf-10a079d6fb7b"
+                },
+                {
+                  "id": "6e43721c-f113-4a42-bc90-cb234f9e285d",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-6e43721c-f113-4a42-bc90-cb234f9e285d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-94e3de4b-cc67-4f4a-8047-00ca43b24fac"
+            },
+            {
+              "name": "Oracle Essbase Delete Job Record",
+              "id": "505d14da-42c5-47d5-b1aa-ae51930d087a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/:jobId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "7c0bb618-8f15-46ca-8bf2-9db86ec59803",
+                      "key": "jobId",
+                      "value": "<long>",
+                      "description": "(Required) Unique job identifier."
+                    }
+                  ]
+                },
+                "description": "Deletes the job record for the specified job identifier."
+              },
+              "response": [
+                {
+                  "id": "005eefd0-0d90-4cd0-a6b1-19bff5b944fb",
+                  "name": "Job record deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-005eefd0-0d90-4cd0-a6b1-19bff5b944fb"
+                },
+                {
+                  "id": "44ef0f94-7a8a-4bdd-ba93-b316cb5e46f7",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-44ef0f94-7a8a-4bdd-ba93-b316cb5e46f7"
+                },
+                {
+                  "id": "4a98b2c1-65c9-47b0-972d-22fb974fe532",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:11.000Z",
+                  "updatedAt": "2026-07-28T02:28:11.000Z",
+                  "uid": "35240-4a98b2c1-65c9-47b0-972d-22fb974fe532"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-505d14da-42c5-47d5-b1aa-ae51930d087a"
+            }
+          ],
+          "id": "4810893b-90e4-48a4-8e26-ec99f13eb217",
+          "createdAt": "2026-07-28T02:28:11.000Z",
+          "updatedAt": "2026-07-28T02:28:11.000Z",
+          "uid": "35240-4810893b-90e4-48a4-8e26-ec99f13eb217"
+        },
+        {
+          "name": "Oracle Essbase List Jobs",
+          "id": "164536b8-645c-422b-995f-e932a2e2171b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/jobs?applicationName=<string>&databaseName=<string>&jobtype=<string>&limit=50&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jobs"
+              ],
+              "query": [
+                {
+                  "description": "Filter by application name.",
+                  "key": "applicationName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by database name.",
+                  "key": "databaseName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by job type.",
+                  "key": "jobtype",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of jobs to return.",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Number of records to skip.",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a list of executed jobs. Supports filtering by job type, application, database, and status. Returns job history with execution details."
+          },
+          "response": [
+            {
+              "id": "b3910e48-1ecf-4765-9eff-e6850aa660dc",
+              "name": "Job list returned successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs?applicationName=<string>&databaseName=<string>&jobtype=<string>&limit=50&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application name.",
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by database name.",
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job type.",
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of jobs to return.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"job_ID\": \"<long>\",\n      \"appName\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"jobType\": \"<string>\",\n      \"jobfileName\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"startTime\": \"<long>\",\n      \"endTime\": \"<long>\",\n      \"statusCode\": \"<integer>\",\n      \"statusMessage\": \"<string>\",\n      \"jobInputInfo\": {\n        \"occaecat5\": 79413548.0467045\n      },\n      \"jobOutputInfo\": {\n        \"in_96\": false,\n        \"incididunt_8\": 75601159,\n        \"laboris__f_\": 5724131.488261849,\n        \"ipsum_3c\": false\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"job_ID\": \"<long>\",\n      \"appName\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"jobType\": \"<string>\",\n      \"jobfileName\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"startTime\": \"<long>\",\n      \"endTime\": \"<long>\",\n      \"statusCode\": \"<integer>\",\n      \"statusMessage\": \"<string>\",\n      \"jobInputInfo\": {\n        \"Lorem397\": \"consequat commodo Excepteur reprehenderit\"\n      },\n      \"jobOutputInfo\": {\n        \"id7\": true,\n        \"do_8a\": \"adipisicing\",\n        \"voluptate_1\": \"et tempor aliqua sit amet\"\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalResults\": \"<long>\",\n  \"limit\": \"<long>\",\n  \"offset\": \"<long>\",\n  \"hasMore\": \"<boolean>\",\n  \"count\": \"<long>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-b3910e48-1ecf-4765-9eff-e6850aa660dc"
+            },
+            {
+              "id": "1df8972e-1b7a-4375-a399-fd01fa9152ca",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs?applicationName=<string>&databaseName=<string>&jobtype=<string>&limit=50&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application name.",
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by database name.",
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job type.",
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of jobs to return.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-1df8972e-1b7a-4375-a399-fd01fa9152ca"
+            },
+            {
+              "id": "8c28dff9-8fdc-4401-99df-5cbf0993fd6a",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs?applicationName=<string>&databaseName=<string>&jobtype=<string>&limit=50&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by application name.",
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by database name.",
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job type.",
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of jobs to return.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-8c28dff9-8fdc-4401-99df-5cbf0993fd6a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:11.000Z",
+          "updatedAt": "2026-07-28T02:28:11.000Z",
+          "uid": "35240-164536b8-645c-422b-995f-e932a2e2171b"
+        },
+        {
+          "name": "Oracle Essbase Execute Job",
+          "id": "f6745a50-2b49-4bf6-a8a1-8d8bc573c2fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobtype\": \"importExcel\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"NONE\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"ABORT\",\n    \"restructureOption\": \"PRESERVE_INPUT_DATA\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "jobs"
+              ]
+            },
+            "description": "Executes an asynchronous job on an Essbase database. Supported job types include dataload, dimbuild, calc, clear, importExcel, exportExcel, lcmExport, lcmImport, clearAggregation, buildAggregation, asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns a job record with a job_ID for monitoring progress."
+          },
+          "response": [
+            {
+              "id": "fb975dd4-9585-4d04-baa4-cd7f711a09a4",
+              "name": "Job started successfully. Returns job record with job_ID for tracking.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"importExcel\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"NONE\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"ABORT\",\n    \"restructureOption\": \"PRESERVE_INPUT_DATA\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"job_ID\": \"<long>\",\n  \"appName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"jobType\": \"<string>\",\n  \"jobfileName\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"startTime\": \"<long>\",\n  \"endTime\": \"<long>\",\n  \"statusCode\": \"<integer>\",\n  \"statusMessage\": \"<string>\",\n  \"jobInputInfo\": {\n    \"mollit_3\": \"labore minim\",\n    \"officiab0\": 91733702\n  },\n  \"jobOutputInfo\": {\n    \"ex_7a\": -10484482\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-fb975dd4-9585-4d04-baa4-cd7f711a09a4"
+            },
+            {
+              "id": "9545bc6d-e8d4-43b6-a615-2ba39112fb72",
+              "name": "Bad request. Invalid application, database, or null argument.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"importExcel\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"NONE\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"ABORT\",\n    \"restructureOption\": \"PRESERVE_INPUT_DATA\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-9545bc6d-e8d4-43b6-a615-2ba39112fb72"
+            },
+            {
+              "id": "9990a010-c275-46f7-8bc6-c84b38c023eb",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"importExcel\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"NONE\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"ABORT\",\n    \"restructureOption\": \"PRESERVE_INPUT_DATA\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-9990a010-c275-46f7-8bc6-c84b38c023eb"
+            },
+            {
+              "id": "5f34cde2-8b3c-489c-9f0b-7b23d1e63dee",
+              "name": "Service unavailable. Naming or server exception.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"importExcel\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"NONE\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"ABORT\",\n    \"restructureOption\": \"PRESERVE_INPUT_DATA\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"DATE\",\n        \"value\": {\n          \"description\": \"Default value.\"\n        },\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:11.000Z",
+              "updatedAt": "2026-07-28T02:28:11.000Z",
+              "uid": "35240-5f34cde2-8b3c-489c-9f0b-7b23d1e63dee"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:11.000Z",
+          "updatedAt": "2026-07-28T02:28:11.000Z",
+          "uid": "35240-f6745a50-2b49-4bf6-a8a1-8d8bc573c2fd"
+        }
+      ],
+      "id": "622bac82-7fbd-4a42-9445-9c6bbde4dbd1",
+      "createdAt": "2026-07-28T02:28:11.000Z",
+      "updatedAt": "2026-07-28T02:28:11.000Z",
+      "uid": "35240-622bac82-7fbd-4a42-9445-9c6bbde4dbd1"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

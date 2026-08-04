@@ -1,0 +1,1359 @@
+{
+  "info": {
+    "_postman_id": "1c62100f-6108-4ed3-81d8-c11bf027f287",
+    "name": "Oracle Essbase REST Application Configuration Files API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:08.000Z",
+    "updatedAt": "2026-07-28T02:28:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1c62100f-6108-4ed3-81d8-c11bf027f287"
+  },
+  "item": [
+    {
+      "name": "files",
+      "item": [
+        {
+          "name": "{path}",
+          "item": [
+            {
+              "name": "Oracle Essbase List Files or Download File",
+              "id": "7799a34f-2108-4b99-9a03-98f7c3e4cab3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files/:path?filter=<string>&recursive=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter the list of files.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return search results recursively.",
+                      "key": "recursive",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "93ea23db-93fe-499f-a1c5-9f0a47dff311",
+                      "key": "path",
+                      "value": "<string>",
+                      "description": "(Required) File or folder path in the file catalog."
+                    }
+                  ]
+                },
+                "description": "Lists the contents of a folder or downloads a specific file from the Essbase file catalog. Use Accept header to control response type."
+              },
+              "response": [
+                {
+                  "id": "481adb87-eb79-4e41-a4ae-3a6c0d257907",
+                  "name": "File listing or file content returned successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?filter=<string>&recursive=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter the list of files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Return search results recursively.",
+                          "key": "recursive",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"currentFolder\": {\n    \"name\": \"<string>\",\n    \"fullPath\": \"<string>\",\n    \"type\": \"folder\",\n    \"permissions\": {\n      \"addFolder\": \"<boolean>\",\n      \"addFile\": \"<boolean>\"\n    }\n  },\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"fullPath\": \"<string>\",\n      \"type\": \"file\",\n      \"permissions\": {\n        \"addFolder\": \"<boolean>\",\n        \"addFile\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"fullPath\": \"<string>\",\n      \"type\": \"file\",\n      \"permissions\": {\n        \"addFolder\": \"<boolean>\",\n        \"addFile\": \"<boolean>\"\n      }\n    }\n  ],\n  \"totalResults\": \"<long>\",\n  \"count\": \"<long>\",\n  \"limit\": \"<long>\",\n  \"offset\": \"<long>\",\n  \"hasMore\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-481adb87-eb79-4e41-a4ae-3a6c0d257907"
+                },
+                {
+                  "id": "c9952693-6215-4d0b-982e-4d01c53eb6a9",
+                  "name": "Invalid path.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?filter=<string>&recursive=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter the list of files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Return search results recursively.",
+                          "key": "recursive",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-c9952693-6215-4d0b-982e-4d01c53eb6a9"
+                },
+                {
+                  "id": "f5d58c9f-0772-4b43-b485-401e31c72a23",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?filter=<string>&recursive=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter the list of files.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Return search results recursively.",
+                          "key": "recursive",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-f5d58c9f-0772-4b43-b485-401e31c72a23"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-7799a34f-2108-4b99-9a03-98f7c3e4cab3"
+            },
+            {
+              "name": "Oracle Essbase Upload File",
+              "id": "c67a569c-b7ea-4a16-bc04-f1a75d6db635",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/files/:path?overwrite=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "query": [
+                    {
+                      "description": "Whether to overwrite an existing file.",
+                      "key": "overwrite",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "5dcf3d90-4f20-4211-8e87-235b025eefc2",
+                      "key": "path",
+                      "value": "<string>",
+                      "description": "(Required) Destination file path in the file catalog."
+                    }
+                  ]
+                },
+                "description": "Uploads a file to the specified path in the Essbase file catalog."
+              },
+              "response": [
+                {
+                  "id": "8cff37f5-75c1-49d2-bed1-3fd43598f474",
+                  "name": "File uploaded successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/octet-stream"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<binary>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?overwrite=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to overwrite an existing file.",
+                          "key": "overwrite",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-8cff37f5-75c1-49d2-bed1-3fd43598f474"
+                },
+                {
+                  "id": "5ca182a0-73ee-47a3-9c02-e2284a67b98b",
+                  "name": "Failed to upload file.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/octet-stream"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<binary>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?overwrite=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to overwrite an existing file.",
+                          "key": "overwrite",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-5ca182a0-73ee-47a3-9c02-e2284a67b98b"
+                },
+                {
+                  "id": "d6b9cacb-9706-4bdb-8641-69e7b77f413e",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/octet-stream"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<binary>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path?overwrite=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to overwrite an existing file.",
+                          "key": "overwrite",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-d6b9cacb-9706-4bdb-8641-69e7b77f413e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-c67a569c-b7ea-4a16-bc04-f1a75d6db635"
+            },
+            {
+              "name": "Oracle Essbase Delete File or Folder",
+              "id": "0d4cf4e8-71d8-4551-9711-51aa58cac446",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files/:path",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "variable": [
+                    {
+                      "id": "00dbef81-de03-4de4-be64-003c1d34a69f",
+                      "key": "path",
+                      "value": "<string>",
+                      "description": "(Required) File or folder path to delete."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified file or folder from the Essbase file catalog."
+              },
+              "response": [
+                {
+                  "id": "e865bfd5-0271-444f-bb4a-978da4bffa60",
+                  "name": "File or folder deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-e865bfd5-0271-444f-bb4a-978da4bffa60"
+                },
+                {
+                  "id": "5929ad09-433d-4531-8da8-eba1c7acdc45",
+                  "name": "Failed to delete file or folder.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-5929ad09-433d-4531-8da8-eba1c7acdc45"
+                },
+                {
+                  "id": "a4ef0dd4-246b-4d33-a9c2-d6bc32e0dde3",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/:path",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        ":path"
+                      ],
+                      "variable": [
+                        {
+                          "key": "path"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-a4ef0dd4-246b-4d33-a9c2-d6bc32e0dde3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-0d4cf4e8-71d8-4551-9711-51aa58cac446"
+            }
+          ],
+          "id": "32ab5961-0ed1-47c3-9a68-7d6a17a256ea",
+          "createdAt": "2026-07-28T02:28:08.000Z",
+          "updatedAt": "2026-07-28T02:28:08.000Z",
+          "uid": "35240-32ab5961-0ed1-47c3-9a68-7d6a17a256ea"
+        },
+        {
+          "name": "actions",
+          "item": [
+            {
+              "name": "copy",
+              "item": [
+                {
+                  "name": "Oracle Essbase Copy File",
+                  "id": "844406f7-e222-4e9c-9ab6-a93de3164a62",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/actions/copy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        "actions",
+                        "copy"
+                      ]
+                    },
+                    "description": "Copies a file or folder from one location to another in the file catalog."
+                  },
+                  "response": [
+                    {
+                      "id": "bee9d228-1b41-46b7-a88c-8648ca73c26c",
+                      "name": "File copied successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-bee9d228-1b41-46b7-a88c-8648ca73c26c"
+                    },
+                    {
+                      "id": "38bd63cd-d77e-4b28-bef3-6618a1acd1d8",
+                      "name": "Failed to copy file.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-38bd63cd-d77e-4b28-bef3-6618a1acd1d8"
+                    },
+                    {
+                      "id": "81d27277-09b7-4148-94b4-f22f0b236f4d",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-81d27277-09b7-4148-94b4-f22f0b236f4d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-844406f7-e222-4e9c-9ab6-a93de3164a62"
+                }
+              ],
+              "id": "7ae6fda8-c2a7-4342-bb3c-1d7709c57a9c",
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-7ae6fda8-c2a7-4342-bb3c-1d7709c57a9c"
+            },
+            {
+              "name": "move",
+              "item": [
+                {
+                  "name": "Oracle Essbase Move File",
+                  "id": "d411cd15-a513-4110-b532-be70c905b62a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/files/actions/move",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        "actions",
+                        "move"
+                      ]
+                    },
+                    "description": "Moves a file or folder from one location to another in the file catalog."
+                  },
+                  "response": [
+                    {
+                      "id": "380dddc8-d351-4548-af58-0ba3a1271947",
+                      "name": "File moved successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/move",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "move"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-380dddc8-d351-4548-af58-0ba3a1271947"
+                    },
+                    {
+                      "id": "abd90abe-fecc-4a01-baf3-35384d4fae7e",
+                      "name": "Failed to move file.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/move",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "move"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-abd90abe-fecc-4a01-baf3-35384d4fae7e"
+                    },
+                    {
+                      "id": "f11e33b8-4141-4d37-8a36-17f99dd679bd",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/files/actions/move",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "actions",
+                            "move"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:08.000Z",
+                      "updatedAt": "2026-07-28T02:28:08.000Z",
+                      "uid": "35240-f11e33b8-4141-4d37-8a36-17f99dd679bd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:08.000Z",
+                  "updatedAt": "2026-07-28T02:28:08.000Z",
+                  "uid": "35240-d411cd15-a513-4110-b532-be70c905b62a"
+                }
+              ],
+              "id": "d13a7d9d-5720-42db-82a2-c64160599f67",
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-d13a7d9d-5720-42db-82a2-c64160599f67"
+            }
+          ],
+          "id": "d15baca8-3989-4770-b473-00e634d1c0c3",
+          "createdAt": "2026-07-28T02:28:08.000Z",
+          "updatedAt": "2026-07-28T02:28:08.000Z",
+          "uid": "35240-d15baca8-3989-4770-b473-00e634d1c0c3"
+        },
+        {
+          "name": "Oracle Essbase List Root Folders",
+          "id": "686e47e1-3232-4878-8d9a-0fe09ead58fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/files?filter=<string>&recursive=false",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "files"
+              ],
+              "query": [
+                {
+                  "description": "Filter the list of files.",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Return search results recursively.",
+                  "key": "recursive",
+                  "value": "false"
+                }
+              ]
+            },
+            "description": "Returns a list of root-level folders in the Essbase file catalog. Typical root folders include applications, gallery, shared, and users."
+          },
+          "response": [
+            {
+              "id": "6f3dc615-a41e-4998-9035-4531d7cc8098",
+              "name": "Root folder list returned successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files?filter=<string>&recursive=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter the list of files.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return search results recursively.",
+                      "key": "recursive",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"currentFolder\": {\n    \"name\": \"<string>\",\n    \"fullPath\": \"<string>\",\n    \"type\": \"folder\",\n    \"permissions\": {\n      \"addFolder\": \"<boolean>\",\n      \"addFile\": \"<boolean>\"\n    }\n  },\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"fullPath\": \"<string>\",\n      \"type\": \"file\",\n      \"permissions\": {\n        \"addFolder\": \"<boolean>\",\n        \"addFile\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"fullPath\": \"<string>\",\n      \"type\": \"file\",\n      \"permissions\": {\n        \"addFolder\": \"<boolean>\",\n        \"addFile\": \"<boolean>\"\n      }\n    }\n  ],\n  \"totalResults\": \"<long>\",\n  \"count\": \"<long>\",\n  \"limit\": \"<long>\",\n  \"offset\": \"<long>\",\n  \"hasMore\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-6f3dc615-a41e-4998-9035-4531d7cc8098"
+            },
+            {
+              "id": "36369c0f-c020-4f50-863a-4b9049ab3fe6",
+              "name": "Invalid path.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files?filter=<string>&recursive=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter the list of files.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return search results recursively.",
+                      "key": "recursive",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-36369c0f-c020-4f50-863a-4b9049ab3fe6"
+            },
+            {
+              "id": "62c79ad7-ce72-4e0c-ad9d-7099032cf842",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/files?filter=<string>&recursive=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "files"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter the list of files.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Return search results recursively.",
+                      "key": "recursive",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:08.000Z",
+              "updatedAt": "2026-07-28T02:28:08.000Z",
+              "uid": "35240-62c79ad7-ce72-4e0c-ad9d-7099032cf842"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:08.000Z",
+          "updatedAt": "2026-07-28T02:28:08.000Z",
+          "uid": "35240-686e47e1-3232-4878-8d9a-0fe09ead58fe"
+        }
+      ],
+      "id": "acc41fc3-e648-4acf-bdad-c53c1f58c1e2",
+      "createdAt": "2026-07-28T02:28:08.000Z",
+      "updatedAt": "2026-07-28T02:28:08.000Z",
+      "uid": "35240-acc41fc3-e648-4acf-bdad-c53c1f58c1e2"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

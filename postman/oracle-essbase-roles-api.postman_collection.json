@@ -1,0 +1,258 @@
+{
+  "info": {
+    "_postman_id": "653d73d8-9641-4473-a461-d841a6ca036b",
+    "name": "Oracle Essbase REST Application Configuration Roles API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:31.000Z",
+    "updatedAt": "2026-07-28T02:28:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-653d73d8-9641-4473-a461-d841a6ca036b"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "provisionReport",
+              "item": [
+                {
+                  "name": "Oracle Essbase Get Application Provisioning Report",
+                  "id": "df99a3b8-66a5-4867-9f4e-e8a6cb587264",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/provisionReport",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "provisionReport"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ce3a0ee8-3f0a-4035-ae5c-c1331b445638",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Returns the provisioning report for the specified application, detailing user roles and permissions."
+                  },
+                  "response": [
+                    {
+                      "id": "6f39c948-213d-4b24-af5f-9c991d6f0a08",
+                      "name": "Provisioning report returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/provisionReport",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "provisionReport"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:28:32.000Z",
+                      "updatedAt": "2026-07-28T02:28:32.000Z",
+                      "uid": "35240-6f39c948-213d-4b24-af5f-9c991d6f0a08"
+                    },
+                    {
+                      "id": "110589ad-1fa8-48e6-93e4-f975531b5bd3",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/provisionReport",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "provisionReport"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:32.000Z",
+                      "updatedAt": "2026-07-28T02:28:32.000Z",
+                      "uid": "35240-110589ad-1fa8-48e6-93e4-f975531b5bd3"
+                    },
+                    {
+                      "id": "626b6753-babe-4f3a-9bd0-0af883915ea9",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/provisionReport",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "provisionReport"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:32.000Z",
+                      "updatedAt": "2026-07-28T02:28:32.000Z",
+                      "uid": "35240-626b6753-babe-4f3a-9bd0-0af883915ea9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:32.000Z",
+                  "updatedAt": "2026-07-28T02:28:32.000Z",
+                  "uid": "35240-df99a3b8-66a5-4867-9f4e-e8a6cb587264"
+                }
+              ],
+              "id": "daea14e8-1e03-4c9c-9957-1037411d7d66",
+              "createdAt": "2026-07-28T02:28:32.000Z",
+              "updatedAt": "2026-07-28T02:28:32.000Z",
+              "uid": "35240-daea14e8-1e03-4c9c-9957-1037411d7d66"
+            }
+          ],
+          "id": "0bc7c077-994e-45e9-be4e-56438d37a63b",
+          "createdAt": "2026-07-28T02:28:32.000Z",
+          "updatedAt": "2026-07-28T02:28:32.000Z",
+          "uid": "35240-0bc7c077-994e-45e9-be4e-56438d37a63b"
+        }
+      ],
+      "id": "9d9d1c40-303a-447d-b4ae-3ec085701c51",
+      "createdAt": "2026-07-28T02:28:32.000Z",
+      "updatedAt": "2026-07-28T02:28:32.000Z",
+      "uid": "35240-9d9d1c40-303a-447d-b4ae-3ec085701c51"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

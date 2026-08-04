@@ -1,0 +1,828 @@
+{
+  "info": {
+    "_postman_id": "3a402984-d75d-48ed-a7dd-867fd83f0a63",
+    "name": "Oracle Essbase REST Application Configuration Variables API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:55.000Z",
+    "updatedAt": "2026-07-28T02:28:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3a402984-d75d-48ed-a7dd-867fd83f0a63"
+  },
+  "item": [
+    {
+      "name": "variables",
+      "item": [
+        {
+          "name": "{variableName}",
+          "item": [
+            {
+              "name": "Oracle Essbase Update Server Variable",
+              "id": "a8387838-a801-49d7-b675-0d72a9021616",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/variables/:variableName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables",
+                    ":variableName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e1c6145a-fbbf-423a-be56-eaf53223baec",
+                      "key": "variableName",
+                      "value": "<string>",
+                      "description": "(Required) Variable name."
+                    }
+                  ]
+                },
+                "description": "Updates the specified server-level substitution variable."
+              },
+              "response": [
+                {
+                  "id": "9c74267e-25b0-47c5-af82-289a1bc2c2d7",
+                  "name": "Variable updated successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-9c74267e-25b0-47c5-af82-289a1bc2c2d7"
+                },
+                {
+                  "id": "b4a046ae-c42e-40dc-b6b6-ec3760a57b22",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-b4a046ae-c42e-40dc-b6b6-ec3760a57b22"
+                },
+                {
+                  "id": "098386cb-2e25-454f-8e4a-7c1892c244e7",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-098386cb-2e25-454f-8e4a-7c1892c244e7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-a8387838-a801-49d7-b675-0d72a9021616"
+            },
+            {
+              "name": "Oracle Essbase Delete Server Variable",
+              "id": "89c54a56-c6c5-49b0-856c-8a64c6a89c12",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/variables/:variableName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables",
+                    ":variableName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2754da44-99c0-4213-9bae-b818c23a2e29",
+                      "key": "variableName",
+                      "value": "<string>",
+                      "description": "(Required) Variable name."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified server-level substitution variable."
+              },
+              "response": [
+                {
+                  "id": "67a5fde0-bed0-4f46-b118-bad002298446",
+                  "name": "Variable deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-67a5fde0-bed0-4f46-b118-bad002298446"
+                },
+                {
+                  "id": "914dd69a-9c18-41ab-8131-abe0208139b2",
+                  "name": "Bad request.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-914dd69a-9c18-41ab-8131-abe0208139b2"
+                },
+                {
+                  "id": "f3f9da58-21b6-4e08-bbd8-1707e0c9c7ee",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/variables/:variableName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "variables",
+                        ":variableName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "variableName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:55.000Z",
+                  "updatedAt": "2026-07-28T02:28:55.000Z",
+                  "uid": "35240-f3f9da58-21b6-4e08-bbd8-1707e0c9c7ee"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-89c54a56-c6c5-49b0-856c-8a64c6a89c12"
+            }
+          ],
+          "id": "89711897-b70c-483b-bf93-74bedc955e04",
+          "createdAt": "2026-07-28T02:28:55.000Z",
+          "updatedAt": "2026-07-28T02:28:55.000Z",
+          "uid": "35240-89711897-b70c-483b-bf93-74bedc955e04"
+        },
+        {
+          "name": "Oracle Essbase List Server Variables",
+          "id": "92acecea-f8e3-476a-bdb8-85f0c433ddea",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/variables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "variables"
+              ]
+            },
+            "description": "Returns server-level substitution variables."
+          },
+          "response": [
+            {
+              "id": "e8fa9dd4-2513-4547-a576-6e2cb3edf1f5",
+              "name": "Variable list returned successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-e8fa9dd4-2513-4547-a576-6e2cb3edf1f5"
+            },
+            {
+              "id": "fe53e060-e5ee-4516-a93c-a0d58c9ad158",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-fe53e060-e5ee-4516-a93c-a0d58c9ad158"
+            },
+            {
+              "id": "24302567-bd59-4eb6-a6e4-01ab50576ac9",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-24302567-bd59-4eb6-a6e4-01ab50576ac9"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:55.000Z",
+          "updatedAt": "2026-07-28T02:28:55.000Z",
+          "uid": "35240-92acecea-f8e3-476a-bdb8-85f0c433ddea"
+        },
+        {
+          "name": "Oracle Essbase Create Server Variable",
+          "id": "15c71ec4-ae38-4fb7-acfa-7923fcee7ee4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/variables",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "variables"
+              ]
+            },
+            "description": "Creates a new server-level substitution variable."
+          },
+          "response": [
+            {
+              "id": "e8340b49-9914-41e3-bec8-e21a26ce81ad",
+              "name": "Variable created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-e8340b49-9914-41e3-bec8-e21a26ce81ad"
+            },
+            {
+              "id": "d43cd00f-f6b8-4223-85c3-2d087f9801b9",
+              "name": "Bad request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-d43cd00f-f6b8-4223-85c3-2d087f9801b9"
+            },
+            {
+              "id": "4080abf5-2255-4f11-bae2-1cc82b516cce",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/variables",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "variables"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:55.000Z",
+              "updatedAt": "2026-07-28T02:28:55.000Z",
+              "uid": "35240-4080abf5-2255-4f11-bae2-1cc82b516cce"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:55.000Z",
+          "updatedAt": "2026-07-28T02:28:55.000Z",
+          "uid": "35240-15c71ec4-ae38-4fb7-acfa-7923fcee7ee4"
+        }
+      ],
+      "id": "3139073a-96e8-4a7b-8955-332bf0f0b77a",
+      "createdAt": "2026-07-28T02:28:55.000Z",
+      "updatedAt": "2026-07-28T02:28:55.000Z",
+      "uid": "35240-3139073a-96e8-4a7b-8955-332bf0f0b77a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

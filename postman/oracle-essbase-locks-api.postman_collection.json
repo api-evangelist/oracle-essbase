@@ -1,0 +1,529 @@
+{
+  "info": {
+    "_postman_id": "c9b0948c-ed4f-47c3-a299-6ba83d688c1a",
+    "name": "Oracle Essbase REST Application Configuration Locks API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:12.000Z",
+    "updatedAt": "2026-07-28T02:28:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c9b0948c-ed4f-47c3-a299-6ba83d688c1a"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "locks",
+                      "item": [
+                        {
+                          "name": "{lockId}",
+                          "item": [
+                            {
+                              "name": "Oracle Essbase Unlock Object",
+                              "id": "18fd47a6-2c9a-49be-9145-cb2ca7c70e50",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks/:lockId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "locks",
+                                    ":lockId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1eacd1f4-3c67-42ed-8e04-954c043bc95b",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "922dfb21-4bcb-40a1-9a76-a91f364a2260",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    },
+                                    {
+                                      "id": "e34e2233-f3d6-44be-abf9-8dc4f354c072",
+                                      "key": "lockId",
+                                      "value": "<string>",
+                                      "description": "(Required) Lock identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Releases the specified lock on a database object."
+                              },
+                              "response": [
+                                {
+                                  "id": "3c964cd6-dea9-4df1-a565-c241587529bc",
+                                  "name": "Lock released successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks/:lockId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "locks",
+                                        ":lockId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "lockId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:28:12.000Z",
+                                  "updatedAt": "2026-07-28T02:28:12.000Z",
+                                  "uid": "35240-3c964cd6-dea9-4df1-a565-c241587529bc"
+                                },
+                                {
+                                  "id": "f7f9c95d-d46b-4104-bd35-8460d364df6a",
+                                  "name": "Failed to release lock.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks/:lockId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "locks",
+                                        ":lockId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "lockId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:12.000Z",
+                                  "updatedAt": "2026-07-28T02:28:12.000Z",
+                                  "uid": "35240-f7f9c95d-d46b-4104-bd35-8460d364df6a"
+                                },
+                                {
+                                  "id": "1ac32371-104c-4ce9-a85a-cb0b2fb39851",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks/:lockId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "locks",
+                                        ":lockId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "lockId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:12.000Z",
+                                  "updatedAt": "2026-07-28T02:28:12.000Z",
+                                  "uid": "35240-1ac32371-104c-4ce9-a85a-cb0b2fb39851"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:12.000Z",
+                              "updatedAt": "2026-07-28T02:28:12.000Z",
+                              "uid": "35240-18fd47a6-2c9a-49be-9145-cb2ca7c70e50"
+                            }
+                          ],
+                          "id": "c68254bb-e97f-4565-a8d6-d93934fc538a",
+                          "createdAt": "2026-07-28T02:28:12.000Z",
+                          "updatedAt": "2026-07-28T02:28:12.000Z",
+                          "uid": "35240-c68254bb-e97f-4565-a8d6-d93934fc538a"
+                        },
+                        {
+                          "name": "Oracle Essbase List Locks",
+                          "id": "b9511e2c-1890-4bd5-a62b-8f33850c8f76",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "locks"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d36fe92f-d109-4154-93d8-157640431419",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "332b01bb-2cf6-4fb6-82a7-195f1f00f69e",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of locks on the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "463112b9-c7b4-447d-95fc-55428f8ce0ad",
+                              "name": "Lock list returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "locks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"lockId\": \"<string>\",\n    \"userId\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"lockType\": \"<string>\",\n    \"lockTime\": \"<long>\"\n  },\n  {\n    \"lockId\": \"<string>\",\n    \"userId\": \"<string>\",\n    \"objectName\": \"<string>\",\n    \"lockType\": \"<string>\",\n    \"lockTime\": \"<long>\"\n  }\n]",
+                              "createdAt": "2026-07-28T02:28:12.000Z",
+                              "updatedAt": "2026-07-28T02:28:12.000Z",
+                              "uid": "35240-463112b9-c7b4-447d-95fc-55428f8ce0ad"
+                            },
+                            {
+                              "id": "a16c0dbf-9d63-43c6-8cac-08082fa19710",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "locks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:12.000Z",
+                              "updatedAt": "2026-07-28T02:28:12.000Z",
+                              "uid": "35240-a16c0dbf-9d63-43c6-8cac-08082fa19710"
+                            },
+                            {
+                              "id": "63fa99de-0226-4dd1-86de-af5256643c3f",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/locks",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "locks"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:12.000Z",
+                              "updatedAt": "2026-07-28T02:28:12.000Z",
+                              "uid": "35240-63fa99de-0226-4dd1-86de-af5256643c3f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:12.000Z",
+                          "updatedAt": "2026-07-28T02:28:12.000Z",
+                          "uid": "35240-b9511e2c-1890-4bd5-a62b-8f33850c8f76"
+                        }
+                      ],
+                      "id": "2c3dde7b-9c5c-41ef-8570-f8b6816f331d",
+                      "createdAt": "2026-07-28T02:28:12.000Z",
+                      "updatedAt": "2026-07-28T02:28:12.000Z",
+                      "uid": "35240-2c3dde7b-9c5c-41ef-8570-f8b6816f331d"
+                    }
+                  ],
+                  "id": "eb411b3b-292e-457c-9f54-3176002c100d",
+                  "createdAt": "2026-07-28T02:28:12.000Z",
+                  "updatedAt": "2026-07-28T02:28:12.000Z",
+                  "uid": "35240-eb411b3b-292e-457c-9f54-3176002c100d"
+                }
+              ],
+              "id": "dda5cb71-26f7-47fc-8949-c4b78a4239bc",
+              "createdAt": "2026-07-28T02:28:12.000Z",
+              "updatedAt": "2026-07-28T02:28:12.000Z",
+              "uid": "35240-dda5cb71-26f7-47fc-8949-c4b78a4239bc"
+            }
+          ],
+          "id": "838e91ab-6b94-45f9-ac60-3da60a5e3aee",
+          "createdAt": "2026-07-28T02:28:12.000Z",
+          "updatedAt": "2026-07-28T02:28:12.000Z",
+          "uid": "35240-838e91ab-6b94-45f9-ac60-3da60a5e3aee"
+        }
+      ],
+      "id": "b3dc6503-b99e-4872-8b32-3b1ae5be0b80",
+      "createdAt": "2026-07-28T02:28:12.000Z",
+      "updatedAt": "2026-07-28T02:28:12.000Z",
+      "uid": "35240-b3dc6503-b99e-4872-8b32-3b1ae5be0b80"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

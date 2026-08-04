@@ -1,0 +1,1312 @@
+{
+  "info": {
+    "_postman_id": "c3508ca1-91f9-4289-9d5b-f5640ab267b2",
+    "name": "Oracle Essbase REST Application Configuration Filters API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:09.000Z",
+    "updatedAt": "2026-07-28T02:28:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c3508ca1-91f9-4289-9d5b-f5640ab267b2"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "filters",
+                      "item": [
+                        {
+                          "name": "{filterName}",
+                          "item": [
+                            {
+                              "name": "Oracle Essbase Get Filter",
+                              "id": "c1bb1ce1-6735-485e-a92c-fbea188b8087",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters",
+                                    ":filterName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3f560cf2-dfd5-426d-bd8a-f76b693c0f00",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "bda4e436-14d3-429e-a98d-84ba8157d491",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    },
+                                    {
+                                      "id": "03e87cc9-7aad-4c09-804a-3d038c6bf100",
+                                      "key": "filterName",
+                                      "value": "<string>",
+                                      "description": "(Required) Filter name."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns details of the specified security filter."
+                              },
+                              "response": [
+                                {
+                                  "id": "d4a82149-9ac7-4dd4-9e27-a39e53fbddea",
+                                  "name": "Filter details returned successfully.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"NONE\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"WRITE\",\n      \"member\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-d4a82149-9ac7-4dd4-9e27-a39e53fbddea"
+                                },
+                                {
+                                  "id": "6d6c6800-cfc7-4fa7-9c40-c268b7d6a358",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-6d6c6800-cfc7-4fa7-9c40-c268b7d6a358"
+                                },
+                                {
+                                  "id": "a81df0fa-7568-4a3a-b844-3de9d0a9e14d",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-a81df0fa-7568-4a3a-b844-3de9d0a9e14d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-c1bb1ce1-6735-485e-a92c-fbea188b8087"
+                            },
+                            {
+                              "name": "Oracle Essbase Update Filter",
+                              "id": "9e246620-606a-45dc-acd0-a31176a0a999",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters",
+                                    ":filterName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "19be135d-22f8-49a2-b824-e1e92de4f954",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "571d5578-6b58-4261-afc0-75c51ef768a6",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    },
+                                    {
+                                      "id": "6c045b6e-97a6-4e61-965b-35582d411cac",
+                                      "key": "filterName",
+                                      "value": "<string>",
+                                      "description": "(Required) Filter name."
+                                    }
+                                  ]
+                                },
+                                "description": "Updates the specified security filter."
+                              },
+                              "response": [
+                                {
+                                  "id": "4480bb09-6ac3-4adf-9f76-8cc153311eb4",
+                                  "name": "Filter updated successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"NONE\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"WRITE\",\n      \"member\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-4480bb09-6ac3-4adf-9f76-8cc153311eb4"
+                                },
+                                {
+                                  "id": "046b99d8-517c-4bf6-a6a6-dd11ec02ef44",
+                                  "name": "Failed to update filter.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-046b99d8-517c-4bf6-a6a6-dd11ec02ef44"
+                                },
+                                {
+                                  "id": "323d8fb5-5b00-4377-92ed-e4dc38a09cb2",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-323d8fb5-5b00-4377-92ed-e4dc38a09cb2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-9e246620-606a-45dc-acd0-a31176a0a999"
+                            },
+                            {
+                              "name": "Oracle Essbase Delete Filter",
+                              "id": "57998a6d-8941-4f98-8090-9a5a9ba4d12b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters",
+                                    ":filterName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "92aad68d-c655-4862-9ca1-c61486d89440",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "efea0630-3ba4-44c5-8685-061bd5a92497",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    },
+                                    {
+                                      "id": "3ebc9b20-5f5f-4786-9071-cbbf38564153",
+                                      "key": "filterName",
+                                      "value": "<string>",
+                                      "description": "(Required) Filter name."
+                                    }
+                                  ]
+                                },
+                                "description": "Deletes the specified security filter from the database."
+                              },
+                              "response": [
+                                {
+                                  "id": "492dbd40-b107-4534-8889-20897804f53f",
+                                  "name": "Filter deleted successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-492dbd40-b107-4534-8889-20897804f53f"
+                                },
+                                {
+                                  "id": "5cfcbc78-10a1-4c6c-8755-719ddfdd4f77",
+                                  "name": "Failed to delete filter.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-5cfcbc78-10a1-4c6c-8755-719ddfdd4f77"
+                                },
+                                {
+                                  "id": "ca7c0e89-a17a-4073-90f0-c8459033dd23",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters/:filterName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "filters",
+                                        ":filterName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        },
+                                        {
+                                          "key": "filterName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:09.000Z",
+                                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                                  "uid": "35240-ca7c0e89-a17a-4073-90f0-c8459033dd23"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-57998a6d-8941-4f98-8090-9a5a9ba4d12b"
+                            }
+                          ],
+                          "id": "e5d2335d-c387-4494-b907-a656c29a4ac1",
+                          "createdAt": "2026-07-28T02:28:09.000Z",
+                          "updatedAt": "2026-07-28T02:28:09.000Z",
+                          "uid": "35240-e5d2335d-c387-4494-b907-a656c29a4ac1"
+                        },
+                        {
+                          "name": "Oracle Essbase List Filters",
+                          "id": "106a9e27-29bb-4d78-a7bd-3e5c017d1c28",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "filters"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ac1e7d8d-3bec-4bfe-b4fe-6a18a78b3e68",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "9772d4cd-3c59-4b72-9898-756b8ffbcdc2",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of security filters defined for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "e2313139-04ec-44ac-8438-909fd2976c26",
+                              "name": "Filter list returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"rows\": [\n        {\n          \"access\": \"WRITE\",\n          \"member\": \"<string>\"\n        },\n        {\n          \"access\": \"METAREAD\",\n          \"member\": \"<string>\"\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"rows\": [\n        {\n          \"access\": \"NONE\",\n          \"member\": \"<string>\"\n        },\n        {\n          \"access\": \"METAREAD\",\n          \"member\": \"<string>\"\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-e2313139-04ec-44ac-8438-909fd2976c26"
+                            },
+                            {
+                              "id": "b7df710b-5f2f-40fe-a1dd-1216b68f6e98",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-b7df710b-5f2f-40fe-a1dd-1216b68f6e98"
+                            },
+                            {
+                              "id": "1db93a74-4af1-44a0-b258-bd4af48d4f97",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-1db93a74-4af1-44a0-b258-bd4af48d4f97"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:09.000Z",
+                          "updatedAt": "2026-07-28T02:28:09.000Z",
+                          "uid": "35240-106a9e27-29bb-4d78-a7bd-3e5c017d1c28"
+                        },
+                        {
+                          "name": "Oracle Essbase Create Filter",
+                          "id": "bf6ffd87-8d58-4b08-9b47-72fe790ef0b6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "filters"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7b03b4aa-e8e8-4d99-b69c-e26fd7e17bb7",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "c8a68a0b-c1c2-415e-a374-67e781005754",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Creates a new security filter for the specified database to control member-level access."
+                          },
+                          "response": [
+                            {
+                              "id": "658529be-e91d-46a0-89b1-9d23273711da",
+                              "name": "Filter created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"NONE\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"WRITE\",\n      \"member\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-658529be-e91d-46a0-89b1-9d23273711da"
+                            },
+                            {
+                              "id": "a10351ea-09f8-4eb5-ac7d-4f040e36a45f",
+                              "name": "Failed to create filter.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-a10351ea-09f8-4eb5-ac7d-4f040e36a45f"
+                            },
+                            {
+                              "id": "01751689-dd2b-4526-95dd-71f1aa984959",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"rows\": [\n    {\n      \"access\": \"READ\",\n      \"member\": \"<string>\"\n    },\n    {\n      \"access\": \"METAREAD\",\n      \"member\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/filters",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "filters"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:09.000Z",
+                              "updatedAt": "2026-07-28T02:28:09.000Z",
+                              "uid": "35240-01751689-dd2b-4526-95dd-71f1aa984959"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:09.000Z",
+                          "updatedAt": "2026-07-28T02:28:09.000Z",
+                          "uid": "35240-bf6ffd87-8d58-4b08-9b47-72fe790ef0b6"
+                        }
+                      ],
+                      "id": "ab4b058c-7e8f-4b95-992f-8b0b3769ea51",
+                      "createdAt": "2026-07-28T02:28:09.000Z",
+                      "updatedAt": "2026-07-28T02:28:09.000Z",
+                      "uid": "35240-ab4b058c-7e8f-4b95-992f-8b0b3769ea51"
+                    }
+                  ],
+                  "id": "84ae0403-1d60-4941-90fb-d70943bf140e",
+                  "createdAt": "2026-07-28T02:28:09.000Z",
+                  "updatedAt": "2026-07-28T02:28:09.000Z",
+                  "uid": "35240-84ae0403-1d60-4941-90fb-d70943bf140e"
+                }
+              ],
+              "id": "b21f3584-5a25-4f11-acfc-049280c454ae",
+              "createdAt": "2026-07-28T02:28:09.000Z",
+              "updatedAt": "2026-07-28T02:28:09.000Z",
+              "uid": "35240-b21f3584-5a25-4f11-acfc-049280c454ae"
+            }
+          ],
+          "id": "ce96ae3d-fc15-4eff-9abe-8328faba51a6",
+          "createdAt": "2026-07-28T02:28:09.000Z",
+          "updatedAt": "2026-07-28T02:28:09.000Z",
+          "uid": "35240-ce96ae3d-fc15-4eff-9abe-8328faba51a6"
+        }
+      ],
+      "id": "d22d0024-bcab-4882-b0b0-9770dcf1ae22",
+      "createdAt": "2026-07-28T02:28:09.000Z",
+      "updatedAt": "2026-07-28T02:28:09.000Z",
+      "uid": "35240-d22d0024-bcab-4882-b0b0-9770dcf1ae22"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

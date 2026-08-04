@@ -1,0 +1,493 @@
+{
+  "info": {
+    "_postman_id": "b686630f-2c3b-4bd4-ba7a-136229547203",
+    "name": "Oracle Essbase REST Application Configuration API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:59.000Z",
+    "updatedAt": "2026-07-28T02:27:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b686630f-2c3b-4bd4-ba7a-136229547203"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "configurations",
+              "item": [
+                {
+                  "name": "Oracle Essbase List Application Configurations",
+                  "id": "289e5968-d69c-46f9-8abc-f165503cf0ea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "configurations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0484a072-d876-415d-a799-b3357e020838",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Returns application-level configuration properties for the specified application."
+                  },
+                  "response": [
+                    {
+                      "id": "6c98266c-381c-409b-8336-5bb08509cccf",
+                      "name": "Configuration list returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-6c98266c-381c-409b-8336-5bb08509cccf"
+                    },
+                    {
+                      "id": "7d3d7d94-c1d2-43d8-9ef7-e3618c1c505d",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-7d3d7d94-c1d2-43d8-9ef7-e3618c1c505d"
+                    },
+                    {
+                      "id": "31359c37-024d-4689-ae07-faf68c8e672c",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-31359c37-024d-4689-ae07-faf68c8e672c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:00.000Z",
+                  "updatedAt": "2026-07-28T02:28:00.000Z",
+                  "uid": "35240-289e5968-d69c-46f9-8abc-f165503cf0ea"
+                },
+                {
+                  "name": "Oracle Essbase Update Application Configurations",
+                  "id": "154df5c8-87c5-48eb-b6d2-52c4edd99e67",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "configurations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "45fceafa-2587-4f09-9ba8-e02921f630be",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Updates application-level configuration properties."
+                  },
+                  "response": [
+                    {
+                      "id": "1a41b078-a98a-4298-91e2-1296c5d32fd2",
+                      "name": "Configuration updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-1a41b078-a98a-4298-91e2-1296c5d32fd2"
+                    },
+                    {
+                      "id": "6e640b39-b1c7-4542-9dea-2190fad498a8",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-6e640b39-b1c7-4542-9dea-2190fad498a8"
+                    },
+                    {
+                      "id": "2ce35daa-101b-4b9b-9788-cf76d080b0ee",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/configurations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "configurations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-2ce35daa-101b-4b9b-9788-cf76d080b0ee"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:00.000Z",
+                  "updatedAt": "2026-07-28T02:28:00.000Z",
+                  "uid": "35240-154df5c8-87c5-48eb-b6d2-52c4edd99e67"
+                }
+              ],
+              "id": "1d82d096-2202-429b-b7e5-4002912ae949",
+              "createdAt": "2026-07-28T02:28:00.000Z",
+              "updatedAt": "2026-07-28T02:28:00.000Z",
+              "uid": "35240-1d82d096-2202-429b-b7e5-4002912ae949"
+            }
+          ],
+          "id": "e1113b20-27cb-4363-96ad-92b9f29fce0a",
+          "createdAt": "2026-07-28T02:28:00.000Z",
+          "updatedAt": "2026-07-28T02:28:00.000Z",
+          "uid": "35240-e1113b20-27cb-4363-96ad-92b9f29fce0a"
+        }
+      ],
+      "id": "0c238eac-e67d-4118-bed7-2d6e66967a19",
+      "createdAt": "2026-07-28T02:28:00.000Z",
+      "updatedAt": "2026-07-28T02:28:00.000Z",
+      "uid": "35240-0c238eac-e67d-4118-bed7-2d6e66967a19"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

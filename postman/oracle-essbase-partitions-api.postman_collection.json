@@ -1,0 +1,696 @@
+{
+  "info": {
+    "_postman_id": "ec16f2e4-1a0a-45bf-aeb6-641e4cafee9c",
+    "name": "Oracle Essbase REST Application Configuration Partitions API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:12.000Z",
+    "updatedAt": "2026-07-28T02:28:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ec16f2e4-1a0a-45bf-aeb6-641e4cafee9c"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "partitions",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase List Partitions",
+                          "id": "46b0accb-5e88-40de-88fd-684d3f7ac9b5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "partitions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "89f30edb-ee76-42b0-963a-cc1ec9493179",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "55fab865-7e96-4b86-8d5d-8daed9f75178",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of partitions defined for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "9b056b2f-99cd-430e-98af-a6d41f9f454b",
+                              "name": "Partition list returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-9b056b2f-99cd-430e-98af-a6d41f9f454b"
+                            },
+                            {
+                              "id": "f1aba923-6eae-40b9-bae3-44541d83a368",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-f1aba923-6eae-40b9-bae3-44541d83a368"
+                            },
+                            {
+                              "id": "34ebc4fd-4966-4ae5-9d40-42c9e88b6646",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-34ebc4fd-4966-4ae5-9d40-42c9e88b6646"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:13.000Z",
+                          "updatedAt": "2026-07-28T02:28:13.000Z",
+                          "uid": "35240-46b0accb-5e88-40de-88fd-684d3f7ac9b5"
+                        },
+                        {
+                          "name": "Oracle Essbase Create Partition",
+                          "id": "55e171a4-6728-477f-bd72-d9187d99bb71",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "partitions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ccdb583f-ac31-474b-a80b-bc1fe48d6a94",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "2082d236-447f-4673-8cad-f0505af6f39a",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Creates a new partition between databases for data federation."
+                          },
+                          "response": [
+                            {
+                              "id": "80475f7f-1d08-448c-a7cf-29b71c3df615",
+                              "name": "Partition created successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-80475f7f-1d08-448c-a7cf-29b71c3df615"
+                            },
+                            {
+                              "id": "9f0c37b6-7fc1-4bb6-9df4-589a7d7d0c0b",
+                              "name": "Failed to create partition.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-9f0c37b6-7fc1-4bb6-9df4-589a7d7d0c0b"
+                            },
+                            {
+                              "id": "a0b8d91d-3b35-45bc-8b79-21d8a65e3a93",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/partitions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "partitions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:13.000Z",
+                              "updatedAt": "2026-07-28T02:28:13.000Z",
+                              "uid": "35240-a0b8d91d-3b35-45bc-8b79-21d8a65e3a93"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:13.000Z",
+                          "updatedAt": "2026-07-28T02:28:13.000Z",
+                          "uid": "35240-55e171a4-6728-477f-bd72-d9187d99bb71"
+                        }
+                      ],
+                      "id": "bde7c57a-ce48-4cb5-871a-915dc2080832",
+                      "createdAt": "2026-07-28T02:28:13.000Z",
+                      "updatedAt": "2026-07-28T02:28:13.000Z",
+                      "uid": "35240-bde7c57a-ce48-4cb5-871a-915dc2080832"
+                    }
+                  ],
+                  "id": "1da58a39-55af-45c6-9701-12187cec7e90",
+                  "createdAt": "2026-07-28T02:28:13.000Z",
+                  "updatedAt": "2026-07-28T02:28:13.000Z",
+                  "uid": "35240-1da58a39-55af-45c6-9701-12187cec7e90"
+                }
+              ],
+              "id": "73a5dd10-68cf-44e8-ad6d-1255231444d3",
+              "createdAt": "2026-07-28T02:28:13.000Z",
+              "updatedAt": "2026-07-28T02:28:13.000Z",
+              "uid": "35240-73a5dd10-68cf-44e8-ad6d-1255231444d3"
+            }
+          ],
+          "id": "9378571f-dd19-41ed-85ef-af63ae8f101e",
+          "createdAt": "2026-07-28T02:28:13.000Z",
+          "updatedAt": "2026-07-28T02:28:13.000Z",
+          "uid": "35240-9378571f-dd19-41ed-85ef-af63ae8f101e"
+        },
+        {
+          "name": "partitions",
+          "item": [
+            {
+              "name": "supportedfederatedtypes",
+              "item": [
+                {
+                  "name": "Oracle Essbase Get Supported Partition Types",
+                  "id": "b7acb26c-e556-4c10-9f81-b9b811915811",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/partitions/supportedfederatedtypes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "partitions",
+                        "supportedfederatedtypes"
+                      ]
+                    },
+                    "description": "Returns the list of supported partition types for federated operations."
+                  },
+                  "response": [
+                    {
+                      "id": "0199cb6b-b1f4-4c2a-ba1e-f6bdbf685075",
+                      "name": "Supported partition types returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/partitions/supportedfederatedtypes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "partitions",
+                            "supportedfederatedtypes"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                      "createdAt": "2026-07-28T02:28:13.000Z",
+                      "updatedAt": "2026-07-28T02:28:13.000Z",
+                      "uid": "35240-0199cb6b-b1f4-4c2a-ba1e-f6bdbf685075"
+                    },
+                    {
+                      "id": "874a61ea-a55b-4587-93ec-1cfbb2a4210c",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/partitions/supportedfederatedtypes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "partitions",
+                            "supportedfederatedtypes"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:13.000Z",
+                      "updatedAt": "2026-07-28T02:28:13.000Z",
+                      "uid": "35240-874a61ea-a55b-4587-93ec-1cfbb2a4210c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:13.000Z",
+                  "updatedAt": "2026-07-28T02:28:13.000Z",
+                  "uid": "35240-b7acb26c-e556-4c10-9f81-b9b811915811"
+                }
+              ],
+              "id": "21cc676a-9314-49ef-b53a-cc2354218ef7",
+              "createdAt": "2026-07-28T02:28:13.000Z",
+              "updatedAt": "2026-07-28T02:28:13.000Z",
+              "uid": "35240-21cc676a-9314-49ef-b53a-cc2354218ef7"
+            }
+          ],
+          "id": "6ba3f4f1-9666-435f-ba97-7ad80b063969",
+          "createdAt": "2026-07-28T02:28:13.000Z",
+          "updatedAt": "2026-07-28T02:28:13.000Z",
+          "uid": "35240-6ba3f4f1-9666-435f-ba97-7ad80b063969"
+        }
+      ],
+      "id": "13e25392-139f-45e5-aa25-5f52661a81fd",
+      "createdAt": "2026-07-28T02:28:13.000Z",
+      "updatedAt": "2026-07-28T02:28:13.000Z",
+      "uid": "35240-13e25392-139f-45e5-aa25-5f52661a81fd"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

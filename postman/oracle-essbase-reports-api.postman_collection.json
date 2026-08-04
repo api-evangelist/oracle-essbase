@@ -1,0 +1,299 @@
+{
+  "info": {
+    "_postman_id": "e5a5f939-f159-4780-98a4-d7020e7f5a7b",
+    "name": "Oracle Essbase REST Application Configuration Reports API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:13.000Z",
+    "updatedAt": "2026-07-28T02:28:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e5a5f939-f159-4780-98a4-d7020e7f5a7b"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "executeReport",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Execute Report Script",
+                          "id": "738212f5-62b4-4d10-89e2-2ea54cee0893",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/executeReport",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "executeReport"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c4ded7d8-e3b6-40a4-80b7-a37d6acd1622",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "f28e9863-074e-4708-a9eb-8b1d35029845",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Executes a report script on the specified database and returns the report output."
+                          },
+                          "response": [
+                            {
+                              "id": "ec49b342-6357-418a-8a0c-c224410331a0",
+                              "name": "Report output returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/executeReport",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "executeReport"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:14.000Z",
+                              "updatedAt": "2026-07-28T02:28:14.000Z",
+                              "uid": "35240-ec49b342-6357-418a-8a0c-c224410331a0"
+                            },
+                            {
+                              "id": "5bb919f8-60ba-4b8a-9266-7fdb6343c52f",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/executeReport",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "executeReport"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:14.000Z",
+                              "updatedAt": "2026-07-28T02:28:14.000Z",
+                              "uid": "35240-5bb919f8-60ba-4b8a-9266-7fdb6343c52f"
+                            },
+                            {
+                              "id": "cee73bb6-b291-43f1-b732-f16d39547913",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/executeReport",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "executeReport"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:14.000Z",
+                              "updatedAt": "2026-07-28T02:28:14.000Z",
+                              "uid": "35240-cee73bb6-b291-43f1-b732-f16d39547913"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:14.000Z",
+                          "updatedAt": "2026-07-28T02:28:14.000Z",
+                          "uid": "35240-738212f5-62b4-4d10-89e2-2ea54cee0893"
+                        }
+                      ],
+                      "id": "26e13cde-e936-47f6-aca8-c6b7c988e999",
+                      "createdAt": "2026-07-28T02:28:14.000Z",
+                      "updatedAt": "2026-07-28T02:28:14.000Z",
+                      "uid": "35240-26e13cde-e936-47f6-aca8-c6b7c988e999"
+                    }
+                  ],
+                  "id": "b2b9a029-1a27-4ff0-9249-7dfeb9959ad7",
+                  "createdAt": "2026-07-28T02:28:14.000Z",
+                  "updatedAt": "2026-07-28T02:28:14.000Z",
+                  "uid": "35240-b2b9a029-1a27-4ff0-9249-7dfeb9959ad7"
+                }
+              ],
+              "id": "de1714a6-5cc3-4ece-a11e-7c785724e047",
+              "createdAt": "2026-07-28T02:28:14.000Z",
+              "updatedAt": "2026-07-28T02:28:14.000Z",
+              "uid": "35240-de1714a6-5cc3-4ece-a11e-7c785724e047"
+            }
+          ],
+          "id": "dc29bd06-a4fd-41ba-b718-5f678f28e784",
+          "createdAt": "2026-07-28T02:28:14.000Z",
+          "updatedAt": "2026-07-28T02:28:14.000Z",
+          "uid": "35240-dc29bd06-a4fd-41ba-b718-5f678f28e784"
+        }
+      ],
+      "id": "514202ee-7b6f-4030-a690-f8004201e641",
+      "createdAt": "2026-07-28T02:28:14.000Z",
+      "updatedAt": "2026-07-28T02:28:14.000Z",
+      "uid": "35240-514202ee-7b6f-4030-a690-f8004201e641"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

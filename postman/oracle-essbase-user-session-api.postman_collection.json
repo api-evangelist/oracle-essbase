@@ -1,0 +1,613 @@
+{
+  "info": {
+    "_postman_id": "f4048d3d-cdbe-43d4-be79-f0b0cfd83a27",
+    "name": "Oracle Essbase REST Application Configuration User Session API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:45.000Z",
+    "updatedAt": "2026-07-28T02:28:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f4048d3d-cdbe-43d4-be79-f0b0cfd83a27"
+  },
+  "item": [
+    {
+      "name": "session",
+      "item": [
+        {
+          "name": "login",
+          "item": [
+            {
+              "name": "Oracle Essbase Login",
+              "id": "3a2e46e9-bb09-485a-9e2b-18dd4a0772e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/session/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "session",
+                    "login"
+                  ]
+                },
+                "description": "Authenticates a user and creates a new session. Returns session information upon successful login."
+              },
+              "response": [
+                {
+                  "id": "9c890277-d6d1-4586-9eb6-5aa5fca975b9",
+                  "name": "Login successful.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-9c890277-d6d1-4586-9eb6-5aa5fca975b9"
+                },
+                {
+                  "id": "7c540868-e8e8-454f-b163-2da466c224d9",
+                  "name": "Invalid credentials.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-7c540868-e8e8-454f-b163-2da466c224d9"
+                },
+                {
+                  "id": "f9df4fe5-66db-4265-8cbe-30a4ad8bff5c",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-f9df4fe5-66db-4265-8cbe-30a4ad8bff5c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:45.000Z",
+              "updatedAt": "2026-07-28T02:28:45.000Z",
+              "uid": "35240-3a2e46e9-bb09-485a-9e2b-18dd4a0772e8"
+            }
+          ],
+          "id": "a8815cb1-0d98-423b-b55d-a65079ec0cd9",
+          "createdAt": "2026-07-28T02:28:45.000Z",
+          "updatedAt": "2026-07-28T02:28:45.000Z",
+          "uid": "35240-a8815cb1-0d98-423b-b55d-a65079ec0cd9"
+        },
+        {
+          "name": "logout",
+          "item": [
+            {
+              "name": "Oracle Essbase Logout",
+              "id": "dd1e01ce-2dbf-4763-a04c-f2f6312d3921",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/session/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "session",
+                    "logout"
+                  ]
+                },
+                "description": "Terminates the current user session and invalidates the session token."
+              },
+              "response": [
+                {
+                  "id": "7170b092-76d4-4df0-bc2c-e5633ceaf731",
+                  "name": "Logout successful.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-7170b092-76d4-4df0-bc2c-e5633ceaf731"
+                },
+                {
+                  "id": "8a0ad565-154b-4ca9-bc47-4e53958060a0",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/session/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-8a0ad565-154b-4ca9-bc47-4e53958060a0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:45.000Z",
+              "updatedAt": "2026-07-28T02:28:45.000Z",
+              "uid": "35240-dd1e01ce-2dbf-4763-a04c-f2f6312d3921"
+            }
+          ],
+          "id": "4d02f4c8-e6e2-47f1-9bac-0caff786ebc7",
+          "createdAt": "2026-07-28T02:28:45.000Z",
+          "updatedAt": "2026-07-28T02:28:45.000Z",
+          "uid": "35240-4d02f4c8-e6e2-47f1-9bac-0caff786ebc7"
+        },
+        {
+          "name": "password",
+          "item": [
+            {
+              "name": "Oracle Essbase Change Password",
+              "id": "89895d78-28f1-4130-b04a-44e93b26952d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/session/password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "session",
+                    "password"
+                  ]
+                },
+                "description": "Changes the password for the currently authenticated user."
+              },
+              "response": [
+                {
+                  "id": "2c27d8bf-21ad-4ac6-817c-d571d90e258a",
+                  "name": "Password changed successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/password",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "password"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-2c27d8bf-21ad-4ac6-817c-d571d90e258a"
+                },
+                {
+                  "id": "b119e15b-1f3e-4a81-8372-4c3c8360f6e1",
+                  "name": "Bad request or invalid current password.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/password",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "password"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-b119e15b-1f3e-4a81-8372-4c3c8360f6e1"
+                },
+                {
+                  "id": "cb1acfc6-80f7-4f59-878c-8a3eb5eecc31",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/session/password",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "session",
+                        "password"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:45.000Z",
+                  "updatedAt": "2026-07-28T02:28:45.000Z",
+                  "uid": "35240-cb1acfc6-80f7-4f59-878c-8a3eb5eecc31"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:45.000Z",
+              "updatedAt": "2026-07-28T02:28:45.000Z",
+              "uid": "35240-89895d78-28f1-4130-b04a-44e93b26952d"
+            }
+          ],
+          "id": "90588886-b2d7-4770-9c24-96d00d43949d",
+          "createdAt": "2026-07-28T02:28:45.000Z",
+          "updatedAt": "2026-07-28T02:28:45.000Z",
+          "uid": "35240-90588886-b2d7-4770-9c24-96d00d43949d"
+        }
+      ],
+      "id": "ed952e3a-f4f1-4c09-bebf-8a8028dd1e73",
+      "createdAt": "2026-07-28T02:28:45.000Z",
+      "updatedAt": "2026-07-28T02:28:45.000Z",
+      "uid": "35240-ed952e3a-f4f1-4c09-bebf-8a8028dd1e73"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

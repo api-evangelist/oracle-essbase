@@ -1,0 +1,3310 @@
+{
+  "info": {
+    "_postman_id": "84cdbb91-b349-4e69-b6d4-605097a2a7bf",
+    "name": "Oracle Essbase REST Application Configuration Databases API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:04.000Z",
+    "updatedAt": "2026-07-28T02:28:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-84cdbb91-b349-4e69-b6d4-605097a2a7bf"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{databaseName}",
+                  "item": [
+                    {
+                      "name": "aliases",
+                      "item": [
+                        {
+                          "name": "getActiveAlias",
+                          "item": [
+                            {
+                              "name": "Oracle Essbase Get Active Alias",
+                              "id": "9437d668-4aa2-467e-9b63-81ba426a4e96",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "aliases",
+                                    "getActiveAlias"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "9e3e4947-4225-43f2-bc69-d1b485ae7cd6",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "f5a7c534-0b97-4174-ac01-775de0e1352c",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    }
+                                  ]
+                                },
+                                "description": "Returns the currently active alias table for the specified database."
+                              },
+                              "response": [
+                                {
+                                  "id": "81b635ab-7f25-4528-aecb-80bbb9e60f3b",
+                                  "name": "Active alias returned successfully.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "getActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"activeAlias\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-81b635ab-7f25-4528-aecb-80bbb9e60f3b"
+                                },
+                                {
+                                  "id": "ac33a5b9-adbf-41c4-92da-93aeb14c3f7b",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "getActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-ac33a5b9-adbf-41c4-92da-93aeb14c3f7b"
+                                },
+                                {
+                                  "id": "b6cb5fe5-1ef0-4f29-824d-a3fa97cdc03e",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "getActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-b6cb5fe5-1ef0-4f29-824d-a3fa97cdc03e"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-9437d668-4aa2-467e-9b63-81ba426a4e96"
+                            }
+                          ],
+                          "id": "6ab7bde8-38e0-42ea-98f0-599db6552ab7",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-6ab7bde8-38e0-42ea-98f0-599db6552ab7"
+                        },
+                        {
+                          "name": "setActiveAlias",
+                          "item": [
+                            {
+                              "name": "Oracle Essbase Set Active Alias",
+                              "id": "6d08edbd-8a6b-4472-aa29-b4402ff4aedc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"activeAlias\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "aliases",
+                                    "setActiveAlias"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "97935ac3-79af-42fc-a870-f17195d0afec",
+                                      "key": "applicationName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase application name."
+                                    },
+                                    {
+                                      "id": "2e8d232b-9f76-4317-a1d1-c0d09eeb1ad8",
+                                      "key": "databaseName",
+                                      "value": "<string>",
+                                      "description": "(Required) Essbase database (cube) name."
+                                    }
+                                  ]
+                                },
+                                "description": "Sets the active alias table for the specified database."
+                              },
+                              "response": [
+                                {
+                                  "id": "ed354f47-6fbd-4a57-b6ed-024c7a634e2c",
+                                  "name": "Active alias updated successfully.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"activeAlias\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "setActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-ed354f47-6fbd-4a57-b6ed-024c7a634e2c"
+                                },
+                                {
+                                  "id": "ff044365-0e9c-4a75-b143-9dbc1048fab1",
+                                  "name": "Bad request.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"activeAlias\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "setActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-ff044365-0e9c-4a75-b143-9dbc1048fab1"
+                                },
+                                {
+                                  "id": "d41307bf-017c-4213-b024-7d57106fd664",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"activeAlias\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "applications",
+                                        ":applicationName",
+                                        "databases",
+                                        ":databaseName",
+                                        "aliases",
+                                        "setActiveAlias"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "applicationName"
+                                        },
+                                        {
+                                          "key": "databaseName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T02:28:04.000Z",
+                                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                                  "uid": "35240-d41307bf-017c-4213-b024-7d57106fd664"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-6d08edbd-8a6b-4472-aa29-b4402ff4aedc"
+                            }
+                          ],
+                          "id": "de107a2e-6fb6-4982-8304-5af5084c75b4",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-de107a2e-6fb6-4982-8304-5af5084c75b4"
+                        },
+                        {
+                          "name": "Oracle Essbase List Aliases",
+                          "id": "3b7f60db-860a-4df1-a5a9-bcc956d9caaa",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "aliases"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "792aa579-3d1b-4dae-969a-777740a410cf",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "ae26f977-5d7b-4e8d-a37b-6fe5249a448a",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of alias tables defined for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "2f314b51-e977-4d6f-88a0-cfb209d7f8e1",
+                              "name": "Alias list returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "aliases"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-2f314b51-e977-4d6f-88a0-cfb209d7f8e1"
+                            },
+                            {
+                              "id": "84a34f35-cb56-480f-9ee5-a87666c48567",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "aliases"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-84a34f35-cb56-480f-9ee5-a87666c48567"
+                            },
+                            {
+                              "id": "75e8f542-0c3b-49ad-aa1e-16a667878815",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/aliases",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "aliases"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-75e8f542-0c3b-49ad-aa1e-16a667878815"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-3b7f60db-860a-4df1-a5a9-bcc956d9caaa"
+                        }
+                      ],
+                      "id": "c8f72679-2afc-425a-a755-da7759a68b0f",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-c8f72679-2afc-425a-a755-da7759a68b0f"
+                    },
+                    {
+                      "name": "currencySettings",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Get Currency Settings",
+                          "id": "da1cb143-04f2-4169-bb40-b55eccf7f238",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "currencySettings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dbfc1bff-44f0-4c8e-941e-3b71eb08a583",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "7286a8ee-45a4-4ae7-902d-e1a8e93a585d",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns the currency conversion settings for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "38df9722-a71f-47ed-ac33-51def7455abc",
+                              "name": "Currency settings returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-38df9722-a71f-47ed-ac33-51def7455abc"
+                            },
+                            {
+                              "id": "8fc599c6-38ea-4e55-92b8-a876cb0c0c83",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-8fc599c6-38ea-4e55-92b8-a876cb0c0c83"
+                            },
+                            {
+                              "id": "57ace6d4-4bff-4d97-a173-f3526bc00e06",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-57ace6d4-4bff-4d97-a173-f3526bc00e06"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-da1cb143-04f2-4169-bb40-b55eccf7f238"
+                        },
+                        {
+                          "name": "Oracle Essbase Set Currency Settings",
+                          "id": "b9ba71f5-b061-47dd-941c-8e38c111cff4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "currencySettings"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d9facbea-fb3f-4c24-af9c-7c72b2574b19",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "899ec2be-f21c-4131-b5ac-198fb59b0eda",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Updates the currency conversion settings for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "e23c614b-43c9-410d-a956-129bd498e42e",
+                              "name": "Currency settings updated successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-e23c614b-43c9-410d-a956-129bd498e42e"
+                            },
+                            {
+                              "id": "79ae49c7-57a7-493c-8912-df98604f4bd9",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-79ae49c7-57a7-493c-8912-df98604f4bd9"
+                            },
+                            {
+                              "id": "5e3034dc-5f6c-4e4a-96dd-55be16286ca0",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/currencySettings",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "currencySettings"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-5e3034dc-5f6c-4e4a-96dd-55be16286ca0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-b9ba71f5-b061-47dd-941c-8e38c111cff4"
+                        }
+                      ],
+                      "id": "0b6cd6e5-6410-40ce-9fdd-c4033c690d56",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-0b6cd6e5-6410-40ce-9fdd-c4033c690d56"
+                    },
+                    {
+                      "name": "calculationFunctions",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Get Calculation Functions",
+                          "id": "440f44e9-412c-46ba-ab36-efd0fcc206d6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/calculationFunctions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "calculationFunctions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d882c25f-148d-44d3-bf9a-086c1a930510",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "a7b162ca-5c0d-48b0-9b9c-d33d09801de1",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of available calculation functions for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "50efc9f9-327e-4db8-b8d9-c2ca54c07903",
+                              "name": "Calculation functions returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/calculationFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "calculationFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-50efc9f9-327e-4db8-b8d9-c2ca54c07903"
+                            },
+                            {
+                              "id": "30451564-7b0e-41ef-9320-e19e6767c147",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/calculationFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "calculationFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-30451564-7b0e-41ef-9320-e19e6767c147"
+                            },
+                            {
+                              "id": "9ddebf41-83a0-416b-b42f-fa0ae2242037",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/calculationFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "calculationFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-9ddebf41-83a0-416b-b42f-fa0ae2242037"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-440f44e9-412c-46ba-ab36-efd0fcc206d6"
+                        }
+                      ],
+                      "id": "c81c0b9d-0ba4-4c24-831a-0e4c98936a07",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-c81c0b9d-0ba4-4c24-831a-0e4c98936a07"
+                    },
+                    {
+                      "name": "formulaFunctions",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Get Formula Functions",
+                          "id": "008a008b-c9d0-4dcd-b598-769c4b0d47a5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/formulaFunctions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "formulaFunctions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "cd596cd0-1bd7-4c51-86cf-4bfd1c13f98b",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "9160ba84-6ff7-4b30-8305-2d95555244f2",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of available formula functions for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "f9c3bb0d-2fb8-4189-a43f-46d890074136",
+                              "name": "Formula functions returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/formulaFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "formulaFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-f9c3bb0d-2fb8-4189-a43f-46d890074136"
+                            },
+                            {
+                              "id": "e91f4256-9868-41d9-929e-8799e24cfa1a",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/formulaFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "formulaFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-e91f4256-9868-41d9-929e-8799e24cfa1a"
+                            },
+                            {
+                              "id": "4bca0ef5-edf1-422b-a94b-a2e1f43b063f",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/formulaFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "formulaFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-4bca0ef5-edf1-422b-a94b-a2e1f43b063f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-008a008b-c9d0-4dcd-b598-769c4b0d47a5"
+                        }
+                      ],
+                      "id": "673ee047-f04c-49d8-89f2-ba6fc8d493e8",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-673ee047-f04c-49d8-89f2-ba6fc8d493e8"
+                    },
+                    {
+                      "name": "mdxFunctions",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Get MDX Functions",
+                          "id": "a8479dc4-64c9-48a8-9354-c12bc79cead8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/mdxFunctions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName",
+                                "mdxFunctions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "85cd4112-5489-4fe7-b98b-de3ef73ac78d",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                },
+                                {
+                                  "id": "26b9a3f4-6e13-4091-ab38-c7a5335803fc",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase database (cube) name."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of available MDX functions for the specified database."
+                          },
+                          "response": [
+                            {
+                              "id": "8d663726-0e62-4eff-95ea-802ae43df547",
+                              "name": "MDX functions returned successfully.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/mdxFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "mdxFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-8d663726-0e62-4eff-95ea-802ae43df547"
+                            },
+                            {
+                              "id": "3be43985-cce4-4f94-bdc8-cc47cf6e9d59",
+                              "name": "Bad request.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/mdxFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "mdxFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-3be43985-cce4-4f94-bdc8-cc47cf6e9d59"
+                            },
+                            {
+                              "id": "bb3d1723-8007-4f70-9d4e-58322f89f9c3",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName/mdxFunctions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    ":databaseName",
+                                    "mdxFunctions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    },
+                                    {
+                                      "key": "databaseName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-bb3d1723-8007-4f70-9d4e-58322f89f9c3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-a8479dc4-64c9-48a8-9354-c12bc79cead8"
+                        }
+                      ],
+                      "id": "f6500f0a-1f02-48ad-89a9-037e6e034e43",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-f6500f0a-1f02-48ad-89a9-037e6e034e43"
+                    },
+                    {
+                      "name": "Oracle Essbase Get Database",
+                      "id": "4237ec59-b84b-4345-8b99-75832c77a18a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases",
+                            ":databaseName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9ee16cd9-169f-485e-b93f-395b98735a7f",
+                              "key": "applicationName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase application name."
+                            },
+                            {
+                              "id": "6a4da1af-7f8d-48b1-b93f-f4d69fb70836",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase database (cube) name."
+                            }
+                          ]
+                        },
+                        "description": "Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings."
+                      },
+                      "response": [
+                        {
+                          "id": "08b4b3f2-df5b-4694-89b1-2b7062269980",
+                          "name": "Database details returned successfully.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"application\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"stopped\",\n  \"startTime\": \"<long>\",\n  \"description\": \"<string>\",\n  \"type\": \"CURRENCY\",\n  \"applicationRole\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopDBAllowed\": \"<boolean>\",\n  \"inspectDBAllowed\": \"<boolean>\",\n  \"dbVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-08b4b3f2-df5b-4694-89b1-2b7062269980"
+                        },
+                        {
+                          "id": "6d9cabdb-832d-4aa0-bbc3-188e07f0d43e",
+                          "name": "Failed to get database.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-6d9cabdb-832d-4aa0-bbc3-188e07f0d43e"
+                        },
+                        {
+                          "id": "501e4324-8c1f-4583-b6f6-ba11663cea49",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-501e4324-8c1f-4583-b6f6-ba11663cea49"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-4237ec59-b84b-4345-8b99-75832c77a18a"
+                    },
+                    {
+                      "name": "Oracle Essbase Start or Stop Database",
+                      "id": "925a658b-8aef-413a-bb66-539666bf941e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"status\": \"stopped\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases",
+                            ":databaseName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7b228bcb-f0ec-4901-9d7e-5df08f0c5ab9",
+                              "key": "applicationName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase application name."
+                            },
+                            {
+                              "id": "d514e87d-1f46-4858-ab49-468154b01477",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase database (cube) name."
+                            }
+                          ]
+                        },
+                        "description": "Starts or stops the specified database by updating its status."
+                      },
+                      "response": [
+                        {
+                          "id": "fc392076-dd86-4753-984f-14eee0fd7d95",
+                          "name": "Database status updated successfully.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"stopped\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"application\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"stopped\",\n  \"startTime\": \"<long>\",\n  \"description\": \"<string>\",\n  \"type\": \"CURRENCY\",\n  \"applicationRole\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopDBAllowed\": \"<boolean>\",\n  \"inspectDBAllowed\": \"<boolean>\",\n  \"dbVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-fc392076-dd86-4753-984f-14eee0fd7d95"
+                        },
+                        {
+                          "id": "ce345c01-f871-4b24-93b6-a29776d0331f",
+                          "name": "Failed to update database status.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"stopped\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-ce345c01-f871-4b24-93b6-a29776d0331f"
+                        },
+                        {
+                          "id": "8c945d4b-b83b-4fba-8197-c46ada23d730",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"status\": \"stopped\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-8c945d4b-b83b-4fba-8197-c46ada23d730"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-925a658b-8aef-413a-bb66-539666bf941e"
+                    },
+                    {
+                      "name": "Oracle Essbase Delete Database",
+                      "id": "9b100069-89ab-42b4-91cc-b0924abd8269",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases",
+                            ":databaseName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fa69a45d-0db6-4aa6-b265-9342c82de91c",
+                              "key": "applicationName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase application name."
+                            },
+                            {
+                              "id": "309f539e-d6b5-42f5-a320-9cdfbe6f4870",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) Essbase database (cube) name."
+                            }
+                          ]
+                        },
+                        "description": "Deletes the specified database (cube) from the application."
+                      },
+                      "response": [
+                        {
+                          "id": "6847309b-ec3b-4607-a558-cb11862f7aed",
+                          "name": "Database deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-6847309b-ec3b-4607-a558-cb11862f7aed"
+                        },
+                        {
+                          "id": "1a15ea5e-77c7-4564-926f-fff173416ce0",
+                          "name": "Failed to delete database.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-1a15ea5e-77c7-4564-926f-fff173416ce0"
+                        },
+                        {
+                          "id": "e7f86e88-8cc7-46c0-8242-d373d9fdc1c2",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/:databaseName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                ":databaseName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "applicationName"
+                                },
+                                {
+                                  "key": "databaseName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-e7f86e88-8cc7-46c0-8242-d373d9fdc1c2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-9b100069-89ab-42b4-91cc-b0924abd8269"
+                    }
+                  ],
+                  "id": "245dba59-f304-46ac-941a-b97faf9e2c19",
+                  "createdAt": "2026-07-28T02:28:04.000Z",
+                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                  "uid": "35240-245dba59-f304-46ac-941a-b97faf9e2c19"
+                },
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "copy",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Copy Database",
+                          "id": "dc7de680-a7d8-480b-9ca6-7f3bef257f26",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/copy",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                "actions",
+                                "copy"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e1a3b199-d87e-42cf-ad66-f407e41ff15e",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                }
+                              ]
+                            },
+                            "description": "Creates a copy of an existing database within the same application or to a different application."
+                          },
+                          "response": [
+                            {
+                              "id": "41ea8c76-dada-445d-aa1e-e83d2c3ab4b1",
+                              "name": "Database copied successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/copy",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "copy"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"application\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"stopped\",\n  \"startTime\": \"<long>\",\n  \"description\": \"<string>\",\n  \"type\": \"CURRENCY\",\n  \"applicationRole\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopDBAllowed\": \"<boolean>\",\n  \"inspectDBAllowed\": \"<boolean>\",\n  \"dbVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-41ea8c76-dada-445d-aa1e-e83d2c3ab4b1"
+                            },
+                            {
+                              "id": "ac9990a6-ae52-4439-8ef6-899ef77ea1a7",
+                              "name": "Failed to copy database.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/copy",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "copy"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-ac9990a6-ae52-4439-8ef6-899ef77ea1a7"
+                            },
+                            {
+                              "id": "cb8e3102-9658-454c-bacb-921ecee52c0b",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/copy",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "copy"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-cb8e3102-9658-454c-bacb-921ecee52c0b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-dc7de680-a7d8-480b-9ca6-7f3bef257f26"
+                        }
+                      ],
+                      "id": "64f9d7ad-06dc-41e5-ab55-47113aa38440",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-64f9d7ad-06dc-41e5-ab55-47113aa38440"
+                    },
+                    {
+                      "name": "rename",
+                      "item": [
+                        {
+                          "name": "Oracle Essbase Rename Database",
+                          "id": "4ce4c19e-f72b-46b9-89c4-d454789c1008",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/rename",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                ":applicationName",
+                                "databases",
+                                "actions",
+                                "rename"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9d939231-ea2f-4c4b-92a9-594d7057641d",
+                                  "key": "applicationName",
+                                  "value": "<string>",
+                                  "description": "(Required) Essbase application name."
+                                }
+                              ]
+                            },
+                            "description": "Renames an existing database within the application."
+                          },
+                          "response": [
+                            {
+                              "id": "b7f9f098-79fa-4e94-b339-2b9f68265497",
+                              "name": "Database renamed successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/rename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "rename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-b7f9f098-79fa-4e94-b339-2b9f68265497"
+                            },
+                            {
+                              "id": "eb8357ee-a8b4-4674-a252-9bb3a4cc23da",
+                              "name": "Failed to rename database.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/rename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "rename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-eb8357ee-a8b4-4674-a252-9bb3a4cc23da"
+                            },
+                            {
+                              "id": "0c0cb4ce-8f47-450d-b55b-e484045347b6",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/applications/:applicationName/databases/actions/rename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "applications",
+                                    ":applicationName",
+                                    "databases",
+                                    "actions",
+                                    "rename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "applicationName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:04.000Z",
+                              "updatedAt": "2026-07-28T02:28:04.000Z",
+                              "uid": "35240-0c0cb4ce-8f47-450d-b55b-e484045347b6"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-4ce4c19e-f72b-46b9-89c4-d454789c1008"
+                        }
+                      ],
+                      "id": "088c5083-9c66-4bc3-a487-fff86618f12f",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-088c5083-9c66-4bc3-a487-fff86618f12f"
+                    }
+                  ],
+                  "id": "811224e5-5695-4964-9468-28cdff72115f",
+                  "createdAt": "2026-07-28T02:28:04.000Z",
+                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                  "uid": "35240-811224e5-5695-4964-9468-28cdff72115f"
+                },
+                {
+                  "name": "Oracle Essbase List Databases",
+                  "id": "59c57184-562e-4cf4-8eb4-b57eda11add8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/databases",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "databases"
+                      ],
+                      "variable": [
+                        {
+                          "id": "25831b11-11a3-4039-a60a-aac039f38128",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of databases (cubes) within the specified application."
+                  },
+                  "response": [
+                    {
+                      "id": "c982645e-1505-4485-ae7e-b65fa233b1fc",
+                      "name": "Database list returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"application\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"creationTime\": \"<long>\",\n      \"modifiedBy\": \"<string>\",\n      \"modifiedTime\": \"<long>\",\n      \"status\": \"started\",\n      \"startTime\": \"<long>\",\n      \"description\": \"<string>\",\n      \"type\": \"CURRENCY\",\n      \"applicationRole\": \"<string>\",\n      \"easManagedApp\": \"<boolean>\",\n      \"startStopDBAllowed\": \"<boolean>\",\n      \"inspectDBAllowed\": \"<boolean>\",\n      \"dbVariablesSetting\": {\n        \"showVariables\": \"<boolean>\",\n        \"updateVariables\": \"<boolean>\"\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"application\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"creationTime\": \"<long>\",\n      \"modifiedBy\": \"<string>\",\n      \"modifiedTime\": \"<long>\",\n      \"status\": \"stopped\",\n      \"startTime\": \"<long>\",\n      \"description\": \"<string>\",\n      \"type\": \"ASO\",\n      \"applicationRole\": \"<string>\",\n      \"easManagedApp\": \"<boolean>\",\n      \"startStopDBAllowed\": \"<boolean>\",\n      \"inspectDBAllowed\": \"<boolean>\",\n      \"dbVariablesSetting\": {\n        \"showVariables\": \"<boolean>\",\n        \"updateVariables\": \"<boolean>\"\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalResults\": \"<long>\",\n  \"limit\": \"<long>\",\n  \"offset\": \"<long>\",\n  \"hasMore\": \"<boolean>\",\n  \"count\": \"<long>\"\n}",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-c982645e-1505-4485-ae7e-b65fa233b1fc"
+                    },
+                    {
+                      "id": "60c72cb9-8497-4c4a-9fdd-cc565ca745e7",
+                      "name": "Failed to list databases.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-60c72cb9-8497-4c4a-9fdd-cc565ca745e7"
+                    },
+                    {
+                      "id": "c184c0ec-736c-4e76-9b0c-1543f33b133d",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/databases",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "databases"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-c184c0ec-736c-4e76-9b0c-1543f33b133d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:04.000Z",
+                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                  "uid": "35240-59c57184-562e-4cf4-8eb4-b57eda11add8"
+                }
+              ],
+              "id": "31db03f1-08d3-4ef0-9194-fe7695e06bf6",
+              "createdAt": "2026-07-28T02:28:04.000Z",
+              "updatedAt": "2026-07-28T02:28:04.000Z",
+              "uid": "35240-31db03f1-08d3-4ef0-9194-fe7695e06bf6"
+            }
+          ],
+          "id": "f9678625-5b90-4488-8211-79d7f0768e82",
+          "createdAt": "2026-07-28T02:28:04.000Z",
+          "updatedAt": "2026-07-28T02:28:04.000Z",
+          "uid": "35240-f9678625-5b90-4488-8211-79d7f0768e82"
+        }
+      ],
+      "id": "15cf0bd4-c7aa-4cde-b44f-2cee32fe1dca",
+      "createdAt": "2026-07-28T02:28:04.000Z",
+      "updatedAt": "2026-07-28T02:28:04.000Z",
+      "uid": "35240-15cf0bd4-c7aa-4cde-b44f-2cee32fe1dca"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}

@@ -1,0 +1,3256 @@
+{
+  "info": {
+    "_postman_id": "fd4125ef-d31d-40f5-b251-1d7c4275fa88",
+    "name": "Oracle Essbase REST Application Configuration Applications API",
+    "description": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:00.000Z",
+    "updatedAt": "2026-07-28T02:28:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fd4125ef-d31d-40f5-b251-1d7c4275fa88"
+  },
+  "item": [
+    {
+      "name": "applications",
+      "item": [
+        {
+          "name": "{applicationName}",
+          "item": [
+            {
+              "name": "encrypt",
+              "item": [
+                {
+                  "name": "Oracle Essbase Encrypt Application",
+                  "id": "d9742dc3-9f2b-4014-9a71-e516661375f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/encrypt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "encrypt"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a99f3070-f3d9-49f0-8e4e-f168767f4ffe",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Encrypts the specified Essbase application for data security."
+                  },
+                  "response": [
+                    {
+                      "id": "1a20e1c1-ff46-4c16-8419-63b89e3ca790",
+                      "name": "Application encrypted successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-1a20e1c1-ff46-4c16-8419-63b89e3ca790"
+                    },
+                    {
+                      "id": "0688662e-2145-45d5-a0af-39bc3ff2b7d7",
+                      "name": "Failed to encrypt application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-0688662e-2145-45d5-a0af-39bc3ff2b7d7"
+                    },
+                    {
+                      "id": "ffb60a84-6f2f-403c-8540-4e1e4586c748",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-ffb60a84-6f2f-403c-8540-4e1e4586c748"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-d9742dc3-9f2b-4014-9a71-e516661375f2"
+                }
+              ],
+              "id": "e6c65ef8-abd7-479b-adec-785d02cce39a",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-e6c65ef8-abd7-479b-adec-785d02cce39a"
+            },
+            {
+              "name": "decrypt",
+              "item": [
+                {
+                  "name": "Oracle Essbase Decrypt Application",
+                  "id": "671aeccd-ef32-48ba-9e23-fd2c3ea346c3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/decrypt",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "decrypt"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8b420c07-0066-454a-a88b-95d0e0713c17",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Decrypts the specified Essbase application."
+                  },
+                  "response": [
+                    {
+                      "id": "2da5a421-7021-4ca7-9e33-cf7702884387",
+                      "name": "Application decrypted successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/decrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "decrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-2da5a421-7021-4ca7-9e33-cf7702884387"
+                    },
+                    {
+                      "id": "35478add-4806-4116-96dc-d6a536ea25ca",
+                      "name": "Failed to decrypt application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/decrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "decrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-35478add-4806-4116-96dc-d6a536ea25ca"
+                    },
+                    {
+                      "id": "facbb18b-f862-4cab-b94e-87574cb1447c",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/decrypt",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "decrypt"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-facbb18b-f862-4cab-b94e-87574cb1447c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-671aeccd-ef32-48ba-9e23-fd2c3ea346c3"
+                }
+              ],
+              "id": "e3691464-c34e-4305-b8e1-8b30f7b80cc2",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-e3691464-c34e-4305-b8e1-8b30f7b80cc2"
+            },
+            {
+              "name": "encryptionconfig",
+              "item": [
+                {
+                  "name": "Oracle Essbase Get Encryption Info",
+                  "id": "d881cc59-4b6d-4b3b-a513-18b6e487852a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName/encryptionconfig",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName",
+                        "encryptionconfig"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3c9a5a8-241f-431c-adc3-cca9ca0a6866",
+                          "key": "applicationName",
+                          "value": "<string>",
+                          "description": "(Required) Essbase application name."
+                        }
+                      ]
+                    },
+                    "description": "Returns encryption configuration information for the specified application."
+                  },
+                  "response": [
+                    {
+                      "id": "e198f49d-9ec1-4360-9557-d4a44336e187",
+                      "name": "Encryption info returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encryptionconfig",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encryptionconfig"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"encrypted\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-e198f49d-9ec1-4360-9557-d4a44336e187"
+                    },
+                    {
+                      "id": "d02a829e-1a80-4a1b-aa97-38bff8398786",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encryptionconfig",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encryptionconfig"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-d02a829e-1a80-4a1b-aa97-38bff8398786"
+                    },
+                    {
+                      "id": "a23e56d9-615d-4ab9-ac68-fd72a6224684",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/:applicationName/encryptionconfig",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            ":applicationName",
+                            "encryptionconfig"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-a23e56d9-615d-4ab9-ac68-fd72a6224684"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-d881cc59-4b6d-4b3b-a513-18b6e487852a"
+                }
+              ],
+              "id": "6e82841e-e85a-4df9-9985-a9561becf697",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-6e82841e-e85a-4df9-9985-a9561becf697"
+            },
+            {
+              "name": "Oracle Essbase Get Application",
+              "id": "91244ac8-9139-4491-aace-5154ad40fd23",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "29474584-9bca-4745-ba1f-1699d5975cf3",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "description": "(Required) Essbase application name."
+                    }
+                  ]
+                },
+                "description": "Returns details of the specified Essbase application, including status, type, owner, and configuration."
+              },
+              "response": [
+                {
+                  "id": "0843211c-2a1c-40cc-9861-32cce70da09c",
+                  "name": "Application details returned successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-0843211c-2a1c-40cc-9861-32cce70da09c"
+                },
+                {
+                  "id": "6ed2f718-b020-47b2-9014-26625b74bbea",
+                  "name": "Failed to get application.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-6ed2f718-b020-47b2-9014-26625b74bbea"
+                },
+                {
+                  "id": "ce0fa6cf-f725-4112-8711-3cee0ee48f09",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-ce0fa6cf-f725-4112-8711-3cee0ee48f09"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-91244ac8-9139-4491-aace-5154ad40fd23"
+            },
+            {
+              "name": "Oracle Essbase Start or Stop Application",
+              "id": "28cf6b60-35dc-4423-9a3a-31fe858a8d16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"stopped\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d31ed2bf-eb30-4509-8d89-9e1df55b3eda",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "description": "(Required) Essbase application name."
+                    }
+                  ]
+                },
+                "description": "Starts or stops an Essbase application by updating its status."
+              },
+              "response": [
+                {
+                  "id": "54e5bd26-ff89-4322-bb7c-eb0050dd6e6c",
+                  "name": "Application status updated successfully.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"stopped\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-54e5bd26-ff89-4322-bb7c-eb0050dd6e6c"
+                },
+                {
+                  "id": "a2da3115-6a27-4a29-b056-b48448954858",
+                  "name": "Failed to update application status.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"stopped\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-a2da3115-6a27-4a29-b056-b48448954858"
+                },
+                {
+                  "id": "d11f5ee5-7c43-4933-b180-4adc769bcd91",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"stopped\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-d11f5ee5-7c43-4933-b180-4adc769bcd91"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-28cf6b60-35dc-4423-9a3a-31fe858a8d16"
+            },
+            {
+              "name": "Oracle Essbase Delete Application",
+              "id": "49bdbbeb-3307-49f6-b0e2-9f3c578cc62c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications/:applicationName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications",
+                    ":applicationName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fbbf5aff-41a3-4948-8efc-814a537f985e",
+                      "key": "applicationName",
+                      "value": "<string>",
+                      "description": "(Required) Essbase application name."
+                    }
+                  ]
+                },
+                "description": "Deletes the specified Essbase application and all of its databases and associated resources."
+              },
+              "response": [
+                {
+                  "id": "698c93ea-ad87-4a93-baf8-dcc7890b361d",
+                  "name": "Application deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-698c93ea-ad87-4a93-baf8-dcc7890b361d"
+                },
+                {
+                  "id": "a8f9b861-b6d5-4b00-8edc-951e015988e9",
+                  "name": "Failed to delete application.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-a8f9b861-b6d5-4b00-8edc-951e015988e9"
+                },
+                {
+                  "id": "9dc9aaf3-7af8-4b6d-9b91-e124c1341904",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/:applicationName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        ":applicationName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "applicationName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-9dc9aaf3-7af8-4b6d-9b91-e124c1341904"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-49bdbbeb-3307-49f6-b0e2-9f3c578cc62c"
+            }
+          ],
+          "id": "c607046a-6f95-4718-80c1-e79b20ce9c07",
+          "createdAt": "2026-07-28T02:28:01.000Z",
+          "updatedAt": "2026-07-28T02:28:01.000Z",
+          "uid": "35240-c607046a-6f95-4718-80c1-e79b20ce9c07"
+        },
+        {
+          "name": "actions",
+          "item": [
+            {
+              "name": "copy",
+              "item": [
+                {
+                  "name": "Oracle Essbase Copy Application",
+                  "id": "24e70229-4cf8-45b1-a013-672362412b90",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/actions/copy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "actions",
+                        "copy"
+                      ]
+                    },
+                    "description": "Creates a copy of an existing Essbase application with a new name."
+                  },
+                  "response": [
+                    {
+                      "id": "676ceb39-5e9f-4b9b-a4d1-046dab301287",
+                      "name": "Application copied successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-676ceb39-5e9f-4b9b-a4d1-046dab301287"
+                    },
+                    {
+                      "id": "b544ff75-5d79-42fc-bee6-c713491ffef2",
+                      "name": "Failed to copy application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-b544ff75-5d79-42fc-bee6-c713491ffef2"
+                    },
+                    {
+                      "id": "0f021e83-19ad-4635-8a84-d305003f9cc3",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/copy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "copy"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-0f021e83-19ad-4635-8a84-d305003f9cc3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-24e70229-4cf8-45b1-a013-672362412b90"
+                }
+              ],
+              "id": "cfa9c4ed-c463-4553-8f8f-881633a5be29",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-cfa9c4ed-c463-4553-8f8f-881633a5be29"
+            },
+            {
+              "name": "rename",
+              "item": [
+                {
+                  "name": "Oracle Essbase Rename Application",
+                  "id": "e6ed6173-8083-45c7-a405-ab6418093172",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/actions/rename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "actions",
+                        "rename"
+                      ]
+                    },
+                    "description": "Renames an existing Essbase application."
+                  },
+                  "response": [
+                    {
+                      "id": "57a77bf0-b3c4-479f-95aa-2dc5083197b5",
+                      "name": "Application renamed successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/rename",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "rename"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-57a77bf0-b3c4-479f-95aa-2dc5083197b5"
+                    },
+                    {
+                      "id": "32cd7cae-7349-4fec-aedd-ab1116455652",
+                      "name": "Failed to rename application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/rename",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "rename"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-32cd7cae-7349-4fec-aedd-ab1116455652"
+                    },
+                    {
+                      "id": "55eda740-8c4f-42e6-8d26-e20f172add7e",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/rename",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "rename"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-55eda740-8c4f-42e6-8d26-e20f172add7e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-e6ed6173-8083-45c7-a405-ab6418093172"
+                }
+              ],
+              "id": "6e6fb051-b6c7-4555-811d-2563595cf7ba",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-6e6fb051-b6c7-4555-811d-2563595cf7ba"
+            },
+            {
+              "name": "tree",
+              "item": [
+                {
+                  "name": "Oracle Essbase Get Application Tree View",
+                  "id": "8c08a68f-2249-4aeb-82c6-844cd62cb48f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/actions/tree",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "actions",
+                        "tree"
+                      ]
+                    },
+                    "description": "Returns a hierarchical tree view of applications and their databases."
+                  },
+                  "response": [
+                    {
+                      "id": "f1c92804-a244-45af-8760-9bbc09eaa10d",
+                      "name": "Application tree view returned successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/tree",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "tree"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-f1c92804-a244-45af-8760-9bbc09eaa10d"
+                    },
+                    {
+                      "id": "fa24da82-c42b-430a-82f2-1aee514845d2",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/tree",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "tree"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-fa24da82-c42b-430a-82f2-1aee514845d2"
+                    },
+                    {
+                      "id": "ae910733-f428-4bc1-99f0-1a2424f16949",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/tree",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "tree"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-ae910733-f428-4bc1-99f0-1a2424f16949"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-8c08a68f-2249-4aeb-82c6-844cd62cb48f"
+                }
+              ],
+              "id": "4bf0d5f8-48d8-4458-85e2-173e4c5892e9",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-4bf0d5f8-48d8-4458-85e2-173e4c5892e9"
+            },
+            {
+              "name": "name",
+              "item": [
+                {
+                  "name": "{appVisibility}",
+                  "item": [
+                    {
+                      "name": "Oracle Essbase List Application Names",
+                      "id": "6677d65d-c3bf-48ff-8247-ac9e42e51676",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/name/:appVisibility",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "name",
+                            ":appVisibility"
+                          ],
+                          "variable": [
+                            {
+                              "id": "723a1309-2ce5-4961-b14d-82cf04edd583",
+                              "key": "appVisibility",
+                              "value": "<string>",
+                              "description": "(Required) Application visibility filter."
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of application names filtered by visibility."
+                      },
+                      "response": [
+                        {
+                          "id": "2b092fd6-3b5d-4387-8387-519ae3483f19",
+                          "name": "Application names returned successfully.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/name/:appVisibility",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "name",
+                                ":appVisibility"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appVisibility"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-2b092fd6-3b5d-4387-8387-519ae3483f19"
+                        },
+                        {
+                          "id": "ef65423f-2d20-4a2d-b3e5-19c039bde0d0",
+                          "name": "Bad request.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/name/:appVisibility",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "name",
+                                ":appVisibility"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appVisibility"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-ef65423f-2d20-4a2d-b3e5-19c039bde0d0"
+                        },
+                        {
+                          "id": "6e34ad93-c61b-43fa-ad22-8ff04bbef122",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/name/:appVisibility",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "name",
+                                ":appVisibility"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "appVisibility"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-6e34ad93-c61b-43fa-ad22-8ff04bbef122"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-6677d65d-c3bf-48ff-8247-ac9e42e51676"
+                    }
+                  ],
+                  "id": "32f1b0d7-c92b-4f08-bfc3-7a139a361d77",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-32f1b0d7-c92b-4f08-bfc3-7a139a361d77"
+                }
+              ],
+              "id": "d1757397-b9dd-4157-8ad8-271287e7056d",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-d1757397-b9dd-4157-8ad8-271287e7056d"
+            },
+            {
+              "name": "shadowCopy",
+              "item": [
+                {
+                  "name": "Oracle Essbase Create Shadow Application",
+                  "id": "f218156e-2a94-4e43-9766-783300fb2c57",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"applicationName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/actions/shadowCopy",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "actions",
+                        "shadowCopy"
+                      ]
+                    },
+                    "description": "Creates a shadow copy of an existing application for safe editing without affecting the production application."
+                  },
+                  "response": [
+                    {
+                      "id": "932bb1d2-0ff7-4d79-bdbd-c09923eccffd",
+                      "name": "Shadow application created successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"applicationName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowCopy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowCopy"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-932bb1d2-0ff7-4d79-bdbd-c09923eccffd"
+                    },
+                    {
+                      "id": "d6f17ddf-7c87-4e3e-9861-19615b9b8185",
+                      "name": "Failed to create shadow application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"applicationName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowCopy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowCopy"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-d6f17ddf-7c87-4e3e-9861-19615b9b8185"
+                    },
+                    {
+                      "id": "6375525f-6733-4171-9f51-34e10bed2053",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"applicationName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowCopy",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowCopy"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-6375525f-6733-4171-9f51-34e10bed2053"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-f218156e-2a94-4e43-9766-783300fb2c57"
+                }
+              ],
+              "id": "4690ee10-4bb6-48f4-b563-07cd4430ade7",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-4690ee10-4bb6-48f4-b563-07cd4430ade7"
+            },
+            {
+              "name": "shadowPromote",
+              "item": [
+                {
+                  "name": "Oracle Essbase Promote Shadow Application",
+                  "id": "e893b84a-efc3-4e91-8f81-ba175b19e23c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shadowAppName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/applications/actions/shadowPromote",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "applications",
+                        "actions",
+                        "shadowPromote"
+                      ]
+                    },
+                    "description": "Promotes a shadow application to replace the original production application."
+                  },
+                  "response": [
+                    {
+                      "id": "1cea6c45-9e58-4a19-b4aa-24a48ec990da",
+                      "name": "Shadow application promoted successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shadowAppName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowPromote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowPromote"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-1cea6c45-9e58-4a19-b4aa-24a48ec990da"
+                    },
+                    {
+                      "id": "0649ccda-d160-4df0-936d-5294183c7b34",
+                      "name": "Failed to promote shadow application.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shadowAppName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowPromote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowPromote"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-0649ccda-d160-4df0-936d-5294183c7b34"
+                    },
+                    {
+                      "id": "fa6650b8-b40f-4f7a-b2f9-ab3fa3c2f293",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shadowAppName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowPromote",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowPromote"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-fa6650b8-b40f-4f7a-b2f9-ab3fa3c2f293"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-e893b84a-efc3-4e91-8f81-ba175b19e23c"
+                }
+              ],
+              "id": "4f056393-98a4-4e95-b6b2-d15420b5449a",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-4f056393-98a4-4e95-b6b2-d15420b5449a"
+            },
+            {
+              "name": "shadowDelete",
+              "item": [
+                {
+                  "name": "{shadowAppName}",
+                  "item": [
+                    {
+                      "name": "Oracle Essbase Delete Shadow Application",
+                      "id": "d307f06c-76aa-411b-81c1-4bbe014eb678",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/applications/actions/shadowDelete/:shadowAppName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "applications",
+                            "actions",
+                            "shadowDelete",
+                            ":shadowAppName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "853ca134-d6b7-4b30-b591-01d02af2bd6b",
+                              "key": "shadowAppName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the shadow application to delete."
+                            }
+                          ]
+                        },
+                        "description": "Deletes the specified shadow application."
+                      },
+                      "response": [
+                        {
+                          "id": "e64566a6-028c-4bd5-97f1-ac9c056a302a",
+                          "name": "Shadow application deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/shadowDelete/:shadowAppName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "shadowDelete",
+                                ":shadowAppName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "shadowAppName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-e64566a6-028c-4bd5-97f1-ac9c056a302a"
+                        },
+                        {
+                          "id": "9b10e0c4-0047-4b86-8c6a-25af3f7604f2",
+                          "name": "Failed to delete shadow application.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/shadowDelete/:shadowAppName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "shadowDelete",
+                                ":shadowAppName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "shadowAppName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-9b10e0c4-0047-4b86-8c6a-25af3f7604f2"
+                        },
+                        {
+                          "id": "b34026ef-79f2-410e-8945-3025870fb066",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/applications/actions/shadowDelete/:shadowAppName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "applications",
+                                "actions",
+                                "shadowDelete",
+                                ":shadowAppName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "shadowAppName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-b34026ef-79f2-410e-8945-3025870fb066"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-d307f06c-76aa-411b-81c1-4bbe014eb678"
+                    }
+                  ],
+                  "id": "fadb38e4-34f1-4cc1-b807-c18314ee462a",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-fadb38e4-34f1-4cc1-b807-c18314ee462a"
+                }
+              ],
+              "id": "417811ad-ed89-484f-bdd8-dc2e3e2caca8",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-417811ad-ed89-484f-bdd8-dc2e3e2caca8"
+            }
+          ],
+          "id": "9a93cdaa-50db-4107-a870-54245451739f",
+          "createdAt": "2026-07-28T02:28:01.000Z",
+          "updatedAt": "2026-07-28T02:28:01.000Z",
+          "uid": "35240-9a93cdaa-50db-4107-a870-54245451739f"
+        },
+        {
+          "name": "Oracle Essbase List Applications",
+          "id": "13f03107-4cb1-41fe-9fe1-b9bfb2c0e203",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications?applicationNameForConnection=<string>&connectionName=<string>&fields=<string>&filter=*&limit=50&offset=0&orderBy=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ],
+              "query": [
+                {
+                  "description": "Application name for connection filtering.",
+                  "key": "applicationNameForConnection",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter applications by connection name.",
+                  "key": "connectionName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Comma-separated list of fields to return. If omitted, all fields are returned.",
+                  "key": "fields",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Wildcard filter for application names.",
+                  "key": "filter",
+                  "value": "*"
+                },
+                {
+                  "description": "Maximum number of applications to return. Must be 100 or less if status is included.",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Number of applications to skip from the start of the result set.",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Sort order in format column:direction (e.g., name:asc).",
+                  "key": "orderBy",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of Essbase applications the authenticated user has access to. Supports filtering, pagination, sorting, and field selection. If application status is required in the response, limit must be 100 or less."
+          },
+          "response": [
+            {
+              "id": "5c6c84b2-1b70-4ab2-bdd5-0c4a87adc4df",
+              "name": "List of applications returned successfully.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?applicationNameForConnection=<string>&connectionName=<string>&fields=<string>&filter=*&limit=50&offset=0&orderBy=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Application name for connection filtering.",
+                      "key": "applicationNameForConnection",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter applications by connection name.",
+                      "key": "connectionName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return. If omitted, all fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Wildcard filter for application names.",
+                      "key": "filter",
+                      "value": "*"
+                    },
+                    {
+                      "description": "Maximum number of applications to return. Must be 100 or less if status is included.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of applications to skip from the start of the result set.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Sort order in format column:direction (e.g., name:asc).",
+                      "key": "orderBy",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"creationTime\": \"<long>\",\n      \"modifiedBy\": \"<string>\",\n      \"modifiedTime\": \"<long>\",\n      \"status\": \"started\",\n      \"description\": \"<string>\",\n      \"type\": \"BSO\",\n      \"startTime\": \"<long>\",\n      \"connectedUsersCount\": \"<integer>\",\n      \"role\": \"<string>\",\n      \"easManagedApp\": \"<boolean>\",\n      \"startStopAppAllowed\": \"<boolean>\",\n      \"inspectAppAllowed\": \"<boolean>\",\n      \"encrypted\": \"<boolean>\",\n      \"aiConnection\": \"<string>\",\n      \"appVariablesSetting\": {\n        \"showVariables\": \"<boolean>\",\n        \"updateVariables\": \"<boolean>\"\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"creationTime\": \"<long>\",\n      \"modifiedBy\": \"<string>\",\n      \"modifiedTime\": \"<long>\",\n      \"status\": \"started\",\n      \"description\": \"<string>\",\n      \"type\": \"ASO\",\n      \"startTime\": \"<long>\",\n      \"connectedUsersCount\": \"<integer>\",\n      \"role\": \"<string>\",\n      \"easManagedApp\": \"<boolean>\",\n      \"startStopAppAllowed\": \"<boolean>\",\n      \"inspectAppAllowed\": \"<boolean>\",\n      \"encrypted\": \"<boolean>\",\n      \"aiConnection\": \"<string>\",\n      \"appVariablesSetting\": {\n        \"showVariables\": \"<boolean>\",\n        \"updateVariables\": \"<boolean>\"\n      },\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"method\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"totalResults\": \"<long>\",\n  \"limit\": \"<long>\",\n  \"offset\": \"<long>\",\n  \"hasMore\": \"<boolean>\",\n  \"count\": \"<long>\",\n  \"properties\": {\n    \"non7a\": \"<string>\",\n    \"nulla_\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-5c6c84b2-1b70-4ab2-bdd5-0c4a87adc4df"
+            },
+            {
+              "id": "933f00ae-e21c-4734-93b9-baa333cdbe9b",
+              "name": "Failed to get applications.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?applicationNameForConnection=<string>&connectionName=<string>&fields=<string>&filter=*&limit=50&offset=0&orderBy=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Application name for connection filtering.",
+                      "key": "applicationNameForConnection",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter applications by connection name.",
+                      "key": "connectionName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return. If omitted, all fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Wildcard filter for application names.",
+                      "key": "filter",
+                      "value": "*"
+                    },
+                    {
+                      "description": "Maximum number of applications to return. Must be 100 or less if status is included.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of applications to skip from the start of the result set.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Sort order in format column:direction (e.g., name:asc).",
+                      "key": "orderBy",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-933f00ae-e21c-4734-93b9-baa333cdbe9b"
+            },
+            {
+              "id": "d663d20e-9f5d-4924-be00-5d5dab9babfb",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applications?applicationNameForConnection=<string>&connectionName=<string>&fields=<string>&filter=*&limit=50&offset=0&orderBy=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Application name for connection filtering.",
+                      "key": "applicationNameForConnection",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter applications by connection name.",
+                      "key": "connectionName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return. If omitted, all fields are returned.",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Wildcard filter for application names.",
+                      "key": "filter",
+                      "value": "*"
+                    },
+                    {
+                      "description": "Maximum number of applications to return. Must be 100 or less if status is included.",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of applications to skip from the start of the result set.",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Sort order in format column:direction (e.g., name:asc).",
+                      "key": "orderBy",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-d663d20e-9f5d-4924-be00-5d5dab9babfb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:01.000Z",
+          "updatedAt": "2026-07-28T02:28:01.000Z",
+          "uid": "35240-13f03107-4cb1-41fe-9fe1-b9bfb2c0e203"
+        },
+        {
+          "name": "Oracle Essbase Create Application and Database",
+          "id": "07f509b5-e81e-406b-8375-0e6b27880f0e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"applicationName\": \"<string>\",\n  \"databaseName\": \"<string>\",\n  \"allowDuplicates\": \"<boolean>\",\n  \"enableScenario\": \"<boolean>\",\n  \"databaseType\": \"ASO\",\n  \"appType\": \"UTF8\",\n  \"dbType\": \"CURRENCY\",\n  \"memberCount\": \"<integer>\",\n  \"memberPrefix\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/applications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications"
+              ]
+            },
+            "description": "Creates a new Essbase application and optionally a database within it. Application names are limited to 30 characters, must not contain spaces, and are case-insensitive. Specify BSO (block storage) or ASO (aggregate storage) for the database type."
+          },
+          "response": [
+            {
+              "id": "5152241a-1691-43ad-8580-89ccedf19ee8",
+              "name": "Application created successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationName\": \"<string>\",\n  \"databaseName\": \"<string>\",\n  \"allowDuplicates\": \"<boolean>\",\n  \"enableScenario\": \"<boolean>\",\n  \"databaseType\": \"ASO\",\n  \"appType\": \"UTF8\",\n  \"dbType\": \"CURRENCY\",\n  \"memberCount\": \"<integer>\",\n  \"memberPrefix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"name\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"creationTime\": \"<long>\",\n  \"modifiedBy\": \"<string>\",\n  \"modifiedTime\": \"<long>\",\n  \"status\": \"started\",\n  \"description\": \"<string>\",\n  \"type\": \"BSO\",\n  \"startTime\": \"<long>\",\n  \"connectedUsersCount\": \"<integer>\",\n  \"role\": \"<string>\",\n  \"easManagedApp\": \"<boolean>\",\n  \"startStopAppAllowed\": \"<boolean>\",\n  \"inspectAppAllowed\": \"<boolean>\",\n  \"encrypted\": \"<boolean>\",\n  \"aiConnection\": \"<string>\",\n  \"appVariablesSetting\": {\n    \"showVariables\": \"<boolean>\",\n    \"updateVariables\": \"<boolean>\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"method\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-5152241a-1691-43ad-8580-89ccedf19ee8"
+            },
+            {
+              "id": "1f276cd4-db74-4a5b-a083-d122d808a12a",
+              "name": "Failed to create application.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationName\": \"<string>\",\n  \"databaseName\": \"<string>\",\n  \"allowDuplicates\": \"<boolean>\",\n  \"enableScenario\": \"<boolean>\",\n  \"databaseType\": \"ASO\",\n  \"appType\": \"UTF8\",\n  \"dbType\": \"CURRENCY\",\n  \"memberCount\": \"<integer>\",\n  \"memberPrefix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-1f276cd4-db74-4a5b-a083-d122d808a12a"
+            },
+            {
+              "id": "0200d1d9-9167-4e81-b85e-38e086c50ee2",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"applicationName\": \"<string>\",\n  \"databaseName\": \"<string>\",\n  \"allowDuplicates\": \"<boolean>\",\n  \"enableScenario\": \"<boolean>\",\n  \"databaseType\": \"ASO\",\n  \"appType\": \"UTF8\",\n  \"dbType\": \"CURRENCY\",\n  \"memberCount\": \"<integer>\",\n  \"memberPrefix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applications"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"errorCode\": \"<string>\",\n  \"details\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-0200d1d9-9167-4e81-b85e-38e086c50ee2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:28:01.000Z",
+          "updatedAt": "2026-07-28T02:28:01.000Z",
+          "uid": "35240-07f509b5-e81e-406b-8375-0e6b27880f0e"
+        }
+      ],
+      "id": "c2bbfe8c-dc64-4be9-99d0-ad882b34c81d",
+      "createdAt": "2026-07-28T02:28:01.000Z",
+      "updatedAt": "2026-07-28T02:28:01.000Z",
+      "uid": "35240-c2bbfe8c-dc64-4be9-99d0-ad882b34c81d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "9001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1"
+    }
+  ]
+}
