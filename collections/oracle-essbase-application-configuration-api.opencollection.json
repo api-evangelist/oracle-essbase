@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/configurations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns application-level configuration properties for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Application Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/configurations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates application-level configuration properties."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

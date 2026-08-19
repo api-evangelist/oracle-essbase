@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Scripts API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of calculation and MDX scripts for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new calculation or MDX script for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ]
+          },
+          "docs": "Returns the content and details of the specified calculation or MDX script."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the content of an existing calculation or MDX script."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/scripts/:scriptName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified calculation or MDX script from the database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Dimensions API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dimensions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimensions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of dimensions defined in the specified database outline."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified dimension including its name, type, and storage properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimension Generations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName/generations",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns the generation hierarchy for the specified dimension."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Dimension Levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/dimensions/:dimensionName/levels",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "dimensionName",
+                "value": "",
+                "type": "path",
+                "description": "Dimension name."
+              }
+            ]
+          },
+          "docs": "Returns the level hierarchy for the specified dimension."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

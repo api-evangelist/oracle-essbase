@@ -1,0 +1,322 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Applications API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications",
+            "params": [
+              {
+                "name": "applicationNameForConnection",
+                "value": "",
+                "type": "query",
+                "description": "Application name for connection filtering."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "query",
+                "description": "Filter applications by connection name."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. If omitted, all fields are returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Wildcard filter for application names."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of applications to return. Must be 100 or less if status is included."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of applications to skip from the start of the result set."
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort order in format column:direction (e.g., name:asc)."
+              }
+            ]
+          },
+          "docs": "Returns a list of Essbase applications the authenticated user has access to. Supports filtering, pagination, sorting, and field selection. If application status is required in the response, limit must be 100 or less."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Application and Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Essbase application and optionally a database within it. Application names are limited to 30 characters, must not contain spaces, and are case-insensitive. Specify BSO (block storage) or ASO (aggregate storage) for the database type."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified Essbase application, including status, type, owner, and configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Start or Stop Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or stops an Essbase application by updating its status."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified Essbase application and all of its databases and associated resources."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a copy of an existing Essbase application with a new name."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rename Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/rename",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an existing Essbase application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application Tree View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/tree"
+          },
+          "docs": "Returns a hierarchical tree view of applications and their databases."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/name/:appVisibility",
+            "params": [
+              {
+                "name": "appVisibility",
+                "value": "",
+                "type": "path",
+                "description": "Application visibility filter."
+              }
+            ]
+          },
+          "docs": "Returns a list of application names filtered by visibility."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Encrypt Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/encrypt",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Encrypts the specified Essbase application for data security."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Decrypt Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/decrypt",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Decrypts the specified Essbase application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Encryption Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/encryptionconfig",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns encryption configuration information for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowCopy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a shadow copy of an existing application for safe editing without affecting the production application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Promote Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowPromote",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promotes a shadow application to replace the original production application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Shadow Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/actions/shadowDelete/:shadowAppName",
+            "params": [
+              {
+                "name": "shadowAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the shadow application to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified shadow application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

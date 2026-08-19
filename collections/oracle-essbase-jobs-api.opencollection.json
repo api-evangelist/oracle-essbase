@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Jobs API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by database name."
+              },
+              {
+                "name": "jobtype",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Returns a list of executed jobs. Supports filtering by job type, application, database, and status. Returns job history with execution details."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Execute Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes an asynchronous job on an Essbase database. Supported job types include dataload, dimbuild, calc, clear, importExcel, exportExcel, lcmExport, lcmImport, clearAggregation, buildAggregation, asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns a job record with a job_ID for monitoring progress."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier."
+              }
+            ]
+          },
+          "docs": "Returns details and current status of the specified job by its identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Job Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the job record for the specified job identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rerun Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/jobs/:jobId/actions/rerun",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "Unique job identifier of the job to rerun."
+              }
+            ]
+          },
+          "docs": "Reruns a previously executed job with the same parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

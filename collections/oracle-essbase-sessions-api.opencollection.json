@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Sessions API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/sessions",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name."
+              },
+              {
+                "name": "database",
+                "value": "",
+                "type": "query",
+                "description": "Filter by database name."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID. If not provided, returns all sessions."
+              }
+            ]
+          },
+          "docs": "Returns a list of currently active sessions. Optionally filter by application, database, or user ID. If userId is not provided, all sessions are retrieved."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session identifier to terminate."
+              }
+            ]
+          },
+          "docs": "Terminates the specified active session by session identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

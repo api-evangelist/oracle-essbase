@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Files API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Root Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/files",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list of files."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Return search results recursively."
+              }
+            ]
+          },
+          "docs": "Returns a list of root-level folders in the Essbase file catalog. Typical root folders include applications, gallery, shared, and users."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Files or Download File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "File or folder path in the file catalog."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter the list of files."
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Return search results recursively."
+              }
+            ]
+          },
+          "docs": "Lists the contents of a folder or downloads a specific file from the Essbase file catalog. Use Accept header to control response type."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Upload File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "Destination file path in the file catalog."
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "Whether to overwrite an existing file."
+              }
+            ]
+          },
+          "docs": "Uploads a file to the specified path in the Essbase file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete File or Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "File or folder path to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified file or folder from the Essbase file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/actions/copy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copies a file or folder from one location to another in the file catalog."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Move File",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/files/actions/move",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Moves a file or folder from one location to another in the file catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

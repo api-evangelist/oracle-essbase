@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Variables API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Variables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Server Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables"
+          },
+          "docs": "Returns server-level substitution variables."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new server-level substitution variable."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables/:variableName",
+            "params": [
+              {
+                "name": "variableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified server-level substitution variable."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Server Variable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/variables/:variableName",
+            "params": [
+              {
+                "name": "variableName",
+                "value": "",
+                "type": "path",
+                "description": "Variable name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified server-level substitution variable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

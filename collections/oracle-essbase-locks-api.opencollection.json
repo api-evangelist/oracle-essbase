@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Locks API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/locks",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of locks on the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Unlock Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/locks/:lockId",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              },
+              {
+                "name": "lockId",
+                "value": "",
+                "type": "path",
+                "description": "Lock identifier."
+              }
+            ]
+          },
+          "docs": "Releases the specified lock on a database object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

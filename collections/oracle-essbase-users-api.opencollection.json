@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Users API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/users",
+            "params": [
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Include service role and groups. Values are all or none."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "User ID wildcard pattern for filtering."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of users to return. -1 for no limit."
+              }
+            ]
+          },
+          "docs": "Returns a list of Essbase users. Supports filtering by name pattern and limiting results. Use expand=all to include service roles and group memberships. Supports CSV export via Accept: application/octet-stream header. Not available in EPM Shared Services security mode."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Essbase user with the specified details and role assignment."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified user including roles and group memberships."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates details of the specified user such as email, role, or password."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User identifier."
+              }
+            ]
+          },
+          "docs": "Deletes the specified user from Essbase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

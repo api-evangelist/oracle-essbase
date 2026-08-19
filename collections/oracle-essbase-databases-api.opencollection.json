@@ -1,0 +1,377 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Databases API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns a list of databases (cubes) within the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified database (cube) including name, status, type, owner, creation time, and settings."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Start or Stop Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts or stops the specified database by updating its status."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified database (cube) from the application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Copy Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/actions/copy",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a copy of an existing database within the same application or to a different application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Rename Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/actions/rename",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Renames an existing database within the application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Aliases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of alias tables defined for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Active Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases/getActiveAlias",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns the currently active alias table for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Set Active Alias",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/aliases/setActiveAlias",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the active alias table for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Currency Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/currencySettings",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns the currency conversion settings for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Set Currency Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/currencySettings",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the currency conversion settings for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Calculation Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/calculationFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available calculation functions for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Formula Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/formulaFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available formula functions for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get MDX Functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/databases/:databaseName/mdxFunctions",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase database (cube) name."
+              }
+            ]
+          },
+          "docs": "Returns a list of available MDX functions for the specified database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

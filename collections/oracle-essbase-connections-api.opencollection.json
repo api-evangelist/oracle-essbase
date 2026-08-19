@@ -1,0 +1,281 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Essbase REST Application Configuration Connections API",
+    "version": "21.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Essbase List Application Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ]
+          },
+          "docs": "Returns all connections defined for the specified application."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connection for the specified application for use with data loads and dimension builds."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified application connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Test Saved Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/:connectionName/actions/test",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              },
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Tests an existing saved application connection to verify connectivity."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Test New Application Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/applications/:applicationName/connections/actions/test",
+            "params": [
+              {
+                "name": "applicationName",
+                "value": "",
+                "type": "path",
+                "description": "Essbase application name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tests a new application connection configuration before saving it."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase List Global Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections"
+          },
+          "docs": "Returns a list of global connections available across all applications."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Create Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new global connection available across all applications."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Get Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Returns details of the specified global connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Update Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified global connection."
+        },
+        {
+          "info": {
+            "name": "Oracle Essbase Delete Global Connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/essbase/rest/v1/connections/:connectionName",
+            "params": [
+              {
+                "name": "connectionName",
+                "value": "",
+                "type": "path",
+                "description": "Connection name."
+              }
+            ]
+          },
+          "docs": "Deletes the specified global connection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

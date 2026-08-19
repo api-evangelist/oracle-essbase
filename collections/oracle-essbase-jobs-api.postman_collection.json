@@ -1,0 +1,1438 @@
+{
+  "item": [
+    {
+      "id": "83c153ea-9969-4297-bd26-8510c28de8a1",
+      "name": "Jobs",
+      "description": {
+        "content": "Execute and monitor asynchronous jobs such as data loads, calculations, and exports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6d3ba99-650b-4359-aa0b-1605850d2ce5",
+          "name": "Oracle Essbase List Jobs",
+          "request": {
+            "name": "Oracle Essbase List Jobs",
+            "description": {
+              "content": "Returns a list of executed jobs. Supports filtering by job type, application, database, and status. Returns job history with execution details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "applicationName",
+                  "value": "<string>",
+                  "description": "Filter by application name."
+                },
+                {
+                  "disabled": false,
+                  "key": "databaseName",
+                  "value": "<string>",
+                  "description": "Filter by database name."
+                },
+                {
+                  "disabled": false,
+                  "key": "jobtype",
+                  "value": "<string>",
+                  "description": "Filter by job type."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of jobs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Essbase server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Essbase server port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb34cb0a-b567-48db-b263-38981261cf4e",
+              "name": "Job list returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"job_ID\": 1055,\n      \"appName\": \"string\",\n      \"dbName\": \"string\",\n      \"jobType\": \"string\",\n      \"jobfileName\": \"string\",\n      \"userName\": \"string\",\n      \"startTime\": 4079,\n      \"endTime\": 9280,\n      \"statusCode\": 5614,\n      \"statusMessage\": \"string\",\n      \"jobInputInfo\": {\n        \"key_0\": 6432.136601911108,\n        \"key_1\": 3614\n      },\n      \"jobOutputInfo\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": 1992,\n        \"key_3\": 9705\n      },\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://NcdDqnOYEGpZdZvlvOQXYtmErVAgO.jrxGtZtRxMIUDwnip\",\n          \"method\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://lx.iwykRW8eOWMoc-YLgfbr2-t8YFVrmN+,7K9AlrbAyVL0NlR+iZ3Wa.T0uN2W2Y5xlJk\",\n          \"method\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    },\n    {\n      \"job_ID\": 7489,\n      \"appName\": \"string\",\n      \"dbName\": \"string\",\n      \"jobType\": \"string\",\n      \"jobfileName\": \"string\",\n      \"userName\": \"string\",\n      \"startTime\": 8892,\n      \"endTime\": 6837,\n      \"statusCode\": 2706,\n      \"statusMessage\": \"string\",\n      \"jobInputInfo\": {\n        \"key_0\": \"string\"\n      },\n      \"jobOutputInfo\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://XjVWvHBfdiXCYYHAHAxpBGDdCLHpBpcZ.mge.BM\",\n          \"method\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://LgLUcZYBMxeJXUvtQUQtlJQvmkfZKoUR.kmpsUQ0gP9Wfr,Ok\",\n          \"method\": \"string\",\n          \"type\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"totalResults\": 5358,\n  \"limit\": 1891,\n  \"offset\": 7011,\n  \"hasMore\": true,\n  \"count\": 635\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49592e93-8bc1-41d4-a0c3-bcb77554f2c9",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28ff7e2f-cd7e-46f5-988a-22867f418ae3",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "applicationName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "databaseName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobtype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cedea183-0d17-4cba-ab58-48c698165aea",
+          "name": "Oracle Essbase Execute Job",
+          "request": {
+            "name": "Oracle Essbase Execute Job",
+            "description": {
+              "content": "Executes an asynchronous job on an Essbase database. Supported job types include dataload, dimbuild, calc, clear, importExcel, exportExcel, lcmExport, lcmImport, clearAggregation, buildAggregation, asoBufferDataLoad, asoBufferCommit, exportData, and mdxScript. Returns a job record with a job_ID for monitoring progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Essbase server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Essbase server port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobtype\": \"<string>\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"<string>\",\n    \"rule\": \"<string>\",\n    \"abortOnError\": \"<string>\",\n    \"script\": \"<string>\",\n    \"option\": \"<string>\",\n    \"partialDataExpression\": \"<string>\",\n    \"importExcelFileName\": \"<string>\",\n    \"catalogExcelPath\": \"<string>\",\n    \"loaddata\": \"<string>\",\n    \"recreateApplication\": \"<string>\",\n    \"createFiles\": \"<string>\",\n    \"executeScript\": \"<string>\",\n    \"buildOption\": \"<string>\",\n    \"dataLevel\": \"<string>\",\n    \"columnFormat\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"zipFileName\": \"<string>\",\n    \"skipdata\": \"<string>\",\n    \"generateArtifactList\": \"<string>\",\n    \"overwrite\": \"<string>\",\n    \"targetApplicationName\": \"<string>\",\n    \"includeServerLevel\": \"<string>\",\n    \"basedOnQueryData\": \"<string>\",\n    \"ratioToStop\": \"<string>\",\n    \"enableAlternateRollups\": \"<string>\",\n    \"bufferId\": \"<integer>\",\n    \"commitOption\": \"<string>\",\n    \"actionType\": \"<string>\",\n    \"restructureOption\": \"<string>\",\n    \"forceDimBuild\": \"<string>\",\n    \"rtsv\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": {},\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"<string>\",\n        \"value\": {},\n        \"dimension\": \"<string>\",\n        \"singleChoice\": \"<boolean>\",\n        \"allowMissing\": \"<boolean>\"\n      }\n    ],\n    \"useConnection\": \"<string>\",\n    \"connection\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "662cd33d-a256-4275-9111-c16bc40fd820",
+              "name": "Job started successfully. Returns job record with job_ID for tracking.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"<string>\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"string\",\n    \"rule\": \"string\",\n    \"abortOnError\": \"string\",\n    \"script\": \"string\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"string\",\n    \"importExcelFileName\": \"string\",\n    \"catalogExcelPath\": \"string\",\n    \"loaddata\": \"string\",\n    \"recreateApplication\": \"string\",\n    \"createFiles\": \"string\",\n    \"executeScript\": \"string\",\n    \"buildOption\": \"REMOVE_ALL_DATA\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"string\",\n    \"compress\": \"string\",\n    \"zipFileName\": \"string\",\n    \"skipdata\": \"string\",\n    \"generateArtifactList\": \"string\",\n    \"overwrite\": \"string\",\n    \"targetApplicationName\": \"string\",\n    \"includeServerLevel\": \"string\",\n    \"basedOnQueryData\": \"string\",\n    \"ratioToStop\": \"string\",\n    \"enableAlternateRollups\": \"string\",\n    \"bufferId\": 6466,\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"COMMIT\",\n    \"restructureOption\": \"PRESERVE_NO_DATA\",\n    \"forceDimBuild\": \"string\",\n    \"rtsv\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      }\n    ],\n    \"useConnection\": \"string\",\n    \"connection\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_ID\": 257,\n  \"appName\": \"string\",\n  \"dbName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobfileName\": \"string\",\n  \"userName\": \"string\",\n  \"startTime\": 2754,\n  \"endTime\": 2535,\n  \"statusCode\": 1099,\n  \"statusMessage\": \"string\",\n  \"jobInputInfo\": {\n    \"key_0\": 9895.429150933056,\n    \"key_1\": true\n  },\n  \"jobOutputInfo\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://tVcHBhkrCzKypLqRbaxCTyAReCiFqp.lesnClCE1BHVZUvoqwtVj8XfljSAXUviGg-2KTrcuaqhnjjHetffSkDJ65\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://UtTAfUjuqiUuXuuQkCn.sztrh5QxyutWk0-.yYPy6I9T6n.4sl0KduHYX7lv5oBm0Sm\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ecee899-4880-449f-8d71-0ee55c26d7b2",
+              "name": "Bad request. Invalid application, database, or null argument.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"<string>\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"string\",\n    \"rule\": \"string\",\n    \"abortOnError\": \"string\",\n    \"script\": \"string\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"string\",\n    \"importExcelFileName\": \"string\",\n    \"catalogExcelPath\": \"string\",\n    \"loaddata\": \"string\",\n    \"recreateApplication\": \"string\",\n    \"createFiles\": \"string\",\n    \"executeScript\": \"string\",\n    \"buildOption\": \"REMOVE_ALL_DATA\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"string\",\n    \"compress\": \"string\",\n    \"zipFileName\": \"string\",\n    \"skipdata\": \"string\",\n    \"generateArtifactList\": \"string\",\n    \"overwrite\": \"string\",\n    \"targetApplicationName\": \"string\",\n    \"includeServerLevel\": \"string\",\n    \"basedOnQueryData\": \"string\",\n    \"ratioToStop\": \"string\",\n    \"enableAlternateRollups\": \"string\",\n    \"bufferId\": 6466,\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"COMMIT\",\n    \"restructureOption\": \"PRESERVE_NO_DATA\",\n    \"forceDimBuild\": \"string\",\n    \"rtsv\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      }\n    ],\n    \"useConnection\": \"string\",\n    \"connection\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ba7d892-04fb-4a13-9074-6e1ee9253259",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"<string>\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"string\",\n    \"rule\": \"string\",\n    \"abortOnError\": \"string\",\n    \"script\": \"string\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"string\",\n    \"importExcelFileName\": \"string\",\n    \"catalogExcelPath\": \"string\",\n    \"loaddata\": \"string\",\n    \"recreateApplication\": \"string\",\n    \"createFiles\": \"string\",\n    \"executeScript\": \"string\",\n    \"buildOption\": \"REMOVE_ALL_DATA\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"string\",\n    \"compress\": \"string\",\n    \"zipFileName\": \"string\",\n    \"skipdata\": \"string\",\n    \"generateArtifactList\": \"string\",\n    \"overwrite\": \"string\",\n    \"targetApplicationName\": \"string\",\n    \"includeServerLevel\": \"string\",\n    \"basedOnQueryData\": \"string\",\n    \"ratioToStop\": \"string\",\n    \"enableAlternateRollups\": \"string\",\n    \"bufferId\": 6466,\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"COMMIT\",\n    \"restructureOption\": \"PRESERVE_NO_DATA\",\n    \"forceDimBuild\": \"string\",\n    \"rtsv\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      }\n    ],\n    \"useConnection\": \"string\",\n    \"connection\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d72ef0f7-d893-424c-b2dc-b192983666d2",
+              "name": "Service unavailable. Naming or server exception.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobtype\": \"<string>\",\n  \"application\": \"<string>\",\n  \"db\": \"<string>\",\n  \"parameters\": {\n    \"file\": \"string\",\n    \"rule\": \"string\",\n    \"abortOnError\": \"string\",\n    \"script\": \"string\",\n    \"option\": \"partialData\",\n    \"partialDataExpression\": \"string\",\n    \"importExcelFileName\": \"string\",\n    \"catalogExcelPath\": \"string\",\n    \"loaddata\": \"string\",\n    \"recreateApplication\": \"string\",\n    \"createFiles\": \"string\",\n    \"executeScript\": \"string\",\n    \"buildOption\": \"REMOVE_ALL_DATA\",\n    \"dataLevel\": \"NON_INPUT_BLOCKS\",\n    \"columnFormat\": \"string\",\n    \"compress\": \"string\",\n    \"zipFileName\": \"string\",\n    \"skipdata\": \"string\",\n    \"generateArtifactList\": \"string\",\n    \"overwrite\": \"string\",\n    \"targetApplicationName\": \"string\",\n    \"includeServerLevel\": \"string\",\n    \"basedOnQueryData\": \"string\",\n    \"ratioToStop\": \"string\",\n    \"enableAlternateRollups\": \"string\",\n    \"bufferId\": 6466,\n    \"commitOption\": \"OVERRIDE_ALL_DATA\",\n    \"actionType\": \"COMMIT\",\n    \"restructureOption\": \"PRESERVE_NO_DATA\",\n    \"forceDimBuild\": \"string\",\n    \"rtsv\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"DATE\",\n        \"value\": {},\n        \"dimension\": \"string\",\n        \"singleChoice\": false,\n        \"allowMissing\": false\n      }\n    ],\n    \"useConnection\": \"string\",\n    \"connection\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2469fa67-8aa7-4ff3-8379-fe9c1a73acbd",
+          "name": "Oracle Essbase Get Job",
+          "request": {
+            "name": "Oracle Essbase Get Job",
+            "description": {
+              "content": "Returns details and current status of the specified job by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "jobId",
+                  "description": "(Required) Unique job identifier."
+                },
+                {
+                  "description": "Essbase server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Essbase server port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876da4cc-1f3b-4a17-9b87-2cfaa480fb42",
+              "name": "Job details returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_ID\": 257,\n  \"appName\": \"string\",\n  \"dbName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobfileName\": \"string\",\n  \"userName\": \"string\",\n  \"startTime\": 2754,\n  \"endTime\": 2535,\n  \"statusCode\": 1099,\n  \"statusMessage\": \"string\",\n  \"jobInputInfo\": {\n    \"key_0\": 9895.429150933056,\n    \"key_1\": true\n  },\n  \"jobOutputInfo\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://tVcHBhkrCzKypLqRbaxCTyAReCiFqp.lesnClCE1BHVZUvoqwtVj8XfljSAXUviGg-2KTrcuaqhnjjHetffSkDJ65\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://UtTAfUjuqiUuXuuQkCn.sztrh5QxyutWk0-.yYPy6I9T6n.4sl0KduHYX7lv5oBm0Sm\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29eda6ef-efd1-4f02-ae4b-838eebac7ded",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee868f73-0a6a-445f-a281-3b459991475b",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a334b15b-0a8e-457b-913c-c8095109b0d9",
+          "name": "Oracle Essbase Delete Job Record",
+          "request": {
+            "name": "Oracle Essbase Delete Job Record",
+            "description": {
+              "content": "Deletes the job record for the specified job identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "jobId",
+                  "description": "(Required) Unique job identifier."
+                },
+                {
+                  "description": "Essbase server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Essbase server port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a47380a9-bdec-47d0-a654-f7655b4500b9",
+              "name": "Job record deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f4decc0-d351-4e8d-85ca-be6eec8f898a",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16b3d7da-9005-4d08-8eee-ed7b99272aa9",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "355fb40d-f9dd-4d76-b064-46da91c1d6dd",
+          "name": "Oracle Essbase Rerun Job",
+          "request": {
+            "name": "Oracle Essbase Rerun Job",
+            "description": {
+              "content": "Reruns a previously executed job with the same parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                ":jobId",
+                "actions",
+                "rerun"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "jobId",
+                  "description": "(Required) Unique job identifier of the job to rerun."
+                },
+                {
+                  "description": "Essbase server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "Essbase server port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6ef11ec-bd24-4450-8542-9febd5798ab4",
+              "name": "Job rerun started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId",
+                    "actions",
+                    "rerun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier of the job to rerun."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job_ID\": 257,\n  \"appName\": \"string\",\n  \"dbName\": \"string\",\n  \"jobType\": \"string\",\n  \"jobfileName\": \"string\",\n  \"userName\": \"string\",\n  \"startTime\": 2754,\n  \"endTime\": 2535,\n  \"statusCode\": 1099,\n  \"statusMessage\": \"string\",\n  \"jobInputInfo\": {\n    \"key_0\": 9895.429150933056,\n    \"key_1\": true\n  },\n  \"jobOutputInfo\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://tVcHBhkrCzKypLqRbaxCTyAReCiFqp.lesnClCE1BHVZUvoqwtVj8XfljSAXUviGg-2KTrcuaqhnjjHetffSkDJ65\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://UtTAfUjuqiUuXuuQkCn.sztrh5QxyutWk0-.yYPy6I9T6n.4sl0KduHYX7lv5oBm0Sm\",\n      \"method\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5af499b-9c33-49c1-b1dc-4a0a7c5233e5",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId",
+                    "actions",
+                    "rerun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier of the job to rerun."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "610de5ad-0670-4f6c-8d17-3966d9aed05e",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    ":jobId",
+                    "actions",
+                    "rerun"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "jobId",
+                      "description": "(Required) Unique job identifier of the job to rerun."
+                    },
+                    {
+                      "description": "Essbase server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "Essbase server port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"errorCode\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Essbase server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "Essbase server port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "9001",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}/essbase/rest/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9130246e-fb8f-47cd-8ac9-e7ec8ae88189",
+    "name": "Oracle Essbase REST Application Configuration Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}
