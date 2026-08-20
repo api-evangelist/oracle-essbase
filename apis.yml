@@ -140,6 +140,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -296,6 +298,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -374,6 +378,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -413,6 +419,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -764,6 +772,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
