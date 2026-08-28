@@ -3,6 +3,18 @@ name: Oracle Essbase
 description: Oracle Essbase is a multi-dimensional database management system that provides a multidimensional analytical
   platform for business intelligence applications, financial consolidation, planning, budgeting, and forecasting.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -824,6 +836,9 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: CapabilityMap
+  url: capabilities/oracle-essbase-capability-edges.yml
+  name: Oracle Essbase Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/oracle/
   name: Oracle
