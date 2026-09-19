@@ -223,6 +223,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - Database
+  tags_raw:
   - Databases
   properties:
   - type: OpenAPI
@@ -647,6 +649,8 @@ apis:
   humanURL: https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html
   baseURL: https://{host}:{port}/essbase/rest/v1
   tags:
+  - Servers
+  tags_raw:
   - Server
   properties:
   - type: OpenAPI
