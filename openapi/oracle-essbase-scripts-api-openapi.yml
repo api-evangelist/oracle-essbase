@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Essbase REST Application Configuration Scripts API
+  title: Oracle Essbase REST Scripts API
   description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
   version: 21.0.0
   contact:
@@ -196,22 +196,58 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
-  parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
   schemas:
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    ScriptInput:
+      type: object
+      description: Input for creating or updating a script.
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+    ScriptList:
+      type: object
+      description: List of scripts.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     Script:
       type: object
       description: A calculation or MDX script associated with a database.
@@ -233,57 +269,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ScriptInput:
-      type: object
-      description: Input for creating or updating a script.
-      required:
-      - name
-      - content
-      properties:
-        name:
-          type: string
-          description: Script name.
-        content:
-          type: string
-          description: Script content (calculation or MDX statements).
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-    ScriptList:
-      type: object
-      description: List of scripts.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Script'
+  parameters:
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

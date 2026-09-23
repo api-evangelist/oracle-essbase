@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Essbase REST Application Configuration Sessions API
+  title: Oracle Essbase REST Sessions API
   description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
   version: 21.0.0
   contact:

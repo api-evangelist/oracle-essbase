@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Essbase REST Application Configuration Jobs API
+  title: Oracle Essbase REST Jobs API
   description: RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, user management, sessions, jobs, files, scripts, filters, partitions, connections, datasources, dimensions, outline viewer, locks, scenarios, server properties, and more. All communication occurs over secured HTTP.
   version: 21.0.0
   contact:
@@ -219,6 +219,127 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    JobList:
+      type: object
+      description: Paginated list of job records.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRecord'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    JobInput:
+      type: object
+      description: Input for executing an asynchronous job.
+      required:
+      - jobtype
+      properties:
+        application:
+          type: string
+          description: Application name.
+        db:
+          type: string
+          description: Database name.
+        jobtype:
+          type: string
+          description: Type of job to execute.
+          enum:
+          - dataload
+          - dimbuild
+          - calc
+          - clear
+          - importExcel
+          - exportExcel
+          - lcmExport
+          - lcmImport
+          - clearAggregation
+          - buildAggregation
+          - asoBufferDataLoad
+          - asoBufferCommit
+          - exportData
+          - mdxScript
+        parameters:
+          $ref: '#/components/schemas/JobParameters'
+    JobRecord:
+      type: object
+      description: Record of an executed or running job.
+      properties:
+        job_ID:
+          type: integer
+          format: int64
+          description: Unique job identifier.
+        appName:
+          type: string
+          description: Application name.
+        dbName:
+          type: string
+          description: Database name.
+        jobType:
+          type: string
+          description: Job type that was executed.
+        jobfileName:
+          type: string
+          description: Associated script or file name.
+        userName:
+          type: string
+          description: User who submitted the job.
+        startTime:
+          type: integer
+          format: int64
+          description: Job start time in milliseconds since epoch.
+        endTime:
+          type: integer
+          format: int64
+          description: Job end time in milliseconds since epoch.
+        statusCode:
+          type: integer
+          format: int32
+          description: 'Status code: 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed.'
+        statusMessage:
+          type: string
+          description: Human-readable status message.
+        jobInputInfo:
+          type: object
+          description: Input parameters used for the job.
+          additionalProperties: true
+        jobOutputInfo:
+          type: object
+          description: Output and results of the job.
+          additionalProperties: true
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     RuntimeSubstitutionVariable:
       type: object
       description: A runtime substitution variable for calculation scripts.
@@ -245,6 +366,19 @@ components:
         allowMissing:
           type: boolean
           description: Whether missing data is allowed.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     JobParameters:
       type: object
       description: 'Job-specific parameters. Required fields depend on the job type. For dataload: file and optionally rule, abortOnError. For dimbuild: file and rule. For calc: script. For clear: option. For lcmExport/lcmImport: zipFileName.'
@@ -380,140 +514,6 @@ components:
         connection:
           type: string
           description: Connection name for dataload or dimbuild.
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-    JobRecord:
-      type: object
-      description: Record of an executed or running job.
-      properties:
-        job_ID:
-          type: integer
-          format: int64
-          description: Unique job identifier.
-        appName:
-          type: string
-          description: Application name.
-        dbName:
-          type: string
-          description: Database name.
-        jobType:
-          type: string
-          description: Job type that was executed.
-        jobfileName:
-          type: string
-          description: Associated script or file name.
-        userName:
-          type: string
-          description: User who submitted the job.
-        startTime:
-          type: integer
-          format: int64
-          description: Job start time in milliseconds since epoch.
-        endTime:
-          type: integer
-          format: int64
-          description: Job end time in milliseconds since epoch.
-        statusCode:
-          type: integer
-          format: int32
-          description: 'Status code: 100=In Progress, 200=Completed, 300=Completed with Warnings, 400=Failed.'
-        statusMessage:
-          type: string
-          description: Human-readable status message.
-        jobInputInfo:
-          type: object
-          description: Input parameters used for the job.
-          additionalProperties: true
-        jobOutputInfo:
-          type: object
-          description: Output and results of the job.
-          additionalProperties: true
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    JobList:
-      type: object
-      description: Paginated list of job records.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobRecord'
-        totalResults:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
-        count:
-          type: integer
-          format: int64
-    JobInput:
-      type: object
-      description: Input for executing an asynchronous job.
-      required:
-      - jobtype
-      properties:
-        application:
-          type: string
-          description: Application name.
-        db:
-          type: string
-          description: Database name.
-        jobtype:
-          type: string
-          description: Type of job to execute.
-          enum:
-          - dataload
-          - dimbuild
-          - calc
-          - clear
-          - importExcel
-          - exportExcel
-          - lcmExport
-          - lcmImport
-          - clearAggregation
-          - buildAggregation
-          - asoBufferDataLoad
-          - asoBufferCommit
-          - exportData
-          - mdxScript
-        parameters:
-          $ref: '#/components/schemas/JobParameters'
   securitySchemes:
     basicAuth:
       type: http
