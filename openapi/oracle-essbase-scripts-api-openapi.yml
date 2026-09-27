@@ -197,44 +197,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    ScriptInput:
-      type: object
-      description: Input for creating or updating a script.
-      required:
-      - name
-      - content
-      properties:
-        name:
-          type: string
-          description: Script name.
-        content:
-          type: string
-          description: Script content (calculation or MDX statements).
-    ScriptList:
-      type: object
-      description: List of scripts.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Script'
     Error:
       type: object
       description: Error response from the Essbase REST API.
@@ -248,6 +210,14 @@ components:
         details:
           type: string
           description: Additional error details.
+    ScriptList:
+      type: object
+      description: List of scripts.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
     Script:
       type: object
       description: A calculation or MDX script associated with a database.
@@ -269,19 +239,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    ScriptInput:
+      type: object
+      description: Input for creating or updating a script.
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
   parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
     applicationName:
       name: applicationName
       in: path
       required: true
       description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
       schema:
         type: string
   securitySchemes:

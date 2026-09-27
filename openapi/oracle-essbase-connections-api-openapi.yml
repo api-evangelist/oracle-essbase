@@ -392,23 +392,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
     ConnectionInput:
       type: object
       description: Input for creating or updating a connection.
@@ -442,6 +425,19 @@ components:
           type: string
           format: password
           description: Database password.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     Connection:
       type: object
       description: A data source connection for data loading and dimension building.
@@ -475,19 +471,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
+    Link:
       type: object
-      description: Error response from the Essbase REST API.
+      description: HATEOAS navigation link.
       properties:
-        message:
+        rel:
           type: string
-          description: Human-readable error message.
-        errorCode:
+          description: Link relation type.
+        href:
           type: string
-          description: Machine-readable error code.
-        details:
+          format: uri
+          description: Link URL.
+        method:
           type: string
-          description: Additional error details.
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
   parameters:
     applicationName:
       name: applicationName

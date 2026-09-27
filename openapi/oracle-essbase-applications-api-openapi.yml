@@ -544,23 +544,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
     Application:
       type: object
       description: An Essbase application containing one or more databases (cubes).
@@ -630,16 +613,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    VariablesSetting:
-      type: object
-      description: Settings controlling variable visibility and update permissions.
-      properties:
-        showVariables:
-          type: boolean
-          description: Whether substitution variables are visible.
-        updateVariables:
-          type: boolean
-          description: Whether substitution variables can be updated.
     CreateApplication:
       type: object
       description: Request body for creating a new Essbase application and database.
@@ -686,6 +659,36 @@ components:
         memberPrefix:
           type: string
           description: Prefix for generated members.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
     ApplicationList:
       type: object
       description: Paginated list of Essbase applications.
@@ -717,19 +720,16 @@ components:
           type: object
           additionalProperties:
             type: string
-    Error:
+    VariablesSetting:
       type: object
-      description: Error response from the Essbase REST API.
+      description: Settings controlling variable visibility and update permissions.
       properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
   parameters:
     applicationName:
       name: applicationName

@@ -197,39 +197,27 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
+    FilterList:
       type: object
-      description: HATEOAS navigation link.
+      description: List of filters.
       properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    FilterInput:
-      type: object
-      description: Input for creating or updating a security filter.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Filter name.
-        description:
-          type: string
-          description: Filter description.
-        rows:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/FilterRow'
+            $ref: '#/components/schemas/Filter'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     FilterRow:
       type: object
       description: A single row in a security filter defining access for a member combination.
@@ -264,40 +252,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    FilterList:
+    Link:
       type: object
-      description: List of filters.
+      description: HATEOAS navigation link.
       properties:
-        items:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    FilterInput:
+      type: object
+      description: Input for creating or updating a security filter.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Filter name.
+        description:
+          type: string
+          description: Filter description.
+        rows:
           type: array
           items:
-            $ref: '#/components/schemas/Filter'
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
+            $ref: '#/components/schemas/FilterRow'
   parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
     applicationName:
       name: applicationName
       in: path
       required: true
       description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
       schema:
         type: string
   securitySchemes:

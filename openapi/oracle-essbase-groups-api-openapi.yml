@@ -233,23 +233,39 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
+    Error:
       type: object
-      description: HATEOAS navigation link.
+      description: Error response from the Essbase REST API.
       properties:
-        rel:
+        message:
           type: string
-          description: Link relation type.
-        href:
+          description: Human-readable error message.
+        errorCode:
           type: string
-          format: uri
-          description: Link URL.
-        method:
+          description: Machine-readable error code.
+        details:
           type: string
-          description: HTTP method for this link.
-        type:
+          description: Additional error details.
+    GroupInput:
+      type: object
+      description: Input for creating or updating a group.
+      required:
+      - name
+      properties:
+        name:
           type: string
-          description: Media type of the linked resource.
+          description: Group name.
+        description:
+          type: string
+          description: Group description.
+        role:
+          type: string
+          description: Service role to assign to the group.
+        members:
+          type: array
+          description: Member user IDs or sub-group names.
+          items:
+            type: string
     GroupList:
       type: object
       description: Paginated list of groups.
@@ -272,39 +288,23 @@ components:
           format: int64
         hasMore:
           type: boolean
-    GroupInput:
+    Link:
       type: object
-      description: Input for creating or updating a group.
-      required:
-      - name
+      description: HATEOAS navigation link.
       properties:
-        name:
+        rel:
           type: string
-          description: Group name.
-        description:
+          description: Link relation type.
+        href:
           type: string
-          description: Group description.
-        role:
+          format: uri
+          description: Link URL.
+        method:
           type: string
-          description: Service role to assign to the group.
-        members:
-          type: array
-          description: Member user IDs or sub-group names.
-          items:
-            type: string
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
+          description: HTTP method for this link.
+        type:
           type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
+          description: Media type of the linked resource.
     Group:
       type: object
       description: An Essbase user group.

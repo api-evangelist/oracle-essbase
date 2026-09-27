@@ -480,68 +480,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    DatabaseList:
-      type: object
-      description: Paginated list of databases.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Database'
-        totalResults:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
-        count:
-          type: integer
-          format: int64
-    VariablesSetting:
-      type: object
-      description: Settings controlling variable visibility and update permissions.
-      properties:
-        showVariables:
-          type: boolean
-          description: Whether substitution variables are visible.
-        updateVariables:
-          type: boolean
-          description: Whether substitution variables can be updated.
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
     Database:
       type: object
       description: An Essbase database (cube) within an application.
@@ -604,19 +542,81 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    DatabaseList:
+      type: object
+      description: Paginated list of databases.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Database'
+        totalResults:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+        count:
+          type: integer
+          format: int64
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
   parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
     applicationName:
       name: applicationName
       in: path
       required: true
       description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
       schema:
         type: string
   securitySchemes:

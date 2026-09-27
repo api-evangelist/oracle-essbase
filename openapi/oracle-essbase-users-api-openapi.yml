@@ -212,23 +212,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
     UserList:
       type: object
       description: Paginated list of users.
@@ -251,6 +234,52 @@ components:
           format: int64
         hasMore:
           type: boolean
+    UserInput:
+      type: object
+      description: Input for creating or updating a user.
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: User identifier.
+        name:
+          type: string
+          description: User display name.
+          maxLength: 256
+        email:
+          type: string
+          format: email
+          description: User email address.
+        password:
+          type: string
+          format: password
+          description: User password.
+        role:
+          type: string
+          description: User service role.
+          enum:
+          - User
+          - Power User
+          - Service Administrator
+        groups:
+          type: array
+          description: Group names to assign the user to.
+          items:
+            type: string
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     User:
       type: object
       description: An Essbase user account.
@@ -289,52 +318,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
+    Link:
       type: object
-      description: Error response from the Essbase REST API.
+      description: HATEOAS navigation link.
       properties:
-        message:
+        rel:
           type: string
-          description: Human-readable error message.
-        errorCode:
+          description: Link relation type.
+        href:
           type: string
-          description: Machine-readable error code.
-        details:
+          format: uri
+          description: Link URL.
+        method:
           type: string
-          description: Additional error details.
-    UserInput:
-      type: object
-      description: Input for creating or updating a user.
-      required:
-      - id
-      properties:
-        id:
+          description: HTTP method for this link.
+        type:
           type: string
-          description: User identifier.
-        name:
-          type: string
-          description: User display name.
-          maxLength: 256
-        email:
-          type: string
-          format: email
-          description: User email address.
-        password:
-          type: string
-          format: password
-          description: User password.
-        role:
-          type: string
-          description: User service role.
-          enum:
-          - User
-          - Power User
-          - Service Administrator
-        groups:
-          type: array
-          description: Group names to assign the user to.
-          items:
-            type: string
+          description: Media type of the linked resource.
   securitySchemes:
     basicAuth:
       type: http
