@@ -205,34 +205,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Filter'
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-    FilterRow:
-      type: object
-      description: A single row in a security filter defining access for a member combination.
-      properties:
-        access:
-          type: string
-          description: Access level.
-          enum:
-          - READ
-          - WRITE
-          - NONE
-          - METAREAD
-        member:
-          type: string
-          description: Member specification or combination.
     Filter:
       type: object
       description: A security filter that controls member-level access to a database.
@@ -252,6 +224,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    FilterInput:
+      type: object
+      description: Input for creating or updating a security filter.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Filter name.
+        description:
+          type: string
+          description: Filter description.
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterRow'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -269,35 +270,34 @@ components:
         type:
           type: string
           description: Media type of the linked resource.
-    FilterInput:
+    FilterRow:
       type: object
-      description: Input for creating or updating a security filter.
-      required:
-      - name
+      description: A single row in a security filter defining access for a member combination.
       properties:
-        name:
+        access:
           type: string
-          description: Filter name.
-        description:
+          description: Access level.
+          enum:
+          - READ
+          - WRITE
+          - NONE
+          - METAREAD
+        member:
           type: string
-          description: Filter description.
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/FilterRow'
+          description: Member specification or combination.
   parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
     databaseName:
       name: databaseName
       in: path
       required: true
       description: Essbase database (cube) name.
+      schema:
+        type: string
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
       schema:
         type: string
   securitySchemes:

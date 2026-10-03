@@ -90,6 +90,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
@@ -124,21 +139,6 @@ components:
           type: integer
           format: int64
           description: Time the lock was acquired in milliseconds since epoch.
-  parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -392,52 +392,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ConnectionInput:
-      type: object
-      description: Input for creating or updating a connection.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Connection name.
-        description:
-          type: string
-          description: Connection description.
-        type:
-          type: string
-          description: Connection type.
-        host:
-          type: string
-          description: Database host or server address.
-        port:
-          type: integer
-          format: int32
-          description: Database port number.
-        serviceName:
-          type: string
-          description: Database service or SID name.
-        user:
-          type: string
-          description: Database username.
-        password:
-          type: string
-          format: password
-          description: Database password.
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
     Connection:
       type: object
       description: A data source connection for data loading and dimension building.
@@ -471,6 +425,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -488,6 +455,39 @@ components:
         type:
           type: string
           description: Media type of the linked resource.
+    ConnectionInput:
+      type: object
+      description: Input for creating or updating a connection.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type.
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        password:
+          type: string
+          format: password
+          description: Database password.
   parameters:
     applicationName:
       name: applicationName

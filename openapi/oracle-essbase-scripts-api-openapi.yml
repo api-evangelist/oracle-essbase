@@ -197,27 +197,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-    ScriptList:
-      type: object
-      description: List of scripts.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Script'
     Script:
       type: object
       description: A calculation or MDX script associated with a database.
@@ -239,19 +218,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ScriptInput:
+    Error:
       type: object
-      description: Input for creating or updating a script.
-      required:
-      - name
-      - content
+      description: Error response from the Essbase REST API.
       properties:
-        name:
+        message:
           type: string
-          description: Script name.
-        content:
+          description: Human-readable error message.
+        errorCode:
           type: string
-          description: Script content (calculation or MDX statements).
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -269,19 +248,40 @@ components:
         type:
           type: string
           description: Media type of the linked resource.
+    ScriptInput:
+      type: object
+      description: Input for creating or updating a script.
+      required:
+      - name
+      - content
+      properties:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+    ScriptList:
+      type: object
+      description: List of scripts.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
   parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
     databaseName:
       name: databaseName
       in: path
       required: true
       description: Essbase database (cube) name.
+      schema:
+        type: string
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
       schema:
         type: string
   securitySchemes:

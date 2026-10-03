@@ -260,43 +260,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-    FileList:
-      type: object
-      description: File catalog listing response.
-      properties:
-        currentFolder:
-          $ref: '#/components/schemas/FileItem'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileItem'
-        totalResults:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
     FileItem:
       type: object
       description: A file or folder entry in the Essbase file catalog.
@@ -323,6 +286,43 @@ components:
             addFile:
               type: boolean
               description: Permission to add files.
+    FileList:
+      type: object
+      description: File catalog listing response.
+      properties:
+        currentFolder:
+          $ref: '#/components/schemas/FileItem'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileItem'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
   securitySchemes:
     basicAuth:
       type: http
