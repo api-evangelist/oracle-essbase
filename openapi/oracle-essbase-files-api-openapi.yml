@@ -260,32 +260,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FileItem:
-      type: object
-      description: A file or folder entry in the Essbase file catalog.
-      properties:
-        name:
-          type: string
-          description: File or folder name.
-        fullPath:
-          type: string
-          description: Full path in the file catalog.
-        type:
-          type: string
-          description: Item type.
-          enum:
-          - file
-          - folder
-        permissions:
-          type: object
-          description: Permissions on this item.
-          properties:
-            addFolder:
-              type: boolean
-              description: Permission to add sub-folders.
-            addFile:
-              type: boolean
-              description: Permission to add files.
     FileList:
       type: object
       description: File catalog listing response.
@@ -323,6 +297,32 @@ components:
         details:
           type: string
           description: Additional error details.
+    FileItem:
+      type: object
+      description: A file or folder entry in the Essbase file catalog.
+      properties:
+        name:
+          type: string
+          description: File or folder name.
+        fullPath:
+          type: string
+          description: Full path in the file catalog.
+        type:
+          type: string
+          description: Item type.
+          enum:
+          - file
+          - folder
+        permissions:
+          type: object
+          description: Permissions on this item.
+          properties:
+            addFolder:
+              type: boolean
+              description: Permission to add sub-folders.
+            addFile:
+              type: boolean
+              description: Permission to add files.
   securitySchemes:
     basicAuth:
       type: http

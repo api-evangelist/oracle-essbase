@@ -544,37 +544,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ApplicationList:
-      type: object
-      description: Paginated list of Essbase applications.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalResults:
-          type: integer
-          format: int64
-          description: Total number of matching results.
-        limit:
-          type: integer
-          format: int64
-          description: Maximum number of results per page.
-        offset:
-          type: integer
-          format: int64
-          description: Number of results skipped.
-        hasMore:
-          type: boolean
-          description: Whether more results are available.
-        count:
-          type: integer
-          format: int64
-          description: Number of results in this page.
-        properties:
-          type: object
-          additionalProperties:
-            type: string
     Application:
       type: object
       description: An Essbase application containing one or more databases (cubes).
@@ -644,19 +613,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
+    ApplicationList:
       type: object
-      description: Error response from the Essbase REST API.
+      description: Paginated list of Essbase applications.
       properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
+          format: int64
+          description: Total number of matching results.
+        limit:
+          type: integer
+          format: int64
+          description: Maximum number of results per page.
+        offset:
+          type: integer
+          format: int64
+          description: Number of results skipped.
+        hasMore:
+          type: boolean
+          description: Whether more results are available.
+        count:
+          type: integer
+          format: int64
+          description: Number of results in this page.
+        properties:
+          type: object
+          additionalProperties:
+            type: string
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -730,6 +717,19 @@ components:
         updateVariables:
           type: boolean
           description: Whether substitution variables can be updated.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
   parameters:
     applicationName:
       name: applicationName

@@ -233,48 +233,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    GroupInput:
-      type: object
-      description: Input for creating or updating a group.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Group name.
-        description:
-          type: string
-          description: Group description.
-        role:
-          type: string
-          description: Service role to assign to the group.
-        members:
-          type: array
-          description: Member user IDs or sub-group names.
-          items:
-            type: string
-    GroupList:
-      type: object
-      description: Paginated list of groups.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-        totalResults:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
     Group:
       type: object
       description: An Essbase user group.
@@ -300,19 +258,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
+    GroupInput:
       type: object
-      description: Error response from the Essbase REST API.
+      description: Input for creating or updating a group.
+      required:
+      - name
       properties:
-        message:
+        name:
           type: string
-          description: Human-readable error message.
-        errorCode:
+          description: Group name.
+        description:
           type: string
-          description: Machine-readable error code.
-        details:
+          description: Group description.
+        role:
           type: string
-          description: Additional error details.
+          description: Service role to assign to the group.
+        members:
+          type: array
+          description: Member user IDs or sub-group names.
+          items:
+            type: string
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -330,6 +295,41 @@ components:
         type:
           type: string
           description: Media type of the linked resource.
+    GroupList:
+      type: object
+      description: Paginated list of groups.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
   securitySchemes:
     basicAuth:
       type: http

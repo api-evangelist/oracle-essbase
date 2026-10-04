@@ -212,6 +212,45 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    UserList:
+      type: object
+      description: Paginated list of users.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
     User:
       type: object
       description: An Essbase user account.
@@ -250,28 +289,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    UserList:
-      type: object
-      description: Paginated list of users.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-        totalResults:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
     Error:
       type: object
       description: Error response from the Essbase REST API.
@@ -285,23 +302,6 @@ components:
         details:
           type: string
           description: Additional error details.
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
     UserInput:
       type: object
       description: Input for creating or updating a user.

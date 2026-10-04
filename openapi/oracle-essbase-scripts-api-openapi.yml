@@ -218,19 +218,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -261,6 +248,19 @@ components:
         content:
           type: string
           description: Script content (calculation or MDX statements).
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
     ScriptList:
       type: object
       description: List of scripts.

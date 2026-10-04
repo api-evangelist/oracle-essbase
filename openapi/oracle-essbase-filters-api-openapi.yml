@@ -197,14 +197,22 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FilterList:
+    FilterInput:
       type: object
-      description: List of filters.
+      description: Input for creating or updating a security filter.
+      required:
+      - name
       properties:
-        items:
+        name:
+          type: string
+          description: Filter name.
+        description:
+          type: string
+          description: Filter description.
+        rows:
           type: array
           items:
-            $ref: '#/components/schemas/Filter'
+            $ref: '#/components/schemas/FilterRow'
     Filter:
       type: object
       description: A security filter that controls member-level access to a database.
@@ -224,35 +232,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    FilterInput:
+    FilterRow:
       type: object
-      description: Input for creating or updating a security filter.
-      required:
-      - name
+      description: A single row in a security filter defining access for a member combination.
       properties:
-        name:
+        access:
           type: string
-          description: Filter name.
-        description:
+          description: Access level.
+          enum:
+          - READ
+          - WRITE
+          - NONE
+          - METAREAD
+        member:
           type: string
-          description: Filter description.
-        rows:
+          description: Member specification or combination.
+    FilterList:
+      type: object
+      description: List of filters.
+      properties:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/FilterRow'
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
+            $ref: '#/components/schemas/Filter'
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -270,21 +272,19 @@ components:
         type:
           type: string
           description: Media type of the linked resource.
-    FilterRow:
+    Error:
       type: object
-      description: A single row in a security filter defining access for a member combination.
+      description: Error response from the Essbase REST API.
       properties:
-        access:
+        message:
           type: string
-          description: Access level.
-          enum:
-          - READ
-          - WRITE
-          - NONE
-          - METAREAD
-        member:
+          description: Human-readable error message.
+        errorCode:
           type: string
-          description: Member specification or combination.
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
   parameters:
     databaseName:
       name: databaseName

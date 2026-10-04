@@ -241,38 +241,6 @@ components:
         count:
           type: integer
           format: int64
-    JobInput:
-      type: object
-      description: Input for executing an asynchronous job.
-      required:
-      - jobtype
-      properties:
-        application:
-          type: string
-          description: Application name.
-        db:
-          type: string
-          description: Database name.
-        jobtype:
-          type: string
-          description: Type of job to execute.
-          enum:
-          - dataload
-          - dimbuild
-          - calc
-          - clear
-          - importExcel
-          - exportExcel
-          - lcmExport
-          - lcmImport
-          - clearAggregation
-          - buildAggregation
-          - asoBufferDataLoad
-          - asoBufferCommit
-          - exportData
-          - mdxScript
-        parameters:
-          $ref: '#/components/schemas/JobParameters'
     JobRecord:
       type: object
       description: Record of an executed or running job.
@@ -379,6 +347,38 @@ components:
         allowMissing:
           type: boolean
           description: Whether missing data is allowed.
+    JobInput:
+      type: object
+      description: Input for executing an asynchronous job.
+      required:
+      - jobtype
+      properties:
+        application:
+          type: string
+          description: Application name.
+        db:
+          type: string
+          description: Database name.
+        jobtype:
+          type: string
+          description: Type of job to execute.
+          enum:
+          - dataload
+          - dimbuild
+          - calc
+          - clear
+          - importExcel
+          - exportExcel
+          - lcmExport
+          - lcmImport
+          - clearAggregation
+          - buildAggregation
+          - asoBufferDataLoad
+          - asoBufferCommit
+          - exportData
+          - mdxScript
+        parameters:
+          $ref: '#/components/schemas/JobParameters'
     JobParameters:
       type: object
       description: 'Job-specific parameters. Required fields depend on the job type. For dataload: file and optionally rule, abortOnError. For dimbuild: file and rule. For calc: script. For clear: option. For lcmExport/lcmImport: zipFileName.'

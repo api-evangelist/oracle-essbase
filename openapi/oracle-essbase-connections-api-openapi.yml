@@ -392,52 +392,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Connection:
-      type: object
-      description: A data source connection for data loading and dimension building.
-      properties:
-        name:
-          type: string
-          description: Connection name.
-        description:
-          type: string
-          description: Connection description.
-        type:
-          type: string
-          description: Connection type (e.g., Oracle, SQL Server, file-based).
-        host:
-          type: string
-          description: Database host or server address.
-        port:
-          type: integer
-          format: int32
-          description: Database port number.
-        serviceName:
-          type: string
-          description: Database service or SID name.
-        user:
-          type: string
-          description: Database username.
-        walletPath:
-          type: string
-          description: Path to the wallet file for secure connections.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -488,6 +442,52 @@ components:
           type: string
           format: password
           description: Database password.
+    Connection:
+      type: object
+      description: A data source connection for data loading and dimension building.
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type (e.g., Oracle, SQL Server, file-based).
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        walletPath:
+          type: string
+          description: Path to the wallet file for secure connections.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
   parameters:
     applicationName:
       name: applicationName
