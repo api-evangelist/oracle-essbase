@@ -119,3 +119,34 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - seat
+  units:
+  - compute
+  - data
+  - seat
+  plans:
+  - name: BYOL on OCI Marketplace
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - compute
+    - data
+    - seat
+    periods:
+    - month
+    - per-use
+  - name: Enterprise (On-Premises or OCI)
+    access: enterprise
+    model: seat
+    model_how: derived
+    units:
+    - compute
+    - seat
+    periods:
+    - year
