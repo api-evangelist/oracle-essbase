@@ -196,28 +196,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
   schemas:
-    Script:
+    ScriptList:
       type: object
-      description: A calculation or MDX script associated with a database.
+      description: List of scripts.
       properties:
-        name:
-          type: string
-          description: Script name.
-        content:
-          type: string
-          description: Script content (calculation or MDX statements).
-        modifiedBy:
-          type: string
-          description: User who last modified the script.
-        modifiedTime:
-          type: integer
-          format: int64
-          description: Last modification timestamp in milliseconds since epoch.
-        links:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
+            $ref: '#/components/schemas/Script'
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -261,29 +263,27 @@ components:
         details:
           type: string
           description: Additional error details.
-    ScriptList:
+    Script:
       type: object
-      description: List of scripts.
+      description: A calculation or MDX script associated with a database.
       properties:
-        items:
+        name:
+          type: string
+          description: Script name.
+        content:
+          type: string
+          description: Script content (calculation or MDX statements).
+        modifiedBy:
+          type: string
+          description: User who last modified the script.
+        modifiedTime:
+          type: integer
+          format: int64
+          description: Last modification timestamp in milliseconds since epoch.
+        links:
           type: array
           items:
-            $ref: '#/components/schemas/Script'
-  parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     basicAuth:
       type: http

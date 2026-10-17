@@ -260,30 +260,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    FileList:
-      type: object
-      description: File catalog listing response.
-      properties:
-        currentFolder:
-          $ref: '#/components/schemas/FileItem'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileItem'
-        totalResults:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
     Error:
       type: object
       description: Error response from the Essbase REST API.
@@ -323,6 +299,30 @@ components:
             addFile:
               type: boolean
               description: Permission to add files.
+    FileList:
+      type: object
+      description: File catalog listing response.
+      properties:
+        currentFolder:
+          $ref: '#/components/schemas/FileItem'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileItem'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
   securitySchemes:
     basicAuth:
       type: http

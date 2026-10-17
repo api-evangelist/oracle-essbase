@@ -480,13 +480,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: Essbase database (cube) name.
-      schema:
-        type: string
     applicationName:
       name: applicationName
       in: path
@@ -494,7 +487,24 @@ components:
       description: Essbase application name.
       schema:
         type: string
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: Essbase database (cube) name.
+      schema:
+        type: string
   schemas:
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -574,16 +584,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    VariablesSetting:
-      type: object
-      description: Settings controlling variable visibility and update permissions.
-      properties:
-        showVariables:
-          type: boolean
-          description: Whether substitution variables are visible.
-        updateVariables:
-          type: boolean
-          description: Whether substitution variables can be updated.
     DatabaseList:
       type: object
       description: Paginated list of databases.

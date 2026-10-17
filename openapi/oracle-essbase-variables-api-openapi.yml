@@ -147,6 +147,16 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Variable:
+      type: object
+      description: A substitution variable used in calculations and scripts.
+      properties:
+        name:
+          type: string
+          description: Variable name.
+        value:
+          type: string
+          description: Variable value.
     Error:
       type: object
       description: Error response from the Essbase REST API.
@@ -160,16 +170,6 @@ components:
         details:
           type: string
           description: Additional error details.
-    Variable:
-      type: object
-      description: A substitution variable used in calculations and scripts.
-      properties:
-        name:
-          type: string
-          description: Variable name.
-        value:
-          type: string
-          description: Variable value.
   securitySchemes:
     basicAuth:
       type: http

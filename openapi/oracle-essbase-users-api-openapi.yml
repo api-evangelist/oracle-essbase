@@ -212,28 +212,39 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UserList:
+    UserInput:
       type: object
-      description: Paginated list of users.
+      description: Input for creating or updating a user.
+      required:
+      - id
       properties:
-        items:
+        id:
+          type: string
+          description: User identifier.
+        name:
+          type: string
+          description: User display name.
+          maxLength: 256
+        email:
+          type: string
+          format: email
+          description: User email address.
+        password:
+          type: string
+          format: password
+          description: User password.
+        role:
+          type: string
+          description: User service role.
+          enum:
+          - User
+          - Power User
+          - Service Administrator
+        groups:
           type: array
+          description: Group names to assign the user to.
           items:
-            $ref: '#/components/schemas/User'
-        totalResults:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        limit:
-          type: integer
-          format: int64
-        offset:
-          type: integer
-          format: int64
-        hasMore:
-          type: boolean
+            type: string
     Link:
       type: object
       description: HATEOAS navigation link.
@@ -302,39 +313,28 @@ components:
         details:
           type: string
           description: Additional error details.
-    UserInput:
+    UserList:
       type: object
-      description: Input for creating or updating a user.
-      required:
-      - id
+      description: Paginated list of users.
       properties:
-        id:
-          type: string
-          description: User identifier.
-        name:
-          type: string
-          description: User display name.
-          maxLength: 256
-        email:
-          type: string
-          format: email
-          description: User email address.
-        password:
-          type: string
-          format: password
-          description: User password.
-        role:
-          type: string
-          description: User service role.
-          enum:
-          - User
-          - Power User
-          - Service Administrator
-        groups:
+        items:
           type: array
-          description: Group names to assign the user to.
           items:
-            type: string
+            $ref: '#/components/schemas/User'
+        totalResults:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        limit:
+          type: integer
+          format: int64
+        offset:
+          type: integer
+          format: int64
+        hasMore:
+          type: boolean
   securitySchemes:
     basicAuth:
       type: http

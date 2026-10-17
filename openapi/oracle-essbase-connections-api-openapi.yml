@@ -391,57 +391,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
   schemas:
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    ConnectionInput:
-      type: object
-      description: Input for creating or updating a connection.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Connection name.
-        description:
-          type: string
-          description: Connection description.
-        type:
-          type: string
-          description: Connection type.
-        host:
-          type: string
-          description: Database host or server address.
-        port:
-          type: integer
-          format: int32
-          description: Database port number.
-        serviceName:
-          type: string
-          description: Database service or SID name.
-        user:
-          type: string
-          description: Database username.
-        password:
-          type: string
-          format: password
-          description: Database password.
     Connection:
       type: object
       description: A data source connection for data loading and dimension building.
@@ -475,6 +433,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
     Error:
       type: object
       description: Error response from the Essbase REST API.
@@ -488,14 +463,39 @@ components:
         details:
           type: string
           description: Additional error details.
-  parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
+    ConnectionInput:
+      type: object
+      description: Input for creating or updating a connection.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Connection name.
+        description:
+          type: string
+          description: Connection description.
+        type:
+          type: string
+          description: Connection type.
+        host:
+          type: string
+          description: Database host or server address.
+        port:
+          type: integer
+          format: int32
+          description: Database port number.
+        serviceName:
+          type: string
+          description: Database service or SID name.
+        user:
+          type: string
+          description: Database username.
+        password:
+          type: string
+          format: password
+          description: Database password.
   securitySchemes:
     basicAuth:
       type: http

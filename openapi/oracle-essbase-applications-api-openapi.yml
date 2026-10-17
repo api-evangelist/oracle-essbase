@@ -543,7 +543,132 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 components:
+  parameters:
+    applicationName:
+      name: applicationName
+      in: path
+      required: true
+      description: Essbase application name.
+      schema:
+        type: string
   schemas:
+    VariablesSetting:
+      type: object
+      description: Settings controlling variable visibility and update permissions.
+      properties:
+        showVariables:
+          type: boolean
+          description: Whether substitution variables are visible.
+        updateVariables:
+          type: boolean
+          description: Whether substitution variables can be updated.
+    Link:
+      type: object
+      description: HATEOAS navigation link.
+      properties:
+        rel:
+          type: string
+          description: Link relation type.
+        href:
+          type: string
+          format: uri
+          description: Link URL.
+        method:
+          type: string
+          description: HTTP method for this link.
+        type:
+          type: string
+          description: Media type of the linked resource.
+    CreateApplication:
+      type: object
+      description: Request body for creating a new Essbase application and database.
+      required:
+      - applicationName
+      - databaseName
+      properties:
+        applicationName:
+          type: string
+          description: Application name (max 30 characters, no spaces, case-insensitive).
+          maxLength: 30
+        databaseName:
+          type: string
+          description: Database (cube) name (no spaces).
+        allowDuplicates:
+          type: boolean
+          description: Allow duplicate member names in outline.
+        enableScenario:
+          type: boolean
+          description: Enable scenario management (BSO only; must be false for ASO).
+        databaseType:
+          type: string
+          description: Database storage type.
+          enum:
+          - BSO
+          - ASO
+        appType:
+          type: string
+          description: Application encoding type.
+          enum:
+          - NATIVE
+          - UTF8
+        dbType:
+          type: string
+          description: Database type classification.
+          enum:
+          - NORMAL
+          - CURRENCY
+          - ASO
+        memberCount:
+          type: integer
+          format: int32
+          description: Initial member count.
+        memberPrefix:
+          type: string
+          description: Prefix for generated members.
+    Error:
+      type: object
+      description: Error response from the Essbase REST API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        errorCode:
+          type: string
+          description: Machine-readable error code.
+        details:
+          type: string
+          description: Additional error details.
+    ApplicationList:
+      type: object
+      description: Paginated list of Essbase applications.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
+          format: int64
+          description: Total number of matching results.
+        limit:
+          type: integer
+          format: int64
+          description: Maximum number of results per page.
+        offset:
+          type: integer
+          format: int64
+          description: Number of results skipped.
+        hasMore:
+          type: boolean
+          description: Whether more results are available.
+        count:
+          type: integer
+          format: int64
+          description: Number of results in this page.
+        properties:
+          type: object
+          additionalProperties:
+            type: string
     Application:
       type: object
       description: An Essbase application containing one or more databases (cubes).
@@ -613,131 +738,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ApplicationList:
-      type: object
-      description: Paginated list of Essbase applications.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalResults:
-          type: integer
-          format: int64
-          description: Total number of matching results.
-        limit:
-          type: integer
-          format: int64
-          description: Maximum number of results per page.
-        offset:
-          type: integer
-          format: int64
-          description: Number of results skipped.
-        hasMore:
-          type: boolean
-          description: Whether more results are available.
-        count:
-          type: integer
-          format: int64
-          description: Number of results in this page.
-        properties:
-          type: object
-          additionalProperties:
-            type: string
-    Link:
-      type: object
-      description: HATEOAS navigation link.
-      properties:
-        rel:
-          type: string
-          description: Link relation type.
-        href:
-          type: string
-          format: uri
-          description: Link URL.
-        method:
-          type: string
-          description: HTTP method for this link.
-        type:
-          type: string
-          description: Media type of the linked resource.
-    CreateApplication:
-      type: object
-      description: Request body for creating a new Essbase application and database.
-      required:
-      - applicationName
-      - databaseName
-      properties:
-        applicationName:
-          type: string
-          description: Application name (max 30 characters, no spaces, case-insensitive).
-          maxLength: 30
-        databaseName:
-          type: string
-          description: Database (cube) name (no spaces).
-        allowDuplicates:
-          type: boolean
-          description: Allow duplicate member names in outline.
-        enableScenario:
-          type: boolean
-          description: Enable scenario management (BSO only; must be false for ASO).
-        databaseType:
-          type: string
-          description: Database storage type.
-          enum:
-          - BSO
-          - ASO
-        appType:
-          type: string
-          description: Application encoding type.
-          enum:
-          - NATIVE
-          - UTF8
-        dbType:
-          type: string
-          description: Database type classification.
-          enum:
-          - NORMAL
-          - CURRENCY
-          - ASO
-        memberCount:
-          type: integer
-          format: int32
-          description: Initial member count.
-        memberPrefix:
-          type: string
-          description: Prefix for generated members.
-    VariablesSetting:
-      type: object
-      description: Settings controlling variable visibility and update permissions.
-      properties:
-        showVariables:
-          type: boolean
-          description: Whether substitution variables are visible.
-        updateVariables:
-          type: boolean
-          description: Whether substitution variables can be updated.
-    Error:
-      type: object
-      description: Error response from the Essbase REST API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        errorCode:
-          type: string
-          description: Machine-readable error code.
-        details:
-          type: string
-          description: Additional error details.
-  parameters:
-    applicationName:
-      name: applicationName
-      in: path
-      required: true
-      description: Essbase application name.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
