@@ -1,4 +1,4 @@
-# Oracle Essbase (oracle-essbase)
+# Oracle Essbase
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,169 +66,225 @@
 
 Oracle Essbase is a multi-dimensional database management system that provides a multidimensional analytical platform for business intelligence applications, financial consolidation, planning, budgeting, and forecasting.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/oracle-essbase/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/oracle-essbase/refs/heads/main/apis.yml)
+**Areas:** Analytics · Budgeting · Business Intelligence · Financial Consolidation · Multi-Dimensional Database · OLAP · Planning
 
-## Scope
+## Oracle Essbase on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Oracle Essbase is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/oracle-essbase/](https://apis.io/providers/oracle-essbase/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- Analytics
-- Budgeting
-- Business Intelligence
-- Financial Consolidation
-- Multi-Dimensional Database
-- OLAP
-- Planning
+- [Essbase Java API](https://apis.io/apis/oracle-essbase/essbase-java-api/) — Java API for developing applications that interact with Oracle Essbase for data loading, calculations, and retrievals. Provides libraries, samples, and…
+- [Essbase C API](https://apis.io/apis/oracle-essbase/essbase-c-api/) — C API for building high-performance applications that interact with Essbase databases. Includes the Grid API for Smart View-like functionality and the…
+- [Essbase MaxL Scripting Interface](https://apis.io/apis/oracle-essbase/essbase-maxl-scripting-interface/) — MaxL is the multi-dimensional database access language for Essbase that provides a scripting-based interface for administering and querying Essbase. It…
+- [Essbase CLI (Command Line Interface)](https://apis.io/apis/oracle-essbase/essbase-cli-command-line-interface/) — Command-line interface for administering and managing Essbase applications and databases. Provides command-line access for common administrative tasks…
+- [Oracle Essbase Application Configuration API](https://apis.io/apis/oracle-essbase/oracle-essbase-application-configuration-api/) — Manage application-level configuration settings
+- [Oracle Essbase Applications API](https://apis.io/apis/oracle-essbase/oracle-essbase-applications-api/) — Manage Essbase applications and their lifecycle
+- [Oracle Essbase Connections API](https://apis.io/apis/oracle-essbase/oracle-essbase-connections-api/) — Manage global and application-level connections
+- [Oracle Essbase Databases API](https://apis.io/apis/oracle-essbase/oracle-essbase-databases-api/) — Manage databases (cubes) within applications
+- [Oracle Essbase Dimensions API](https://apis.io/apis/oracle-essbase/oracle-essbase-dimensions-api/) — View dimension information, generations, and levels
+- [Oracle Essbase Files API](https://apis.io/apis/oracle-essbase/oracle-essbase-files-api/) — Upload, download, copy, move, and delete files in the Essbase file catalog
+- [Oracle Essbase Filters API](https://apis.io/apis/oracle-essbase/oracle-essbase-filters-api/) — Manage database security filters
+- [Oracle Essbase Groups API](https://apis.io/apis/oracle-essbase/oracle-essbase-groups-api/) — Manage user groups and memberships
+- [Oracle Essbase Jobs API](https://apis.io/apis/oracle-essbase/oracle-essbase-jobs-api/) — Execute and monitor asynchronous jobs such as data loads, calculations, and exports
+- [Oracle Essbase Locks API](https://apis.io/apis/oracle-essbase/oracle-essbase-locks-api/) — Manage locks on database objects and blocks
+- [Oracle Essbase Partitions API](https://apis.io/apis/oracle-essbase/oracle-essbase-partitions-api/) — Manage database partitions
+- [Oracle Essbase Reports API](https://apis.io/apis/oracle-essbase/oracle-essbase-reports-api/) — MDX reports and drill-through reports
+- [Oracle Essbase Roles API](https://apis.io/apis/oracle-essbase/oracle-essbase-roles-api/) — Service and application role provisioning
+- [Oracle Essbase Scripts API](https://apis.io/apis/oracle-essbase/oracle-essbase-scripts-api/) — Manage calculation and MDX scripts
+- [Oracle Essbase Server API](https://apis.io/apis/oracle-essbase/oracle-essbase-server-api/) — Server properties, configuration, and about information
+- [Oracle Essbase Sessions API](https://apis.io/apis/oracle-essbase/oracle-essbase-sessions-api/) — Manage active user sessions
+- [Oracle Essbase User Session API](https://apis.io/apis/oracle-essbase/oracle-essbase-user-session-api/) — User login, logout, and password management
+- [Oracle Essbase Users API](https://apis.io/apis/oracle-essbase/oracle-essbase-users-api/) — Create, search, update, and delete users
+- [Oracle Essbase Variables API](https://apis.io/apis/oracle-essbase/oracle-essbase-variables-api/) — Manage server-level and application-level substitution variables
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Oracle Essbase REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-RESTful API for managing and interacting with Oracle Essbase applications, databases, and performing analytical operations. Enables automation of Essbase resource management with endpoints for applications, databases, calculations, data loads, and user management.
+- [Oracle Essbase Agentic Access](https://apis.io/agentic-access/oracle-essbase/oracle-essbase-agentic-access/)
 
-- **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html)
-- **Base URL:** `https://{host}:{port}/essbase/rest/v1`
+#### JSON Schema (36)
 
-#### Tags
+The data models the API reads and writes.
 
-- Analytics
-- Calculations
-- Data Management
-- OLAP
-- REST API
+- [AboutInfo](https://apis.io/schemas/oracle-essbase/oracle-essbase-aboutinfo/)
+- [Oracle Essbase Application](https://apis.io/schemas/oracle-essbase/oracle-essbase-application/)
+- [ApplicationList](https://apis.io/schemas/oracle-essbase/oracle-essbase-applicationlist/)
+- [Oracle Essbase Connection](https://apis.io/schemas/oracle-essbase/oracle-essbase-connection/)
+- [ConnectionInput](https://apis.io/schemas/oracle-essbase/oracle-essbase-connectioninput/)
+- [CreateApplication](https://apis.io/schemas/oracle-essbase/oracle-essbase-createapplication/)
+- [Oracle Essbase Database](https://apis.io/schemas/oracle-essbase/oracle-essbase-database/)
+- [DatabaseList](https://apis.io/schemas/oracle-essbase/oracle-essbase-databaselist/)
+- [Oracle Essbase Dimension](https://apis.io/schemas/oracle-essbase/oracle-essbase-dimension/)
+- [Error](https://apis.io/schemas/oracle-essbase/oracle-essbase-error/)
+- [FileItem](https://apis.io/schemas/oracle-essbase/oracle-essbase-fileitem/)
+- [FileList](https://apis.io/schemas/oracle-essbase/oracle-essbase-filelist/)
+- [Oracle Essbase Filter](https://apis.io/schemas/oracle-essbase/oracle-essbase-filter/)
+- [FilterInput](https://apis.io/schemas/oracle-essbase/oracle-essbase-filterinput/)
+- [FilterList](https://apis.io/schemas/oracle-essbase/oracle-essbase-filterlist/)
+- [FilterRow](https://apis.io/schemas/oracle-essbase/oracle-essbase-filterrow/)
+- [Group](https://apis.io/schemas/oracle-essbase/oracle-essbase-group/)
+- [GroupInput](https://apis.io/schemas/oracle-essbase/oracle-essbase-groupinput/)
+- [GroupList](https://apis.io/schemas/oracle-essbase/oracle-essbase-grouplist/)
+- [Oracle Essbase Job](https://apis.io/schemas/oracle-essbase/oracle-essbase-job/)
+- [JobInput](https://apis.io/schemas/oracle-essbase/oracle-essbase-jobinput/)
+- [JobList](https://apis.io/schemas/oracle-essbase/oracle-essbase-joblist/)
+- [JobParameters](https://apis.io/schemas/oracle-essbase/oracle-essbase-jobparameters/)
+- [JobRecord](https://apis.io/schemas/oracle-essbase/oracle-essbase-jobrecord/)
+- [Link](https://apis.io/schemas/oracle-essbase/oracle-essbase-link/)
+- …and 11 more published on APIs.io
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/index.html)
-- [OpenAPI](openapi/oracle-essbase-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-essbase-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-essbase-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/erest/op-rest-v1-sessions-post.html)
-- [Reference](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/rest-endpoints.html)
-- [Getting Started](https://docs.oracle.com/en/database/other-databases/essbase/21/essrt/api-essbase.html)
-- [J S O N  Schema](json-schema/oracle-essbase-application-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-database-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-job-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-user-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-session-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-dimension-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-connection-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-script-schema.json)
-- [J S O N  Schema](json-schema/oracle-essbase-filter-schema.json)
-- [J S O N- L D  Context](json-ld/oracle-essbase-context.jsonld)
+Data models expressed in JSON Structure.
 
-### Essbase Java API
+- [Oracle Essbase Structure](https://apis.io/json-structure/oracle-essbase/oracle-essbase-structure/)
 
-Java API for developing applications that interact with Oracle Essbase for data loading, calculations, and retrievals. Provides libraries, samples, and documentation for building Essbase client tools in Java.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/](https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Oracle Essbase Context](https://apis.io/jsonld/oracle-essbase/oracle-essbase-context/)
 
-- Client Tools
-- Data Loading
-- Java
-- Programming Interface
-- SDK
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esjav/)
-- [Postman Collection](collections/oracle-essbase-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-essbase-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Oracle Essbase Domain Vocabulary](https://apis.io/vocabularies/oracle-essbase/oracle-essbase-vocabulary/)
 
-### Essbase C API
+#### Collections (39)
 
-C API for building high-performance applications that interact with Essbase databases. Includes the Grid API for Smart View-like functionality and the Outline API for programmatic outline manipulation.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/](https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/)
+- [Oracle Essbase REST Application Configuration API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-application-configuration-api/)
+- [Oracle Essbase REST Application Configuration Applications API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-applications-api/)
+- [Oracle Essbase REST Application Configuration Connections API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-connections-api/)
+- [Oracle Essbase REST Application Configuration Databases API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-databases-api/)
+- [Oracle Essbase REST Application Configuration Dimensions API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-dimensions-api/)
+- [Oracle Essbase REST Application Configuration Files API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-files-api/)
+- [Oracle Essbase REST Application Configuration Filters API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-filters-api/)
+- [Oracle Essbase REST Application Configuration Groups API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-groups-api/)
+- [Oracle Essbase REST Application Configuration Jobs API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-jobs-api/)
+- [Oracle Essbase REST Application Configuration Locks API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-locks-api/)
+- [Oracle Essbase REST Application Configuration Partitions API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-partitions-api/)
+- [Oracle Essbase REST Application Configuration Reports API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-reports-api/)
+- [Oracle Essbase REST API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-rest-api/)
+- [Oracle Essbase REST Application Configuration Roles API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-roles-api/)
+- [Oracle Essbase REST Application Configuration Scripts API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-scripts-api/)
+- [Oracle Essbase REST Application Configuration Server API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-server-api/)
+- [Oracle Essbase REST Application Configuration Sessions API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-sessions-api/)
+- [Oracle Essbase REST Application Configuration User Session API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-user-session-api/)
+- [Oracle Essbase REST Application Configuration Users API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-users-api/)
+- [Oracle Essbase REST Application Configuration Variables API](https://apis.io/collections/oracle-essbase/open-oracle-essbase-variables-api/)
+- [Oracle Essbase REST Application Configuration API](https://apis.io/collections/oracle-essbase/postman-oracle-essbase-application-configuration-api/)
+- [Oracle Essbase REST Application Configuration Applications API](https://apis.io/collections/oracle-essbase/postman-oracle-essbase-applications-api/)
+- [Oracle Essbase REST Application Configuration Connections API](https://apis.io/collections/oracle-essbase/postman-oracle-essbase-connections-api/)
+- [Oracle Essbase REST Application Configuration Databases API](https://apis.io/collections/oracle-essbase/postman-oracle-essbase-databases-api/)
+- [Oracle Essbase REST Application Configuration Dimensions API](https://apis.io/collections/oracle-essbase/postman-oracle-essbase-dimensions-api/)
+- …and 14 more published on APIs.io
 
-#### Tags
+#### Governance rules (1)
 
-- C API
-- Grid API
-- Native Interface
-- Outline API
-- SDK
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [Oracle Essbase — jsonschema rules](https://apis.io/rules/oracle-essbase/oracle-essbase-jsonschema-spectral-rules/)
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esoac/)
-- [Postman Collection](collections/oracle-essbase-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-essbase-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Essbase MaxL Scripting Interface
+Authentication, trust centre, and vulnerability disclosure.
 
-MaxL is the multi-dimensional database access language for Essbase that provides a scripting-based interface for administering and querying Essbase. It enables automation of administrative operations using statements rather than a series of commands.
+- [Oracle Essbase Authentication](https://apis.io/security/oracle-essbase/oracle-essbase-authentication/)
+- [Oracle Essbase Domain Security](https://apis.io/security/oracle-essbase/oracle-essbase-domain-security/)
 
-- **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html)
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Administration
-- Automation
-- Database Management
-- Query Language
-- Scripting
+- [Oracle Essbase Plans Pricing](https://apis.io/plans/oracle-essbase/oracle-essbase-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/maxl.html)
-- [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/esssr/login-logout-cli-authentication.html)
-- [Postman Collection](collections/oracle-essbase-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-essbase-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-### Essbase CLI (Command Line Interface)
+- [Oracle Essbase Rate Limits](https://apis.io/rate-limits/oracle-essbase/oracle-essbase-rate-limits/)
 
-Command-line interface for administering and managing Essbase applications and databases. Provides command-line access for common administrative tasks including application management, data operations, and server configuration.
+#### FinOps (1)
 
-- **Human URL:** [https://docs.oracle.com/en/database/other-databases/essbase/21/essug/](https://docs.oracle.com/en/database/other-databases/essbase/21/essug/)
+What the API costs to run, by operation.
 
-#### Tags
+- [Oracle Essbase Finops](https://apis.io/finops/oracle-essbase/oracle-essbase-finops/)
 
-- Administration
-- Automation
-- CLI
-- Command Line
-- Server Management
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/21/essug/)
-- [Postman Collection](collections/oracle-essbase-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-essbase-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Portal](https://docs.oracle.com/en/database/other-databases/essbase/21/index.html)
-- [Getting Started](https://docs.oracle.com/en/database/other-databases/essbase/21/essst/what-is-oracle-essbase.html)
-- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/)
-- [Authentication](https://docs.oracle.com/en/database/other-databases/essbase/21/essoa/weblogic-authentication.html)
-- [Blog](https://blogs.oracle.com/proactivesupportepm/category/pse-essbase-on-premise)
-- [Status Page](https://ocistatus.oraclecloud.com/)
-- [Support](https://support.oracle.com)
-- [Terms of Service](https://www.oracle.com/legal/terms/)
-- [Privacy Policy](https://www.oracle.com/legal/privacy/privacy-policy/)
-- [GitHub Organization](https://github.com/oracle-quickstart/oci-essbase)
-- [Community](https://community.oracle.com/customerconnect/categories/oci-essbase)
 - [Website](https://www.oracle.com/business-analytics/essbase.html)
-- [Login](https://www.oracle.com/cloud/sign-in.html)
-- [Sign Up](https://www.oracle.com/cloud/free/)
-- [Downloads](https://www.oracle.com/database/technologies/essbase-downloads.html)
-- [Tutorials](https://docs.oracle.com/en/database/other-databases/essbase/21/essug/essbase-tutorials.html)
-- [Licensing](https://www.oracle.com/corporate/pricing/specialty-topics.html)
+- [Documentation](https://docs.oracle.com/en/database/other-databases/essbase/)
+- [Getting started](https://docs.oracle.com/en/database/other-databases/essbase/21/essst/what-is-oracle-essbase.html)
+- [Support](https://support.oracle.com)
 - [Changelog](https://docs.oracle.com/en/database/other-databases/essbase/21/essop/index.html)
+- [Blog](https://blogs.oracle.com/proactivesupportepm/category/pse-essbase-on-premise)
+- [Terms of service](https://www.oracle.com/legal/terms/)
+- [Privacy policy](https://www.oracle.com/legal/privacy/privacy-policy/)
+- [GitHub](https://github.com/oracle-quickstart/oci-essbase)
+- [Status](https://ocistatus.oraclecloud.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 48.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 64.0 |
+| Contract governance | 9.8 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 32.9 |
+
+**Agent readiness 24.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/oracle-essbase/](https://apis.io/providers/oracle-essbase/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Oracle Essbase: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/oracle-essbase/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
